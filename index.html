@@ -1,0 +1,4749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIMONO RENTAL ANN — 着物レンタル · Walk In OK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  :root{
+    /* ANN Kimono Rental — Sakura Pink Identity */
+    --kinari: #FFF8F8;        /* blush white base */
+    --kinari-deep: #FDEEF0;   /* soft pink surface */
+    --kinari-warm: #FBDFE3;   /* warm rose surface */
+    --sumi: #3D1515;          /* deep rose-black */
+    --sumi-soft: #5C2828;     /* softer rose-black */
+    --sumi-mid: #9A6068;      /* mid rose tone */
+    --sumi-light: #CCA8B0;    /* light rose tone */
+    --shu: #C1404A;           /* 朱 ANN red accent */
+    --shu-deep: #9E2D35;      /* deeper ANN red */
+    --kon: #3D1515;           /* deep rose (replaces indigo) */
+    --kincha: #D4808A;        /* soft rose (replaces gold) */
+    --kincha-soft: #EBA0AA;   /* lighter rose */
+    --sakura: #F5C0C8;        /* 桜 cherry pink */
+    --sakura-soft: #FDEEF0;   /* light sakura */
+    --koke: #5C8050;          /* 苔 moss (kept) */
+    --hai: #D4B8BC;           /* 灰 ash rose */
+    --line: rgba(193,64,74,0.08);
+    --line-strong: rgba(193,64,74,0.15);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:var(--kinari);
+    color:var(--sumi);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:clip;
+  }
+
+  /* Soft ambient overlay — subtle dots + warm gradient */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(ellipse 1400px 900px at 15% 5%, rgba(245,192,200,0.12), transparent 65%),
+      radial-gradient(ellipse 900px 700px at 85% 70%, rgba(193,64,74,0.06), transparent 70%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><circle cx='16' cy='16' r='1.2' fill='%23C1404A' fill-opacity='0.07'/></svg>");
+    background-size: auto, auto, 32px 32px;
+    z-index:1;
+    opacity:1;
+  }
+
+  /* Typography */
+  .display-jp{font-family:'Shippori Mincho','Noto Serif JP',serif;font-weight:400;letter-spacing:0.04em}
+  .display-en{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:0.02em}
+  .body-en{font-family:'Plus Jakarta Sans',sans-serif}
+  .label{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500}
+
+  /* Vertical Japanese text */
+  .vertical{writing-mode:vertical-rl;text-orientation:mixed;font-family:'Shippori Mincho','Noto Serif JP',serif}
+
+  /* Layout */
+  .container{max-width:1440px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+  .container-narrow{max-width:1180px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+  .container-tight{max-width:920px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+
+  /* ============ ANN BRAND LOGO ============ */
+  .ann-circle{
+    width:44px;height:44px;
+    border-radius:50%;
+    border:2px solid var(--shu);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .ann-circle::before{
+    content:'';
+    position:absolute;inset:0;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><circle cx='22' cy='22' r='21' fill='%23FFF8F8' stroke='%23C1404A' stroke-width='1.5'/><path d='M22 30 L22 14 M16 20 Q19 14 22 14 Q25 14 28 20' stroke='%23C1404A' stroke-width='1.2' fill='none' stroke-linecap='round'/><path d='M16 28 L28 28' stroke='%23C1404A' stroke-width='1' fill='none' stroke-linecap='round'/><circle cx='22' cy='10' r='2' fill='%23C1404A' opacity='0.6'/></svg>") center/cover;
+  }
+  .brand-ann{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:500;
+    letter-spacing:0.12em;
+    color:var(--sumi);
+    line-height:1;
+  }
+  .brand-ann-sub{
+    font-family:'Noto Serif JP',serif;
+    font-size:9px;
+    letter-spacing:0.28em;
+    color:var(--sumi-mid);
+    margin-top:4px;
+    font-weight:400;
+  }
+
+  /* ============ TOP BAR ============ */
+  .topbar{
+    background:var(--sumi);
+    color:var(--kinari);
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    padding:9px 0;
+    position:relative;
+    z-index:50;
+  }
+  .topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .topbar-marquee{display:flex;gap:40px;overflow:hidden;flex:1}
+  .topbar-marquee span{white-space:nowrap;opacity:0.85}
+  .topbar-marquee span::before{content:'◆';margin-right:14px;color:var(--shu);font-size:8px;vertical-align:middle}
+  .lang-switch{display:flex;gap:14px;align-items:center}
+  .lang-switch button{
+    background:none;border:none;color:var(--kinari);
+    font:inherit;letter-spacing:0.2em;cursor:pointer;
+    opacity:0.55;transition:opacity .2s;
+    font-size:11px;
+  }
+  .lang-switch button.active{opacity:1;color:var(--kincha-soft)}
+  .lang-switch .sep{opacity:0.3}
+
+  /* ============ HEADER ============ */
+  .site-sticky{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--kinari);
+  }
+  header{
+    background:var(--kinari);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .topbar{
+    /* override position:relative so it scrolls within the sticky wrapper */
+    position:static;
+    z-index:auto;
+  }
+  .header-inner{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    padding:20px 48px;
+    gap:32px;
+  }
+  nav.main-nav{display:flex;gap:38px;align-items:center}
+  nav.main-nav a{
+    color:var(--sumi);text-decoration:none;
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
+    font-weight:500;
+    position:relative;padding:6px 0;
+    transition:color .2s;
+  }
+  nav.main-nav a:hover,nav.main-nav a.active{color:var(--shu)}
+  nav.main-nav a.active::after{
+    content:'';position:absolute;left:50%;bottom:-2px;
+    width:6px;height:6px;border-radius:50%;
+    background:var(--shu);transform:translateX(-50%);
+  }
+  .brand{
+    display:flex;flex-direction:column;align-items:center;
+    cursor:pointer;text-decoration:none;color:var(--sumi);
+    line-height:1;
+  }
+  .brand-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:32px;
+    letter-spacing:0.08em;
+    font-weight:500;
+  }
+  .brand-en{
+    font-family:'Cormorant Garamond',serif;
+    font-size:11px;
+    letter-spacing:0.42em;
+    margin-top:4px;
+    color:var(--sumi-mid);
+    font-style:italic;
+    font-weight:400;
+  }
+  .header-actions{display:flex;gap:22px;align-items:center;justify-content:flex-end}
+  .header-icon{
+    background:none;border:none;cursor:pointer;
+    color:var(--sumi);width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;transition:color .2s;
+  }
+  .header-icon:hover{color:var(--shu)}
+  .header-icon svg{width:20px;height:20px;stroke-width:1.5}
+  .cart-count{
+    position:absolute;top:-2px;right:-2px;
+    width:18px;height:18px;border-radius:50%;
+    background:var(--shu);color:var(--kinari);
+    font-size:10px;font-weight:600;letter-spacing:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+
+  /* ============ VIEWS ============ */
+  .view{display:none;animation:fadeIn .6s ease}
+  .view.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    min-height:calc(100vh - 88px);
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:0;
+    background:var(--kinari);
+    overflow:hidden;
+  }
+  .hero-text{
+    padding:88px 64px 88px 88px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    z-index:3;
+  }
+  .hero-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;
+    letter-spacing:0.5em;
+    color:var(--shu);
+    margin-bottom:36px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .hero-jp::after{content:'';height:1px;width:80px;background:var(--shu);opacity:0.5}
+  .hero-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px;
+    font-weight:300;
+    line-height:0.95;
+    letter-spacing:-0.02em;
+    color:var(--sumi);
+    margin-bottom:8px;
+  }
+  .hero-title em{font-style:italic;font-weight:400;color:var(--shu);font-size:0.9em}
+  .hero-title .ja-accent{
+    display:block;
+    font-family:'Shippori Mincho',serif;
+    font-size:24px;
+    letter-spacing:0.4em;
+    color:var(--sumi-mid);
+    margin-top:24px;
+    font-weight:300;
+  }
+  .hero-sub{
+    margin-top:36px;
+    max-width:420px;
+    color:var(--sumi-soft);
+    font-size:15px;
+    line-height:1.8;
+    font-weight:300;
+  }
+  .hero-cta{
+    margin-top:48px;
+    display:flex;gap:20px;align-items:center;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 32px;
+    background:var(--sumi);color:var(--kinari);
+    border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;
+    transition:all .3s;
+    font-family:inherit;
+    text-decoration:none;
+  }
+  .btn:hover{background:var(--shu);transform:translateY(-1px)}
+  .btn svg{width:14px;height:14px}
+  .btn-outline{
+    background:transparent;color:var(--sumi);
+    border:1px solid var(--sumi);
+  }
+  .btn-outline:hover{background:var(--sumi);color:var(--kinari)}
+  .btn-link{
+    background:none;color:var(--sumi);border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:500;
+    font-family:inherit;padding:16px 0;
+    border-bottom:1px solid var(--sumi);
+    transition:all .25s;
+  }
+  .btn-link:hover{color:var(--shu);border-color:var(--shu)}
+
+  .hero-image{
+    position:relative;
+    background:linear-gradient(135deg,#FDEEF0 0%,#F5C0C8 100%);
+    overflow:hidden;
+  }
+  .hero-image-content{
+    position:absolute;inset:0;
+    background-image:url("https://picsum.photos/seed/kimono-ann-sakura/800/1200");
+    background-size:cover;
+    background-position:center 25%;
+  }
+  .hero-image-content::after{
+    content:'';position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(245,192,200,0.15) 0%, rgba(61,21,21,0.4) 100%),
+      radial-gradient(circle at 30% 60%, rgba(0,0,0,0) 0%, rgba(61,21,21,0.35) 100%);
+  }
+  .hero-image-overlay{
+    position:absolute;
+    bottom:80px;
+    right:80px;
+    text-align:right;
+    color:var(--kinari);
+    z-index:2;
+  }
+  .hero-image-overlay .vertical{
+    font-size:32px;
+    letter-spacing:0.4em;
+    font-weight:300;
+    line-height:1.6;
+    color:var(--kincha-soft);
+  }
+  .hero-floating-stamp{
+    position:absolute;
+    top:80px;left:80px;
+    width:90px;height:90px;
+    border:2px solid var(--shu);
+    background:var(--shu);
+    color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(-8deg);
+    z-index:2;
+    box-shadow:0 4px 30px rgba(168,50,63,0.4);
+  }
+  .hero-floating-stamp::before{
+    content:'';position:absolute;inset:6px;
+    border:1px solid rgba(250,247,242,0.5);
+  }
+  .hero-floating-stamp span{
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;
+    letter-spacing:0.1em;
+    line-height:1.4;
+    text-align:center;
+    font-weight:600;
+    z-index:1;
+  }
+  .hero-scroll{
+    position:absolute;bottom:40px;right:40px;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    z-index:5;
+    pointer-events:none;
+  }
+  .hero-scroll-line{
+    width:1px;height:60px;
+    background:linear-gradient(to bottom,var(--sumi-mid),transparent);
+  }
+  .hero-scroll-text{
+    font-size:10px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--sumi-mid);
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section{padding:120px 0;position:relative}
+  .section-tight{padding:80px 0}
+  .section-header{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    margin-bottom:80px;
+  }
+  .section-header.left{align-items:flex-start;text-align:left}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:12px;
+    color:var(--shu);
+    font-size:11px;letter-spacing:0.36em;
+    text-transform:uppercase;
+    margin-bottom:24px;
+    font-weight:500;
+  }
+  .eyebrow::before,.eyebrow::after{
+    content:'';width:30px;height:1px;background:var(--shu);
+  }
+  .section-header.left .eyebrow::after{display:none}
+  .section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:64px;
+    font-weight:300;
+    line-height:1.1;
+    letter-spacing:-0.01em;
+    color:var(--sumi);
+    margin-bottom:20px;
+  }
+  .section-title em{font-style:italic;color:var(--shu)}
+  .section-title-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:18px;
+    letter-spacing:0.4em;
+    color:var(--sumi-mid);
+    font-weight:400;
+  }
+  .section-subtitle{
+    max-width:560px;
+    color:var(--sumi-soft);
+    font-size:15px;
+    line-height:1.8;
+    margin-top:16px;
+    font-weight:300;
+  }
+
+  /* Brush stroke divider */
+  .brush-divider{
+    width:120px;height:24px;
+    margin:24px auto;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24'><path d='M2 12 Q 20 8, 40 11 T 80 13 Q 100 14, 118 10' stroke='%23A8323F' stroke-width='1.5' fill='none' stroke-linecap='round' opacity='0.7'/><circle cx='118' cy='10' r='2' fill='%23A8323F' opacity='0.7'/></svg>");
+    background-repeat:no-repeat;background-position:center;
+  }
+
+  /* ============ FEATURED COLLECTION ============ */
+  .featured{
+    background:var(--kinari);
+    position:relative;
+  }
+  .featured::before{
+    content:'';position:absolute;
+    top:40px;right:60px;
+    width:200px;height:280px;
+    background:radial-gradient(ellipse at center, rgba(245,192,200,0.35) 0%, transparent 70%);
+    border-radius:50%;
+    filter:blur(40px);
+    pointer-events:none;
+  }
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+  }
+  .product-card{
+    cursor:pointer;
+    text-decoration:none;
+    color:inherit;
+    display:flex;flex-direction:column;
+    transition:all .4s;
+  }
+  .product-image{
+    aspect-ratio:3/4;
+    background:var(--kinari-deep);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .product-image::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 60%,rgba(26,22,20,0.15));
+    pointer-events:none;
+  }
+  .product-image-inner{
+    position:absolute;inset:0;
+    transition:transform .8s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .product-card:hover .product-image-inner{transform:scale(1.05)}
+  .product-card:hover .product-image{box-shadow:0 30px 60px -20px rgba(26,22,20,0.25)}
+  .product-badge{
+    position:absolute;
+    top:16px;left:16px;
+    background:var(--shu);
+    color:var(--kinari);
+    padding:5px 12px;
+    font-size:9px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    z-index:2;
+  }
+  .product-badge.sold{background:var(--sumi)}
+  .product-badge.new{background:var(--kincha)}
+  .product-quick{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    background:var(--kinari);
+    padding:14px 18px;
+    transform:translateY(100%);
+    transition:transform .3s;
+    display:flex;justify-content:space-between;align-items:center;
+    z-index:3;
+    border-top:1px solid var(--sumi);
+  }
+  .product-card:hover .product-quick{transform:translateY(0)}
+  .product-quick span{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500}
+  .product-quick svg{width:16px;height:16px}
+  .product-info{padding:0 4px}
+  .product-cat{
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .product-name{
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;
+    font-weight:500;
+    color:var(--sumi);
+    margin-bottom:4px;
+    letter-spacing:0.04em;
+  }
+  .product-name-en{
+    font-family:'Cormorant Garamond',serif;
+    font-size:14px;
+    font-style:italic;
+    color:var(--sumi-mid);
+    font-weight:400;
+    margin-bottom:12px;
+  }
+  .product-price{
+    display:flex;align-items:baseline;gap:8px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:500;
+    color:var(--sumi);
+  }
+  .product-price small{
+    font-size:11px;
+    color:var(--sumi-mid);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    font-weight:400;
+  }
+
+  /* Kimono illustrated cards */
+  .kimono-art{
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ============ SERVICES (3 columns) ============ */
+  .services{
+    background:var(--kinari-deep);
+    position:relative;
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .service-card{
+    padding:64px 48px;
+    border-right:1px solid var(--line-strong);
+    background:var(--kinari);
+    transition:background .3s;
+    position:relative;
+  }
+  .service-card:last-child{border-right:none}
+  .service-card:hover{background:var(--kinari-deep)}
+  .service-num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:14px;
+    color:var(--shu);
+    letter-spacing:0.1em;
+    margin-bottom:32px;
+  }
+  .service-icon{
+    width:48px;height:48px;
+    margin-bottom:32px;
+    color:var(--sumi);
+    stroke-width:1;
+  }
+  .service-title{
+    font-family:'Shippori Mincho',serif;
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--sumi);
+  }
+  .service-title-en{
+    font-family:'Cormorant Garamond',serif;
+    font-size:14px;
+    font-style:italic;
+    color:var(--sumi-mid);
+    margin-bottom:24px;
+    letter-spacing:0.06em;
+  }
+  .service-desc{
+    color:var(--sumi-soft);
+    font-size:14px;
+    line-height:1.8;
+    font-weight:300;
+    margin-bottom:32px;
+  }
+  .service-link{
+    color:var(--sumi);
+    text-decoration:none;
+    font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+    font-weight:500;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:gap .25s;
+  }
+  .service-link:hover{gap:16px;color:var(--shu)}
+
+  /* ============ STORY SECTION ============ */
+  .story-section{
+    background:var(--kinari);
+    padding:140px 0;
+    position:relative;
+  }
+  .story-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+  }
+  .story-image{
+    aspect-ratio:4/5;
+    background:linear-gradient(135deg,#2a2521,#1A1614);
+    position:relative;
+    overflow:hidden;
+  }
+  .story-image-vertical{
+    position:absolute;
+    top:48px;right:48px;
+    color:var(--kincha-soft);
+    font-family:'Shippori Mincho',serif;
+    font-size:18px;
+    letter-spacing:0.4em;
+    line-height:2.2;
+    writing-mode:vertical-rl;
+    z-index:2;
+  }
+  .story-content .eyebrow{margin-bottom:20px}
+  .story-content h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:56px;
+    font-weight:300;
+    line-height:1.1;
+    margin-bottom:32px;
+  }
+  .story-content h2 em{font-style:italic;color:var(--shu)}
+  .story-content p{
+    color:var(--sumi-soft);
+    font-size:16px;
+    line-height:1.9;
+    margin-bottom:24px;
+    font-weight:300;
+  }
+  .story-quote{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:22px;
+    line-height:1.6;
+    color:var(--sumi);
+    padding:24px 0 24px 32px;
+    border-left:2px solid var(--shu);
+    margin:32px 0;
+    font-weight:400;
+  }
+  .story-quote-author{
+    margin-top:14px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:11px;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    font-style:normal;
+    font-weight:500;
+  }
+
+  /* ============ PROCESS / RITUAL ============ */
+  .ritual{
+    background:var(--sumi);
+    color:var(--kinari);
+    padding:140px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .ritual::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+      radial-gradient(ellipse 600px 400px at 10% 50%, rgba(245,192,200,0.08), transparent),
+      radial-gradient(ellipse 500px 600px at 90% 20%, rgba(235,160,170,0.06), transparent),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><circle cx='24' cy='24' r='1' fill='%23EBA0AA' fill-opacity='0.12'/></svg>");
+    background-size:auto,auto,48px 48px;
+  }
+  .ritual .section-title{color:var(--kinari)}
+  .ritual .eyebrow{color:var(--kincha-soft)}
+  .ritual .eyebrow::before,.ritual .eyebrow::after{background:var(--kincha-soft)}
+  .ritual-steps{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    margin-top:80px;
+    position:relative;
+  }
+  .ritual-step{
+    padding:32px 24px;
+    border-right:1px solid rgba(250,247,242,0.1);
+    text-align:center;
+    position:relative;
+  }
+  .ritual-step:last-child{border-right:none}
+  .ritual-num{
+    font-family:'Shippori Mincho',serif;
+    font-size:48px;
+    color:var(--shu);
+    margin-bottom:24px;
+    line-height:1;
+    font-weight:400;
+  }
+  .ritual-num::after{
+    content:'';display:block;width:30px;height:1px;
+    background:var(--kincha-soft);
+    margin:16px auto 0;
+  }
+  .ritual-step h4{
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:6px;
+    color:var(--kinari);
+  }
+  .ritual-step .step-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--kincha-soft);
+    margin-bottom:16px;
+  }
+  .ritual-step p{
+    font-size:13px;
+    color:rgba(250,247,242,0.7);
+    line-height:1.7;
+    font-weight:300;
+  }
+
+  /* ============ TESTIMONIAL STRIP ============ */
+  .testimonials{
+    background:var(--kinari-deep);
+    padding:100px 0;
+    position:relative;
+  }
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:48px;
+  }
+  .test-card{
+    background:var(--kinari);
+    padding:40px 36px;
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .test-quote-mark{
+    font-family:'Shippori Mincho',serif;
+    font-size:60px;
+    line-height:0.6;
+    color:var(--shu);
+    opacity:0.3;
+    margin-bottom:14px;
+  }
+  .test-text{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:18px;
+    line-height:1.7;
+    color:var(--sumi);
+    margin-bottom:28px;
+    font-weight:400;
+  }
+  .test-meta{
+    display:flex;align-items:center;gap:14px;
+    padding-top:20px;border-top:1px solid var(--line);
+  }
+  .test-avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--sumi);color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Shippori Mincho',serif;
+    font-size:16px;
+  }
+  .test-name{font-size:13px;font-weight:600;letter-spacing:0.04em}
+  .test-loc{font-size:11px;color:var(--sumi-mid);letter-spacing:0.16em;text-transform:uppercase;margin-top:2px}
+  .test-stars{display:flex;gap:3px;color:var(--shu);margin-bottom:14px}
+  .test-stars svg{width:15px;height:15px;fill:currentColor;stroke:none}
+
+  /* Testimonials horizontal scroll carousel */
+  .test-carousel{position:relative}
+  .test-track{
+    display:flex;
+    gap:32px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    padding:8px 4px 24px;
+    margin:0 -4px;
+    scrollbar-width:none;
+  }
+  .test-track::-webkit-scrollbar{display:none}
+  .test-track .test-card{
+    flex:0 0 calc((100% - 64px) / 3);
+    min-width:300px;
+    scroll-snap-align:start;
+    margin:0;
+  }
+  .test-nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:24px;
+  }
+  .test-nav-btn{
+    width:46px;height:46px;
+    border-radius:50%;
+    border:1px solid var(--line-strong);
+    background:var(--kinari);
+    color:var(--sumi);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:all 0.25s ease;
+  }
+  .test-nav-btn:hover{
+    background:var(--shu);
+    color:var(--kinari);
+    border-color:var(--shu);
+    transform:translateY(-2px);
+  }
+  .test-nav-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;background:var(--kinari);color:var(--sumi);border-color:var(--line)}
+  .test-nav-btn svg{width:18px;height:18px}
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter{
+    background:var(--kinari);
+    padding:120px 0;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .newsletter::before{
+    content:'桜';
+    position:absolute;
+    font-family:'Shippori Mincho',serif;
+    font-size:280px;
+    color:var(--sakura);
+    opacity:0.18;
+    top:50%;left:8%;
+    transform:translateY(-50%);
+    line-height:1;
+    font-weight:300;
+  }
+  .newsletter::after{
+    content:'雅';
+    position:absolute;
+    font-family:'Shippori Mincho',serif;
+    font-size:280px;
+    color:var(--kincha);
+    opacity:0.1;
+    top:50%;right:8%;
+    transform:translateY(-50%);
+    line-height:1;
+    font-weight:300;
+  }
+  .newsletter-inner{position:relative;z-index:2}
+  .newsletter h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:56px;
+    font-weight:300;
+    line-height:1.1;
+    margin-bottom:20px;
+  }
+  .newsletter h2 em{font-style:italic;color:var(--shu)}
+  .newsletter p{
+    color:var(--sumi-soft);
+    max-width:480px;margin:0 auto 40px;
+    font-weight:300;line-height:1.8;
+  }
+  .newsletter-form{
+    max-width:520px;margin:0 auto;
+    display:flex;gap:0;
+    border:1px solid var(--sumi);
+    background:var(--kinari);
+  }
+  .newsletter-form input{
+    flex:1;
+    padding:18px 24px;
+    border:none;background:transparent;
+    font-family:inherit;font-size:14px;
+    color:var(--sumi);
+    outline:none;
+  }
+  .newsletter-form input::placeholder{color:var(--sumi-light);font-style:italic}
+  .newsletter-form button{
+    padding:18px 32px;
+    background:var(--sumi);color:var(--kinari);
+    border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;
+    transition:background .2s;
+    font-family:inherit;
+  }
+  .newsletter-form button:hover{background:var(--shu)}
+
+  /* ============ SHOP VIEW ============ */
+  .shop-hero{
+    padding:80px 0 60px;
+    background:var(--kinari);
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .breadcrumb{
+    display:flex;gap:10px;align-items:center;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--sumi-mid);
+    margin-bottom:32px;
+    font-weight:500;
+  }
+  .breadcrumb a{color:var(--sumi-mid);text-decoration:none}
+  .breadcrumb a:hover{color:var(--shu)}
+  .breadcrumb .sep{opacity:0.4}
+  .breadcrumb .current{color:var(--sumi)}
+  .shop-title-row{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:48px;
+  }
+  .shop-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:80px;font-weight:300;line-height:1;
+    color:var(--sumi);
+    letter-spacing:-0.02em;
+  }
+  .shop-title em{font-style:italic;color:var(--shu)}
+  .shop-title-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:24px;
+    color:var(--sumi-mid);
+    letter-spacing:0.4em;
+    margin-top:16px;
+    font-weight:300;
+  }
+  .shop-meta{
+    text-align:right;
+  }
+  .shop-meta p{
+    color:var(--sumi-soft);
+    font-size:14px;
+    max-width:360px;
+    line-height:1.7;
+    font-weight:300;
+  }
+  .shop-count{
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    margin-top:16px;
+    font-weight:500;
+  }
+
+  /* Filter chips bar */
+  .filters-bar{
+    background:var(--kinari-deep);
+    border-bottom:1px solid var(--line);
+    padding:24px 0;
+    position:sticky;top:113px;z-index:29;
+    box-shadow:0 2px 8px rgba(61,21,21,0.04);
+  }
+  .filters-inner{
+    display:flex;justify-content:space-between;align-items:center;gap:32px;
+  }
+  .filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+  .filter-chip{
+    padding:8px 18px;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--sumi-soft);
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .2s;
+    font-family:inherit;
+    font-weight:500;
+  }
+  .filter-chip:hover{border-color:var(--sumi);color:var(--sumi)}
+  .filter-chip.active{
+    background:var(--sumi);color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .filter-controls{display:flex;gap:14px;align-items:center}
+
+  /* Mobile filter toggle (hidden on desktop) */
+  .filter-mobile-row{display:none}
+  .filter-toggle-btn{
+    display:flex;align-items:center;gap:7px;
+    background:none;border:1px solid var(--line-strong);
+    color:var(--sumi);font-family:inherit;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    padding:8px 16px;cursor:pointer;
+    transition:all .2s;position:relative;
+  }
+  .filter-toggle-btn[aria-expanded="true"]{
+    background:var(--sumi);color:var(--kinari);border-color:var(--sumi);
+  }
+  .filter-toggle-btn[aria-expanded="true"] svg{stroke:var(--kinari)}
+  .filter-count-badge{
+    display:none;
+    min-width:16px;height:16px;
+    background:var(--shu);color:#fff;
+    border-radius:50%;
+    font-size:9px;line-height:16px;text-align:center;
+    padding:0 4px;letter-spacing:0;
+  }
+  .filter-count-badge.visible{display:inline-block}
+
+  /* Mobile collapsible filters-side */
+  .filters-side-wrap{display:contents}
+  .sort-select{
+    padding:9px 18px;
+    background:var(--kinari);
+    border:1px solid var(--line-strong);
+    font-family:inherit;font-size:11px;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--sumi);
+    cursor:pointer;outline:none;
+    font-weight:500;
+  }
+
+  .shop-layout{
+    display:grid;
+    grid-template-columns:240px 1fr;
+    gap:64px;
+    padding:64px 0;
+    align-items:start;
+  }
+  .filters-side{position:sticky;top:197px}
+  .filter-group{
+    padding-bottom:24px;
+    margin-bottom:24px;
+    border-bottom:1px solid var(--line);
+  }
+  .filter-group h4{
+    font-size:12px;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    color:var(--sumi);
+    font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .filter-group h4 small{
+    font-size:10px;color:var(--sumi-mid);
+    letter-spacing:0.1em;font-weight:400;
+  }
+  .filter-list{display:flex;flex-direction:column;gap:11px}
+  .filter-list label{
+    display:flex;align-items:center;gap:12px;
+    font-size:13px;color:var(--sumi-soft);
+    cursor:pointer;line-height:1.4;
+    font-weight:400;
+  }
+  .filter-list input[type=checkbox]{
+    appearance:none;
+    width:14px;height:14px;
+    border:1px solid var(--sumi-light);
+    background:var(--kinari);
+    cursor:pointer;
+    position:relative;
+    flex-shrink:0;
+  }
+  .filter-list input[type=checkbox]:checked{
+    background:var(--sumi);border-color:var(--sumi);
+  }
+  .filter-list input[type=checkbox]:checked::after{
+    content:'';position:absolute;
+    left:3px;top:0;width:4px;height:8px;
+    border:solid var(--kinari);
+    border-width:0 1.5px 1.5px 0;
+    transform:rotate(45deg);
+  }
+  .filter-list label:hover{color:var(--sumi)}
+  .filter-list label .count{
+    margin-left:auto;color:var(--sumi-light);font-size:11px;
+  }
+
+  .price-range{
+    display:flex;gap:8px;align-items:center;
+    margin-top:8px;
+  }
+  .price-range input{
+    width:100%;padding:8px 10px;
+    border:1px solid var(--line-strong);
+    background:var(--kinari);
+    font-family:inherit;font-size:12px;
+    color:var(--sumi);outline:none;
+  }
+  .price-range span{font-size:11px;color:var(--sumi-mid)}
+
+  .shop-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:36px 28px;
+  }
+  .shop-grid .product-card .product-image{aspect-ratio:3/4}
+
+  .pagination{
+    display:flex;justify-content:center;align-items:center;
+    gap:16px;
+    padding:48px 0;
+    margin-top:32px;
+    border-top:1px solid var(--line);
+  }
+  .pagination button{
+    width:42px;height:42px;
+    background:transparent;border:1px solid var(--line-strong);
+    cursor:pointer;
+    font-family:'Shippori Mincho',serif;
+    font-size:16px;color:var(--sumi);
+    transition:all .2s;
+  }
+  .pagination button.active,.pagination button:hover{
+    background:var(--sumi);color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .pagination .arrow{
+    width:auto;padding:0 18px;
+    font-family:inherit;font-size:11px;
+    letter-spacing:0.2em;text-transform:uppercase;
+    font-weight:500;
+  }
+
+  /* ============ PRODUCT DETAIL VIEW ============ */
+  .product-detail{
+    background:var(--kinari);
+    padding:32px 0 96px;
+  }
+  .product-layout{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:80px;
+    margin-top:32px;
+  }
+  .product-gallery{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:16px;
+    align-items:start;
+    position:sticky;top:120px;
+  }
+  .gallery-thumbs{
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .gallery-thumb{
+    width:80px;aspect-ratio:3/4;
+    background:var(--kinari-deep);
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:border-color .2s;
+    overflow:hidden;
+    position:relative;
+  }
+  .gallery-thumb.active{border-color:var(--sumi)}
+  .gallery-main{
+    aspect-ratio:3/4;
+    background:var(--kinari-deep);
+    position:relative;overflow:hidden;
+  }
+  .gallery-main-zoom{
+    position:absolute;top:20px;right:20px;
+    width:40px;height:40px;
+    background:rgba(250,247,242,0.9);
+    color:var(--sumi);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    z-index:5;
+  }
+  .gallery-main-zoom svg{width:18px;height:18px}
+
+  .product-info-panel{padding-top:8px}
+  .product-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .product-tag{
+    padding:5px 13px;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sumi-soft);
+    font-weight:500;
+  }
+  .product-tag.feature{background:var(--shu);color:var(--kinari);border-color:var(--shu)}
+  .product-detail-name{
+    font-family:'Shippori Mincho',serif;
+    font-size:54px;font-weight:500;
+    line-height:1.05;
+    letter-spacing:0.06em;
+    color:var(--sumi);
+    margin-bottom:8px;
+  }
+  .product-detail-name-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:24px;
+    color:var(--sumi-mid);
+    margin-bottom:32px;
+    font-weight:400;
+    letter-spacing:0.04em;
+  }
+  .product-detail-meta{
+    display:flex;align-items:center;gap:24px;
+    padding:20px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-bottom:32px;
+  }
+  .product-detail-rating{
+    display:flex;gap:6px;align-items:center;
+    font-size:13px;color:var(--sumi-mid);
+  }
+  .product-detail-rating .stars{display:flex;gap:2px;color:var(--shu)}
+  .product-detail-rating .stars svg{width:14px;height:14px;fill:currentColor;stroke:none}
+  .product-detail-stock{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;color:var(--koke);
+    letter-spacing:0.16em;text-transform:uppercase;font-weight:500;
+  }
+  .product-detail-stock::before{
+    content:'';width:8px;height:8px;border-radius:50%;
+    background:var(--koke);
+  }
+
+  .product-detail-price{
+    display:flex;align-items:baseline;gap:16px;
+    margin-bottom:32px;
+  }
+  .product-detail-price .price-main{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;font-weight:400;
+    color:var(--sumi);
+    letter-spacing:-0.01em;
+  }
+  .product-detail-price .price-sub{
+    font-size:13px;color:var(--sumi-mid);
+    letter-spacing:0.16em;text-transform:uppercase;
+    font-weight:500;
+  }
+  .product-detail-price .price-rental{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:18px;color:var(--shu);
+    margin-left:8px;
+    padding-left:16px;
+    border-left:1px solid var(--line-strong);
+  }
+
+  .product-detail-desc{
+    color:var(--sumi-soft);
+    font-size:15px;line-height:1.9;
+    margin-bottom:32px;
+    font-weight:300;
+  }
+
+  /* Variant selectors */
+  .variant{margin-bottom:24px}
+  .variant-label{
+    font-size:11px;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--sumi);
+    margin-bottom:12px;
+    font-weight:600;
+    display:flex;justify-content:space-between;
+  }
+  .variant-label small{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    text-transform:none;
+    letter-spacing:0;
+    color:var(--shu);
+    font-size:13px;
+    cursor:pointer;
+    font-weight:400;
+  }
+  .size-options{display:flex;gap:8px}
+  .size-option{
+    width:54px;height:54px;
+    background:var(--kinari);
+    border:1px solid var(--line-strong);
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;color:var(--sumi);
+    cursor:pointer;
+    transition:all .2s;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    line-height:1;
+  }
+  .size-option small{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:9px;
+    color:var(--sumi-mid);
+    margin-top:3px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .size-option:hover{border-color:var(--sumi)}
+  .size-option.active{
+    background:var(--sumi);color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .size-option.active small{color:var(--kincha-soft)}
+
+  .color-options{display:flex;gap:14px}
+  .color-option{
+    width:42px;height:42px;border-radius:50%;
+    cursor:pointer;
+    position:relative;
+    border:1px solid var(--line);
+    transition:transform .2s;
+  }
+  .color-option:hover{transform:scale(1.08)}
+  .color-option.active::after{
+    content:'';position:absolute;
+    inset:-5px;border-radius:50%;
+    border:1px solid var(--sumi);
+  }
+
+  .qty-row{
+    display:flex;gap:14px;align-items:center;
+    margin-bottom:28px;
+  }
+  .qty{
+    display:flex;align-items:center;
+    border:1px solid var(--line-strong);
+  }
+  .qty button{
+    width:46px;height:48px;
+    background:transparent;border:none;
+    cursor:pointer;font-size:18px;
+    color:var(--sumi);
+    font-family:inherit;
+  }
+  .qty button:hover{background:var(--kinari-deep)}
+  .qty input{
+    width:48px;height:48px;
+    text-align:center;
+    border:none;
+    background:transparent;
+    font-family:'Shippori Mincho',serif;
+    font-size:16px;
+    color:var(--sumi);outline:none;
+  }
+
+  .product-actions{
+    display:flex;gap:12px;
+    margin-bottom:32px;
+  }
+  .product-actions .btn{flex:1;justify-content:center;padding:20px 24px;font-size:11px}
+  .icon-btn{
+    width:60px;height:60px;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    cursor:pointer;
+    color:var(--sumi);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s;
+  }
+  .icon-btn:hover{background:var(--sumi);color:var(--kinari);border-color:var(--sumi)}
+  .icon-btn svg{width:18px;height:18px;stroke-width:1.5}
+
+  .product-features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    padding:24px;
+    background:var(--kinari-deep);
+    margin-bottom:32px;
+    border-left:2px solid var(--shu);
+  }
+  .product-feat{
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .product-feat svg{
+    width:18px;height:18px;
+    color:var(--shu);
+    flex-shrink:0;margin-top:2px;
+    stroke-width:1.5;
+  }
+  .product-feat strong{
+    display:block;
+    font-size:12px;
+    letter-spacing:0.1em;
+    margin-bottom:4px;
+    color:var(--sumi);
+    font-weight:600;
+  }
+  .product-feat span{
+    font-size:11px;color:var(--sumi-mid);
+    line-height:1.5;font-weight:400;
+  }
+
+  /* Pattern dictionary */
+  .pattern-dictionary{
+    background:var(--kinari-deep);
+    padding:96px 0;
+    margin-top:80px;
+  }
+  .pattern-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    margin-top:60px;
+  }
+  .pattern-card{
+    background:var(--kinari);
+    padding:32px 28px;
+    text-align:center;
+    border:1px solid var(--line);
+    transition:border-color .2s;
+  }
+  .pattern-card:hover{border-color:var(--sumi-light)}
+  .pattern-art{
+    width:80px;height:80px;
+    margin:0 auto 20px;
+  }
+  .pattern-card h4{
+    font-family:'Shippori Mincho',serif;
+    font-size:18px;font-weight:500;
+    margin-bottom:4px;
+  }
+  .pattern-card .pattern-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--shu);
+    margin-bottom:14px;
+  }
+  .pattern-card p{
+    font-size:12px;
+    line-height:1.7;
+    color:var(--sumi-soft);
+    font-weight:300;
+  }
+
+  /* Specs table */
+  .specs-section{padding:96px 0;background:var(--kinari)}
+  .specs-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .specs-image{
+    aspect-ratio:1;
+    background:linear-gradient(135deg,#3a332e,#1A1614);
+    position:relative;overflow:hidden;
+  }
+  .specs-table{width:100%;border-collapse:collapse}
+  .specs-table tr{border-bottom:1px solid var(--line)}
+  .specs-table tr:first-child{border-top:1px solid var(--line)}
+  .specs-table td{padding:18px 0;font-size:14px;line-height:1.6}
+  .specs-table td:first-child{
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    width:40%;
+    font-weight:500;
+  }
+  .specs-table td:last-child{
+    color:var(--sumi);
+    font-weight:400;
+  }
+  .specs-table td:last-child small{
+    color:var(--sumi-mid);
+    font-size:12px;
+    margin-left:6px;
+    font-style:italic;
+  }
+
+  /* ============ PRODUCT REVIEWS (detail page) ============ */
+  .reviews-section{padding:96px 0;background:var(--kinari-deep);position:relative}
+  .reviews-layout{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:72px;
+    align-items:start;
+  }
+  .reviews-summary{
+    background:var(--kinari);
+    border:1px solid var(--line);
+    padding:36px 32px;
+    position:sticky;top:120px;
+  }
+  .reviews-score{
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px;
+    font-weight:300;
+    line-height:1;
+    color:var(--sumi);
+    margin-bottom:8px;
+  }
+  .reviews-score small{
+    font-size:18px;color:var(--sumi-mid);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    letter-spacing:0.04em;margin-left:6px;
+  }
+  .reviews-stars{display:flex;gap:3px;color:var(--shu);margin-bottom:8px}
+  .reviews-stars svg{width:18px;height:18px;fill:currentColor;stroke:none}
+  .reviews-total{
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:500;margin-bottom:28px;
+  }
+  .reviews-bars{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+  .reviews-bar-row{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--sumi-mid)}
+  .reviews-bar-row .lbl{width:34px;font-weight:500;color:var(--sumi)}
+  .reviews-bar-row .bar{
+    flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;
+  }
+  .reviews-bar-row .bar-fill{
+    height:100%;background:var(--shu);border-radius:3px;
+  }
+  .reviews-bar-row .pct{width:38px;text-align:right}
+  .reviews-write-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 18px;
+    background:var(--sumi);color:var(--kinari);
+    border:none;font-size:11px;letter-spacing:0.22em;
+    text-transform:uppercase;font-weight:500;cursor:pointer;
+    transition:background 0.2s;width:100%;justify-content:center;
+  }
+  .reviews-write-btn:hover{background:var(--shu)}
+
+  .reviews-list{display:flex;flex-direction:column;gap:0}
+  .reviews-list-header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:24px;
+  }
+  .reviews-list-header h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px;font-weight:400;color:var(--sumi);
+  }
+  .reviews-filter{
+    display:flex;gap:6px;flex-wrap:wrap;
+  }
+  .reviews-filter-pill{
+    padding:7px 14px;
+    border:1px solid var(--line-strong);
+    background:transparent;color:var(--sumi-mid);
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    cursor:pointer;font-weight:500;transition:all 0.2s;
+  }
+  .reviews-filter-pill.active,
+  .reviews-filter-pill:hover{
+    background:var(--sumi);color:var(--kinari);border-color:var(--sumi);
+  }
+  .review-item{
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;gap:20px;
+  }
+  .review-item.hidden{display:none}
+  .review-avatar{
+    width:48px;height:48px;border-radius:50%;
+    background:var(--sumi);color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Shippori Mincho',serif;font-size:18px;
+    flex-shrink:0;
+  }
+  .review-body{flex:1;min-width:0}
+  .review-header-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:16px;flex-wrap:wrap;margin-bottom:6px;
+  }
+  .review-author{font-size:14px;font-weight:600;color:var(--sumi);letter-spacing:0.02em}
+  .review-date{
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:500;
+  }
+  .review-stars{display:flex;gap:2px;color:var(--shu);margin-bottom:10px}
+  .review-stars svg{width:13px;height:13px;fill:currentColor;stroke:none}
+  .review-title{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:18px;color:var(--sumi);
+    margin-bottom:6px;line-height:1.4;
+  }
+  .review-text{
+    font-size:14px;line-height:1.7;color:var(--sumi-soft);
+    margin-bottom:12px;
+  }
+  .review-meta{
+    display:flex;gap:14px;flex-wrap:wrap;
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:500;
+  }
+  .review-verified{
+    display:inline-flex;align-items:center;gap:4px;color:var(--koke);
+  }
+  .review-verified::before{
+    content:'';width:6px;height:6px;border-radius:50%;background:var(--koke);
+  }
+  .reviews-more{
+    margin-top:28px;text-align:center;
+  }
+  .reviews-more-btn{
+    padding:14px 32px;background:transparent;
+    border:1px solid var(--sumi);color:var(--sumi);
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    font-weight:500;cursor:pointer;transition:all 0.2s;
+  }
+  .reviews-more-btn:hover{background:var(--sumi);color:var(--kinari)}
+
+  /* ============ CART DRAWER ============ */
+  .drawer-overlay{
+    position:fixed;inset:0;
+    background:rgba(26,22,20,0.4);
+    backdrop-filter:blur(4px);
+    z-index:90;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s;
+  }
+  .drawer-overlay.open{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;
+    top:0;right:0;bottom:0;
+    width:480px;max-width:100%;
+    background:var(--kinari);
+    z-index:91;
+    transform:translateX(100%);
+    transition:transform .4s cubic-bezier(0.2,0.8,0.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0)}
+  .drawer-header{
+    padding:24px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .drawer-title{
+    font-family:'Shippori Mincho',serif;
+    font-size:22px;font-weight:500;
+    display:flex;align-items:center;gap:14px;
+  }
+  .drawer-title small{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--sumi-mid);
+    font-weight:400;
+  }
+  .drawer-close{
+    background:none;border:none;cursor:pointer;
+    color:var(--sumi);width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .drawer-close svg{width:20px;height:20px}
+  .drawer-body{flex:1;overflow-y:auto;padding:24px 32px}
+  .cart-item{
+    display:grid;
+    grid-template-columns:90px 1fr auto;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .cart-item-img{
+    width:90px;aspect-ratio:3/4;
+    background:var(--kinari-deep);
+    overflow:hidden;
+  }
+  .cart-item-info{padding-top:4px}
+  .cart-item-cat{
+    font-size:9px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    margin-bottom:4px;
+    font-weight:500;
+  }
+  .cart-item-name{
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;font-weight:500;
+    margin-bottom:2px;
+  }
+  .cart-item-name-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:12px;
+    color:var(--sumi-mid);
+    margin-bottom:10px;
+  }
+  .cart-item-meta{
+    font-size:11px;color:var(--sumi-soft);
+    margin-bottom:10px;letter-spacing:0.04em;
+  }
+  .cart-item-meta span{margin-right:14px}
+  .cart-item-meta span strong{color:var(--sumi);font-weight:600}
+  .cart-item-qty{
+    display:flex;align-items:center;gap:6px;
+    border:1px solid var(--line-strong);
+    width:fit-content;
+  }
+  .cart-item-qty button{
+    width:26px;height:26px;
+    background:none;border:none;cursor:pointer;
+    color:var(--sumi);font-size:14px;
+  }
+  .cart-item-qty span{
+    font-size:12px;font-family:'Shippori Mincho',serif;
+    min-width:20px;text-align:center;
+  }
+  .cart-item-right{
+    text-align:right;
+    display:flex;flex-direction:column;
+    justify-content:space-between;
+    height:100%;
+  }
+  .cart-item-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;font-weight:500;
+    color:var(--sumi);
+  }
+  .cart-item-remove{
+    background:none;border:none;cursor:pointer;
+    color:var(--sumi-mid);
+    font-size:10px;letter-spacing:0.18em;
+    text-transform:uppercase;font-weight:500;
+    transition:color .2s;
+    font-family:inherit;
+  }
+  .cart-item-remove:hover{color:var(--shu)}
+
+  .drawer-footer{
+    border-top:1px solid var(--line);
+    padding:24px 32px 32px;
+    background:var(--kinari-deep);
+  }
+  .cart-totals{margin-bottom:20px}
+  .cart-totals .row{
+    display:flex;justify-content:space-between;
+    padding:6px 0;
+    font-size:13px;
+    color:var(--sumi-soft);
+  }
+  .cart-totals .row.total{
+    padding:14px 0 0;
+    margin-top:10px;
+    border-top:1px solid var(--line);
+    font-size:18px;
+    color:var(--sumi);
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+  }
+  .cart-totals .row.total span:last-child{font-size:24px}
+  .drawer-cta{
+    display:flex;flex-direction:column;gap:10px;
+  }
+
+  /* Cart promo */
+  .cart-promo{
+    background:var(--shu);
+    color:var(--kinari);
+    padding:14px 20px;
+    margin-bottom:18px;
+    display:flex;gap:14px;align-items:center;
+    font-size:12px;
+    line-height:1.5;
+  }
+  .cart-promo svg{width:18px;height:18px;flex-shrink:0}
+  .cart-promo strong{font-weight:600;letter-spacing:0.04em}
+
+  /* ============ CHECKOUT VIEW ============ */
+  .checkout-view{
+    background:var(--kinari);
+    min-height:calc(100vh - 88px);
+    padding:48px 0 96px;
+  }
+  .checkout-steps{
+    display:flex;justify-content:center;
+    gap:40px;
+    margin:32px 0 64px;
+    padding:24px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .checkout-step{
+    display:flex;align-items:center;gap:14px;
+    color:var(--sumi-mid);
+    font-size:11px;letter-spacing:0.22em;
+    text-transform:uppercase;font-weight:500;
+  }
+  .checkout-step .num{
+    width:32px;height:32px;
+    border:1px solid currentColor;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;
+    border-radius:50%;
+  }
+  .checkout-step.active{color:var(--sumi)}
+  .checkout-step.active .num{
+    background:var(--sumi);color:var(--kinari);
+    border-color:var(--sumi);
+  }
+  .checkout-step.done{color:var(--shu)}
+  .checkout-step.done .num{
+    background:var(--shu);color:var(--kinari);
+    border-color:var(--shu);
+  }
+  .checkout-step .sep{
+    width:60px;height:1px;
+    background:var(--line-strong);
+    margin-left:24px;
+  }
+  .checkout-layout{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:80px;
+    align-items:start;
+  }
+  .checkout-section{margin-bottom:48px}
+  .checkout-section h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:24px;font-weight:500;
+    margin-bottom:6px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .checkout-section h3 small{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--sumi-mid);
+    font-weight:400;
+  }
+  .checkout-section .desc{
+    color:var(--sumi-soft);
+    font-size:13px;
+    margin-bottom:24px;
+    font-weight:300;
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  .form-row.single{grid-template-columns:1fr}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{
+    font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);
+    font-weight:500;
+  }
+  .field input,.field select,.field textarea{
+    padding:14px 16px;
+    border:1px solid var(--line-strong);
+    background:var(--kinari);
+    font-family:inherit;font-size:14px;
+    color:var(--sumi);
+    outline:none;
+    transition:border-color .2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sumi)}
+  .field textarea{resize:vertical;min-height:100px}
+
+  /* Shipping options */
+  .ship-options{display:flex;flex-direction:column;gap:10px}
+  .ship-option{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 22px;
+    border:1px solid var(--line-strong);
+    cursor:pointer;
+    background:var(--kinari);
+    transition:all .2s;
+  }
+  .ship-option:hover{border-color:var(--sumi-light)}
+  .ship-option.active{
+    border-color:var(--sumi);
+    background:var(--kinari-deep);
+  }
+  .ship-option-radio{
+    width:18px;height:18px;border-radius:50%;
+    border:1px solid var(--sumi-light);
+    flex-shrink:0;margin-right:18px;
+    position:relative;
+  }
+  .ship-option.active .ship-option-radio{border-color:var(--sumi)}
+  .ship-option.active .ship-option-radio::after{
+    content:'';position:absolute;
+    inset:3px;border-radius:50%;
+    background:var(--sumi);
+  }
+  .ship-option-info{flex:1}
+  .ship-option strong{
+    display:block;font-size:14px;
+    margin-bottom:3px;font-weight:600;
+  }
+  .ship-option span{
+    font-size:12px;color:var(--sumi-mid);
+    font-weight:300;
+  }
+  .ship-option-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;font-weight:500;
+    color:var(--sumi);
+  }
+
+  /* Payment options */
+  .pay-tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border:1px solid var(--line-strong);
+    margin-bottom:20px;
+  }
+  .pay-tab{
+    padding:16px;
+    text-align:center;
+    cursor:pointer;
+    background:var(--kinari);
+    border-right:1px solid var(--line-strong);
+    transition:all .2s;
+  }
+  .pay-tab:last-child{border-right:none}
+  .pay-tab.active{background:var(--sumi-soft);color:var(--kinari)}
+  .pay-tab svg{
+    width:24px;height:24px;
+    margin-bottom:6px;
+    stroke-width:1.5;
+  }
+  .pay-tab span{
+    display:block;
+    font-size:11px;letter-spacing:0.16em;
+    text-transform:uppercase;font-weight:500;
+  }
+
+  /* Order summary */
+  .order-summary{
+    background:var(--kinari-deep);
+    padding:32px;
+    border:1px solid var(--line);
+    position:sticky;top:120px;
+  }
+  .order-summary h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;font-weight:500;
+    margin-bottom:24px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .order-summary h3 small{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--sumi-mid);
+    font-weight:400;
+  }
+  .order-line{
+    display:grid;
+    grid-template-columns:60px 1fr auto;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .order-line-img{
+    width:60px;aspect-ratio:3/4;
+    background:var(--kinari);
+    overflow:hidden;
+    position:relative;
+  }
+  .order-line-qty{
+    position:absolute;top:-6px;right:-6px;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--sumi);color:var(--kinari);
+    font-size:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;
+  }
+  .order-line-info{font-size:12px;line-height:1.5}
+  .order-line-info strong{
+    display:block;
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;font-weight:500;
+    margin-bottom:2px;
+  }
+  .order-line-info span{color:var(--sumi-mid)}
+  .order-line-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;font-weight:500;
+    text-align:right;
+  }
+
+  .promo-box{
+    margin:20px 0;padding:14px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:flex;gap:8px;
+  }
+  .promo-box input{
+    flex:1;padding:10px 14px;
+    border:1px solid var(--line-strong);
+    background:var(--kinari);
+    font-family:inherit;font-size:13px;
+    outline:none;
+  }
+  .promo-box button{
+    padding:10px 18px;
+    background:var(--sumi);color:var(--kinari);
+    border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;font-weight:500;
+    font-family:inherit;
+  }
+
+  /* ============ STORY VIEW ============ */
+  .story-hero{
+    height:60vh;min-height:480px;
+    background:linear-gradient(180deg,#5C2828,#3D1515);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--kinari);
+    overflow:hidden;
+  }
+  .story-hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><pattern id='a' x='0' y='0' width='80' height='40' patternUnits='userSpaceOnUse'><circle cx='40' cy='40' r='30' fill='none' stroke='%23A8854B' stroke-width='0.5' opacity='0.3'/><circle cx='0' cy='40' r='30' fill='none' stroke='%23A8854B' stroke-width='0.5' opacity='0.3'/><circle cx='80' cy='40' r='30' fill='none' stroke='%23A8854B' stroke-width='0.5' opacity='0.3'/></pattern><rect width='800' height='600' fill='url(%23a)'/></svg>");
+    opacity:0.4;
+  }
+  .story-hero-content{
+    position:relative;z-index:2;
+    text-align:center;
+  }
+  .story-hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px;
+    font-weight:300;
+    line-height:1;
+    margin-bottom:20px;
+  }
+  .story-hero h1 em{font-style:italic;color:var(--shu)}
+  .story-hero p{
+    font-family:'Shippori Mincho',serif;
+    font-size:20px;
+    letter-spacing:0.4em;
+    color:var(--kincha-soft);
+    font-weight:300;
+  }
+
+  .story-ribbon{
+    background:var(--kinari);
+    padding:80px 0;
+  }
+  .ribbon-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:48px;
+    text-align:center;
+  }
+  .ribbon-stat{
+    padding:0 24px;
+    border-right:1px solid var(--line-strong);
+  }
+  .ribbon-stat:last-child{border-right:none}
+  .ribbon-num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px;font-weight:300;
+    color:var(--shu);
+    line-height:1;
+    margin-bottom:12px;
+  }
+  .ribbon-num em{font-style:italic}
+  .ribbon-stat .ribbon-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;
+    color:var(--sumi-mid);
+    letter-spacing:0.3em;
+    margin-bottom:6px;
+    font-weight:400;
+  }
+  .ribbon-stat .ribbon-en{
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sumi-soft);
+    font-weight:500;
+  }
+
+  .craft-section{
+    background:var(--kinari-deep);
+    padding:140px 0;
+  }
+  .craft-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:48px;
+    margin-top:64px;
+  }
+  .craft-card{
+    background:var(--kinari);
+    overflow:hidden;
+    position:relative;
+  }
+  .craft-image{
+    aspect-ratio:16/10;
+    background:linear-gradient(135deg,#3a332e,#1A1614);
+    position:relative;
+    overflow:hidden;
+  }
+  .craft-image img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    z-index:0;
+  }
+  .craft-image .craft-overlay{
+    position:absolute;inset:0;
+    z-index:1;
+  }
+  .craft-image .craft-name{
+    position:absolute;
+    left:50px;bottom:50px;
+    font-family:'Shippori Mincho',serif;
+    font-size:32px;
+    color:rgba(250,247,242,0.55);
+    z-index:2;
+    letter-spacing:0.08em;
+  }
+  .craft-content{padding:36px 40px}
+  .craft-content h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .craft-content .craft-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    color:var(--shu);
+    margin-bottom:16px;
+    font-size:15px;
+  }
+  .craft-content p{
+    color:var(--sumi-soft);
+    font-size:14px;
+    line-height:1.8;
+    font-weight:300;
+  }
+
+  /* ============ CONTACT VIEW ============ */
+  .contact-view{
+    padding:96px 0;
+    background:var(--kinari);
+  }
+  .contact-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+  }
+  .contact-info h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:64px;font-weight:300;
+    line-height:1.1;
+    margin-bottom:24px;
+  }
+  .contact-info h2 em{font-style:italic;color:var(--shu)}
+  .contact-info > p{
+    color:var(--sumi-soft);
+    line-height:1.9;
+    font-weight:300;
+    margin-bottom:48px;
+    max-width:480px;
+  }
+  .contact-blocks{display:flex;flex-direction:column;gap:32px}
+  .contact-block{
+    display:flex;gap:18px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-block:last-child{border-bottom:none}
+  .contact-block svg{
+    width:24px;height:24px;
+    color:var(--shu);
+    flex-shrink:0;
+    stroke-width:1.5;
+  }
+  .contact-block h4{
+    font-size:11px;letter-spacing:0.24em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    color:var(--sumi-mid);
+    font-weight:600;
+  }
+  .contact-block p{
+    color:var(--sumi);
+    font-size:15px;line-height:1.6;
+    font-family:'Shippori Mincho',serif;
+    font-weight:400;
+  }
+  .contact-block .en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--sumi-mid);
+    margin-top:4px;
+  }
+
+  .contact-form{
+    background:var(--kinari-deep);
+    padding:48px;
+    border:1px solid var(--line);
+  }
+  .contact-form h3{
+    font-family:'Shippori Mincho',serif;
+    font-size:24px;
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .contact-form .desc{
+    color:var(--sumi-mid);
+    font-size:13px;
+    margin-bottom:32px;
+    font-weight:300;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--sumi);
+    color:var(--kinari);
+    padding:80px 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  footer::before{
+    content:'';position:absolute;
+    top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--shu),var(--sakura),var(--shu));
+  }
+  footer::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(245,192,200,0.06), transparent);
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr repeat(4,1fr);
+    gap:48px;
+    padding-bottom:48px;
+  }
+  .footer-brand .brand{align-items:flex-start}
+  .footer-brand .brand-jp{color:var(--kinari)}
+  .footer-brand .brand-en{color:var(--kincha-soft)}
+  .footer-brand p{
+    color:rgba(250,247,242,0.6);
+    font-size:13px;line-height:1.8;
+    margin-top:24px;max-width:340px;
+    font-weight:300;
+  }
+  .social{
+    display:flex;gap:14px;margin-top:24px;
+  }
+  .social a{
+    width:38px;height:38px;
+    border:1px solid rgba(250,247,242,0.2);
+    color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;
+    transition:all .2s;
+  }
+  .social a:hover{
+    background:var(--shu);border-color:var(--shu);
+  }
+  .social a svg{width:16px;height:16px}
+  .footer-col h4{
+    font-size:11px;letter-spacing:0.24em;
+    text-transform:uppercase;
+    margin-bottom:24px;
+    color:var(--kincha-soft);
+    font-weight:600;
+  }
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .footer-col a{
+    color:rgba(250,247,242,0.7);
+    text-decoration:none;
+    font-size:13px;
+    transition:color .2s;
+  }
+  .footer-col a:hover{color:var(--kinari)}
+  .footer-bottom{
+    border-top:1px solid rgba(250,247,242,0.1);
+    padding:24px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;
+    color:rgba(250,247,242,0.5);
+    letter-spacing:0.16em;
+  }
+  .footer-bottom a{color:rgba(250,247,242,0.7);text-decoration:none}
+  .pay-icons{display:flex;gap:14px;align-items:center}
+  .pay-icons span{
+    padding:5px 10px;
+    border:1px solid rgba(250,247,242,0.2);
+    font-size:9px;letter-spacing:0.2em;
+    text-transform:uppercase;font-weight:500;
+  }
+
+  /* Responsive */
+  /* ============ RESPONSIVE ============ */
+
+  /* ---- Laptop down (≤1280px): tighten container & typography ---- */
+  @media (max-width:1280px){
+    .container,.container-narrow,.container-tight{padding:0 32px}
+    .header-inner{padding:18px 32px;gap:20px}
+    .filters-bar{top:103px}
+    .filters-side{top:187px}
+    nav.main-nav{gap:28px}
+    .hero-text{padding:72px 48px 72px 56px}
+    .hero-title{font-size:80px}
+    .hero-floating-stamp{top:48px;left:48px;width:78px;height:78px}
+    .hero-image-overlay{bottom:56px;right:56px}
+    .hero-image-overlay .vertical{font-size:26px}
+    .hero-scroll{left:56px;bottom:32px}
+    .section-title{font-size:64px}
+    .story-content h2{font-size:48px}
+    .craft-content{padding:30px 32px}
+  }
+
+  /* ---- Tablet landscape (≤1024px): two-col → one-col ---- */
+  @media (max-width:1024px){
+    .container,.container-narrow,.container-tight{padding:0 28px}
+    .filters-bar{top:93px}
+    .filters-side{top:177px}
+
+    /* Top bar – hide marquee, lang only */
+    .topbar{font-size:10px;padding:7px 0}
+    .topbar-marquee{display:none}
+    .topbar-inner{justify-content:flex-end}
+
+    /* Header – brand left, hamburger could go here later */
+    .header-inner{
+      grid-template-columns:auto 1fr auto;
+      padding:14px 28px;gap:16px;
+    }
+    nav.main-nav{order:2;justify-content:center;gap:22px}
+    nav.main-nav a{font-size:11px;letter-spacing:0.18em}
+    .brand{order:1}
+    .brand-jp{font-size:26px}
+    .brand-en{font-size:9px;letter-spacing:0.36em}
+    .header-actions{order:3;gap:14px}
+
+    /* Hero stacks vertically */
+    .hero{
+      grid-template-columns:1fr;
+      min-height:auto;
+    }
+    .hero-text{
+      padding:64px 32px 56px;
+      order:2;
+    }
+    .hero-image{
+      order:1;
+      min-height:480px;
+      aspect-ratio:4/3;
+    }
+    .hero-image-content{background-position:center top}
+    .hero-title{font-size:72px}
+    .hero-title .ja-accent{font-size:20px;margin-top:18px}
+    .hero-sub{margin-top:28px;font-size:14px}
+    .hero-cta{margin-top:36px;flex-wrap:wrap;gap:14px}
+    .hero-floating-stamp{top:32px;left:32px;width:68px;height:68px}
+    .hero-floating-stamp span{font-size:12px}
+    .hero-image-overlay{bottom:32px;right:32px}
+    .hero-image-overlay .vertical{font-size:22px}
+    .hero-scroll{display:none}
+
+    /* Grid collapses */
+    .product-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+    .shop-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+    .services-grid{grid-template-columns:1fr}
+    .ritual-steps{grid-template-columns:repeat(2,1fr)}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:48px 32px}
+    .product-layout{grid-template-columns:1fr;gap:48px}
+    .checkout-layout,.contact-layout,.story-grid,.specs-grid{grid-template-columns:1fr;gap:40px}
+    .craft-grid{grid-template-columns:1fr 1fr;gap:24px}
+    .shop-layout{grid-template-columns:1fr}
+    .filters-side{position:static}
+    .pattern-grid{grid-template-columns:repeat(2,1fr)}
+    .ribbon-grid{grid-template-columns:repeat(2,1fr)}
+    .test-grid{grid-template-columns:1fr}
+    .test-track .test-card{flex:0 0 85%;min-width:0}
+    .test-nav{justify-content:center}
+
+    .reviews-section{padding:64px 0}
+    .reviews-layout{grid-template-columns:1fr;gap:40px}
+    .reviews-summary{position:static;padding:28px 24px}
+    .reviews-score{font-size:56px}
+    .reviews-list-header{flex-direction:column;align-items:flex-start;gap:14px}
+    .reviews-list-header h3{font-size:26px}
+    .review-item{gap:14px;padding:22px 0}
+    .review-avatar{width:40px;height:40px;font-size:15px}
+
+    /* Story sections – image first then content */
+    .story-grid{gap:40px}
+    .story-image{aspect-ratio:4/3;max-height:520px}
+
+    /* Section padding */
+    .section{padding:72px 0}
+    .section-title{font-size:52px}
+    .section-title-jp{font-size:18px}
+    .section-subtitle{font-size:14px}
+    .story-content h2{font-size:42px;margin-bottom:24px}
+
+    /* Cart drawer narrower */
+    .drawer{width:min(440px,100%)}
+
+    /* Big bg numbers smaller */
+    .stats-bg-number,.heritage-bg{font-size:200px !important}
+  }
+
+  /* ---- Tablet portrait & small tablet (≤768px) ---- */
+  @media (max-width:768px){
+    .container,.container-narrow,.container-tight{padding:0 20px}
+
+    /* Header simpler – nav becomes horizontal scroll strip below brand */
+    .header-inner{
+      grid-template-columns:1fr auto;
+      grid-template-areas:'brand actions' 'nav nav';
+      padding:12px 20px 0;
+      gap:12px 16px;
+    }
+    .brand{grid-area:brand;align-items:flex-start}
+    .header-actions{grid-area:actions;gap:10px}
+    .header-icon{width:32px;height:32px}
+    .header-icon svg{width:18px;height:18px}
+    .brand-jp{font-size:24px}
+    nav.main-nav{
+      grid-area:nav;
+      display:flex;
+      gap:24px;
+      overflow-x:auto;
+      padding:8px 0 12px;
+      border-top:1px solid var(--line);
+      margin-top:8px;
+      -ms-overflow-style:none;
+      scrollbar-width:none;
+    }
+    nav.main-nav::-webkit-scrollbar{display:none}
+    nav.main-nav a{
+      font-size:11px;
+      letter-spacing:0.18em;
+      flex-shrink:0;
+      padding:4px 0;
+    }
+
+    /* Hero */
+    .hero-text{padding:48px 20px 44px}
+    .hero-jp{font-size:12px;letter-spacing:0.4em;margin-bottom:24px}
+    .hero-jp::after{width:48px}
+    .hero-title{font-size:54px}
+    .hero-title .ja-accent{font-size:17px;letter-spacing:0.3em}
+    .hero-sub{font-size:14px;margin-top:24px;max-width:none}
+    .hero-cta .btn{flex:1;justify-content:center;min-width:0}
+    .btn{padding:14px 20px;font-size:11px;letter-spacing:0.18em}
+    .hero-image{min-height:380px;aspect-ratio:3/4}
+    .hero-floating-stamp{top:20px;left:20px;width:60px;height:60px}
+    .hero-floating-stamp span{font-size:10px}
+    .hero-image-overlay{bottom:20px;right:20px}
+    .hero-image-overlay .vertical{font-size:18px;letter-spacing:0.3em}
+
+    /* Sections */
+    .section{padding:56px 0}
+    .section-header{margin-bottom:40px}
+    .section-title{font-size:40px}
+    .section-title-jp{font-size:15px;letter-spacing:0.4em}
+    .section-subtitle{font-size:13px;line-height:1.7}
+    .eyebrow{font-size:10px;letter-spacing:0.18em}
+
+    /* Products – 2 cols still on phones for thumbnails */
+    .product-grid,.shop-grid{
+      grid-template-columns:repeat(2,1fr);
+      gap:24px 12px;
+    }
+    .product-info{padding:14px 0 0}
+    .product-name{font-size:18px}
+    .product-name-en{font-size:12px}
+    .product-price{font-size:13px}
+    .product-cat{font-size:10px}
+    .product-quick{display:none}
+
+    /* Product detail features + form */
+    .product-features{grid-template-columns:1fr;padding:20px;gap:14px}
+    .form-row{grid-template-columns:1fr;gap:14px}
+    .contact-layout{grid-template-columns:1fr;gap:48px}
+    .contact-info h2{font-size:42px !important}
+
+    /* Pattern dictionary 2 cols */
+    .pattern-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+    .pattern-card{padding:24px 20px}
+
+    /* Story */
+    .story-content h2{font-size:34px;line-height:1.15}
+    .story-content p{font-size:15px;line-height:1.75}
+    .story-image{aspect-ratio:4/5;max-height:none}
+    .story-image-vertical{font-size:14px;top:24px;right:24px;letter-spacing:0.3em}
+    .story-quote{font-size:18px;line-height:1.5;padding-left:20px}
+    .story-quote-author{font-size:11px}
+
+    /* Craft cards single col on phone */
+    .craft-grid{grid-template-columns:1fr;gap:20px}
+    .craft-content{padding:24px 24px 28px}
+    .craft-content h3{font-size:24px}
+    .craft-content p{font-size:13px}
+    .craft-image .craft-name{left:28px;bottom:28px;font-size:24px}
+
+    /* Stats */
+    .stats-grid{grid-template-columns:repeat(2,1fr) !important;gap:32px 16px !important}
+    .stat-number{font-size:32px !important}
+    .stat-label{font-size:9px !important}
+
+    /* Footer */
+    .footer-grid{grid-template-columns:1fr;gap:36px}
+    .footer{padding:56px 0 32px}
+
+    /* Drawer full */
+    .drawer{width:100%}
+    .drawer-header{padding:20px 24px}
+    .drawer-body{padding:20px 24px}
+    .drawer-footer{padding:20px 24px}
+    .cart-item{gap:14px}
+    .cart-item-img{width:88px;height:110px}
+    .cart-item-name{font-size:15px}
+    .cart-item-name-en{font-size:11px}
+
+    /* Product detail page — mobile: stack main image on top, thumbs row below */
+    .product-gallery{
+      grid-template-columns:1fr !important;
+      gap:12px !important;
+      position:static !important;
+      top:auto !important;
+    }
+    .product-gallery .gallery-main{aspect-ratio:3/4;order:1}
+    .gallery-thumbs{
+      order:2;
+      flex-direction:row !important;
+      display:grid !important;
+      grid-template-columns:repeat(5,1fr) !important;
+      gap:8px !important;
+    }
+    .gallery-thumb{
+      width:auto !important;
+    }
+    .product-detail h1{font-size:38px !important}
+    .product-tabs{flex-wrap:wrap;gap:0}
+    .product-tab{flex:1;text-align:center;padding:12px 16px !important;font-size:11px !important}
+
+    /* Other grids */
+    .pattern-grid{grid-template-columns:1fr}
+    .ribbon-grid{grid-template-columns:1fr}
+    .ritual-steps{grid-template-columns:1fr;gap:20px}
+
+    /* Top bar minimal */
+    .lang-switch button{font-size:10px;letter-spacing:0.14em}
+    .lang-switch{gap:8px}
+    .lang-switch .sep{font-size:10px}
+
+    /* Big bg numbers */
+    .stats-bg-number,.heritage-bg{font-size:140px !important}
+
+    /* ── Mobile filter bar ── */
+    .filters-bar{
+      top:130px;
+      position:sticky;
+      padding:0;
+    }
+    .filters-inner{
+      flex-direction:column;
+      gap:0;
+      align-items:stretch;
+    }
+    /* Row 1: Filter toggle + Sort */
+    .filter-mobile-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .filter-controls{gap:0}
+    .sort-select{
+      font-size:10px;
+      padding:7px 28px 7px 10px;
+      letter-spacing:0.12em;
+    }
+    /* Row 2: chips scroll horizontal */
+    .filter-chips{
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding:10px 0;
+      gap:8px;
+    }
+    .filter-chips::-webkit-scrollbar{display:none}
+    .filter-chip{
+      flex-shrink:0;
+      padding:6px 14px;
+      font-size:10px;
+      letter-spacing:0.16em;
+      white-space:nowrap;
+    }
+
+    /* ── Mobile collapsible sidebar ── */
+    .shop-layout{padding-top:0}
+    .filters-side{
+      grid-column:1/-1;
+      overflow:hidden;
+      max-height:0;
+      transition:max-height .35s cubic-bezier(.4,0,.2,1);
+    }
+    .filters-side.mobile-open{
+      max-height:900px;
+    }
+    .filters-side .filter-group:first-child{
+      margin-top:20px;
+    }
+    /* 2-col grid inside panel */
+    .filters-side.mobile-open .filter-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px 12px;
+    }
+    .filter-group h4{
+      font-size:11px;
+      letter-spacing:0.22em;
+    }
+    .filter-group label{font-size:12px}
+  }
+
+  /* ---- Mobile (≤480px) ---- */
+  @media (max-width:480px){
+    .container,.container-narrow,.container-tight{padding:0 16px}
+    .header-inner{padding:10px 16px}
+    .hero-text{padding:40px 16px 36px}
+    .hero-title{font-size:46px}
+    .hero-title .ja-accent{font-size:15px}
+    .hero-image{min-height:340px;aspect-ratio:1/1}
+    .section{padding:48px 0}
+    .section-title{font-size:32px}
+    .story-content h2{font-size:28px}
+    .product-grid,.shop-grid{gap:20px 10px}
+    .product-name{font-size:16px}
+    .product-name-en{font-size:11px}
+    .craft-image .craft-name{font-size:20px;left:20px;bottom:20px}
+    .stats-grid{gap:24px 12px !important}
+    .stat-number{font-size:28px !important}
+
+    /* Buttons */
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .btn{width:100%;justify-content:center}
+
+    /* Top bar tiny */
+    .topbar{padding:6px 0;font-size:9px}
+    .lang-switch button{font-size:9px}
+  }
+
+  /* ---- Touch enhancements ---- */
+  @media (hover:none){
+    .product-card:hover .product-image-inner{transform:none}
+    .product-card:hover .product-image{box-shadow:none}
+    .product-quick{opacity:1 !important;transform:none !important}
+  }
+
+  /* ---- ANN Sakura Petal Decoration ---- */
+  @keyframes sakuraDrift{
+    0%{transform:translateY(-30px) rotate(0deg) translateX(0);opacity:0}
+    8%{opacity:0.65}
+    50%{transform:translateY(50vh) rotate(200deg) translateX(18px)}
+    92%{opacity:0.45}
+    100%{transform:translateY(105vh) rotate(400deg) translateX(-12px);opacity:0}
+  }
+  .sakura-petal{
+    position:fixed;
+    top:0;
+    width:12px;height:14px;
+    background:var(--sakura);
+    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><path d='M50,116 C18,100 6,58 24,20 C34,24 42,26 50,32 C58,26 66,24 76,20 C94,58 82,100 50,116 Z' fill='black'/></svg>") center/contain no-repeat;
+            mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><path d='M50,116 C18,100 6,58 24,20 C34,24 42,26 50,32 C58,26 66,24 76,20 C94,58 82,100 50,116 Z' fill='black'/></svg>") center/contain no-repeat;
+    opacity:0;
+    pointer-events:none;
+    z-index:38;
+    animation:sakuraDrift ease-in-out infinite;
+  }
+  .sakura-petal:nth-child(1){left:4%;animation-duration:9s;animation-delay:0s;width:11px;height:13px}
+  .sakura-petal:nth-child(2){left:18%;animation-duration:11s;animation-delay:2.5s;width:9px;height:11px;background:var(--kincha-soft)}
+  .sakura-petal:nth-child(3){left:35%;animation-duration:8.5s;animation-delay:5s;width:14px;height:17px}
+  .sakura-petal:nth-child(4){left:55%;animation-duration:12s;animation-delay:1s;width:10px;height:12px;background:var(--kincha-soft)}
+  .sakura-petal:nth-child(5){left:72%;animation-duration:9.5s;animation-delay:3.5s;width:13px;height:15px}
+  .sakura-petal:nth-child(6){left:88%;animation-duration:13s;animation-delay:6s;width:9px;height:11px;background:var(--sakura-soft)}
+  .sakura-petal:nth-child(7){left:28%;animation-duration:10s;animation-delay:8s;width:10px;height:12px}
+  .sakura-petal:nth-child(8){left:62%;animation-duration:9s;animation-delay:11s;width:12px;height:14px;background:var(--kincha-soft)}
+
+  /* ---- Walk-In Badge pulse ---- */
+  .hero-floating-stamp{
+    animation:stampPulse 3s ease-in-out infinite;
+  }
+  @keyframes stampPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(193,64,74,0.3)}
+    50%{box-shadow:0 0 0 12px rgba(193,64,74,0)}
+  }
+
+  /* ---- ANN header border ---- */
+  header{
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  header::after{
+    content:'';
+    position:absolute;
+    bottom:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--sakura),var(--shu),var(--sakura),transparent);
+    opacity:0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- Sakura floating petals -->
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+<div class="sakura-petal"></div>
+
+<!-- ===================== STICKY SITE HEADER ===================== -->
+<div class="site-sticky">
+<!-- ===================== TOP BAR ===================== -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <div class="topbar-marquee">
+        <span>手ぶらでOK! Walk In OK — No reservation required</span>
+        <span>着物レンタル · Kimono Rental · Hair Set · Photo Service</span>
+        <span>Rental from ¥3,000 · 当ビルB1 · This building basement 1</span>
+      </div>
+      <div class="lang-switch">
+        <button>EN</button><span class="sep">/</span>
+        <button class="active">日本</button><span class="sep">/</span>
+        <button>VN</button><span class="sep">/</span>
+        <button>中文</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="header-inner">
+    <nav class="main-nav">
+      <a href="#" class="nav-link active" data-view="home">Home</a>
+      <a href="#" class="nav-link" data-view="shop">Collection</a>
+      <a href="#" class="nav-link" data-view="story">Story</a>
+      <a href="#" class="nav-link" data-view="contact">Atelier</a>
+    </nav>
+    <a href="#" class="brand" data-view="home" style="flex-direction:row;gap:12px;align-items:center">
+      <div class="ann-circle"></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start">
+        <span class="brand-ann">ANN</span>
+        <span class="brand-ann-sub">着物レンタル · KIMONO RENTAL</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="header-icon" aria-label="Search"><i data-lucide="search"></i></button>
+      <button class="header-icon" aria-label="Account"><i data-lucide="user"></i></button>
+      <button class="header-icon" aria-label="Wishlist"><i data-lucide="heart"></i></button>
+      <button class="header-icon" id="cartBtn" aria-label="Cart">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-count" id="cartCount">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+</div><!-- /site-sticky -->
+
+<!-- ===================== HOME VIEW ===================== -->
+<div class="view active" id="view-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-jp">着物レンタル · KIMONO RENTAL ANN</div>
+      <h1 class="hero-title">
+        Step into<br><em>your</em><br>kimono<br>story
+        <span class="ja-accent">手ぶらでOK!</span>
+      </h1>
+      <p class="hero-sub">
+        Walk in, dress up, and let us handle everything else.
+        Kimono rental, hair set, and photo service all under one roof.
+        No reservation needed.
+      </p>
+      <div class="hero-cta">
+        <button class="btn" data-view="shop">Browse Kimonos <i data-lucide="arrow-right"></i></button>
+        <button class="btn-link" data-view="contact">Book a Photo Shoot</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-content"></div>
+      <div class="hero-floating-stamp"><span>WALK<br>IN OK</span></div>
+      <div class="hero-image-overlay">
+        <div class="vertical">一期一会</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-text">SCROLL</div>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Featured Collection -->
+  <section class="section featured">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Featured Kimonos · 人気着物</div>
+        <h2 class="section-title"><em>Popular</em> Styles</h2>
+        <div class="brush-divider"></div>
+        <div class="section-title-jp">今シーズン おすすめ</div>
+        <p class="section-subtitle">
+          From vibrant furisode to elegant houmongi and playful yukata.
+          Every piece is cleaned, pressed, and ready to wear the moment you arrive.
+        </p>
+      </div>
+      <div class="product-grid" id="featuredGrid"></div>
+      <div style="text-align:center;margin-top:64px">
+        <button class="btn-link" data-view="shop">View Full Collection — 全アイテムを見る</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section services" style="padding:0">
+    <div class="container" style="padding:96px 48px 0">
+      <div class="section-header">
+        <div class="eyebrow">Our Services · 三つのサービス</div>
+        <h2 class="section-title">Three services. <em>One</em> visit.</h2>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">— 一 —</div>
+        <i data-lucide="shirt" class="service-icon"></i>
+        <h3 class="service-title">着物レンタル</h3>
+        <p class="service-title-en">Kimono Rental</p>
+        <p class="service-desc">
+          Over 200 styles of kimono, yukata, and hakama. Walk in without a reservation and our
+          staff will help you choose and dress in under 30 minutes.
+        </p>
+        <a href="#" class="service-link">Browse kimonos <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 二 —</div>
+        <i data-lucide="sparkles" class="service-icon"></i>
+        <h3 class="service-title">ヘアセット</h3>
+        <p class="service-title-en">Hair Set & Makeup</p>
+        <p class="service-desc">
+          Complete traditional hair styling and makeup by our in-house specialists.
+          Available as a bundle with rental or as a standalone service.
+        </p>
+        <a href="#" class="service-link">Book hair & makeup <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 三 —</div>
+        <i data-lucide="camera" class="service-icon"></i>
+        <h3 class="service-title">写真撮影</h3>
+        <p class="service-title-en">Photo Service</p>
+        <p class="service-desc">
+          Professional photo sessions at our studio or at nearby scenic spots.
+          Includes 20+ edited digital photos delivered within 3 days.
+        </p>
+        <a href="#" class="service-link">Book a photo shoot <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+    </div>
+    <div style="height:96px"></div>
+  </section>
+
+  <!-- Story -->
+  <section class="story-section">
+    <div class="container-narrow">
+      <div class="story-grid">
+        <div class="story-image">
+          <div class="story-image-vertical">
+            着<br>物<br>を<br>纏<br>う<br>美<br>し<br>さ
+          </div>
+          <img src="https://picsum.photos/seed/kimono-ann-story/600/750"
+               alt="Woman dressed in kimono at ANN rental studio"
+               loading="lazy"
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(193,64,74,0.25),rgba(61,21,21,0.75));z-index:1"></div>
+        </div>
+        <div class="story-content">
+          <div class="eyebrow">About ANN · 私たちについて</div>
+          <h2>Where every guest feels <em>beautiful</em>.</h2>
+          <p>
+            KIMONO RENTAL ANN was born from a simple belief: that the joy of wearing a kimono
+            should be easy, welcoming, and unforgettable. No prior experience needed.
+            Our team guides you from selection to the final bow.
+          </p>
+          <p>
+            We stock over 200 carefully maintained kimonos, from classic furisode
+            to summer yukata. Walk in any day of the week and leave with memories.
+          </p>
+          <blockquote class="story-quote">
+            "I had never worn a kimono before. The ANN team made me feel like I had been wearing one my whole life."
+            <span class="story-quote-author">- Nguyen Thi Lan, Guest from Hanoi</span>
+          </blockquote>
+          <button class="btn-link" data-view="story">Our story</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ritual / Process -->
+  <section class="ritual">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Your Visit · ご来店の流れ</div>
+        <h2 class="section-title">Your <em>Five</em> Steps</h2>
+        <div class="section-title-jp">五つのステップ</div>
+      </div>
+      <div class="ritual-steps">
+        <div class="ritual-step">
+          <div class="ritual-num">壱</div>
+          <h4>着物選び</h4>
+          <div class="step-en">Choose Your Kimono</div>
+          <p>Browse over 200 styles. Our staff help you find the perfect match for your style, season, and occasion.</p>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">弐</div>
+          <h4>着付け</h4>
+          <div class="step-en">Dressing</div>
+          <p>Our certified kitsuke specialists dress you beautifully in around 20 minutes — obi, accessories, and all finishing touches included.</p>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">参</div>
+          <h4>ヘア＆メイク</h4>
+          <div class="step-en">Hair &amp; Make up</div>
+          <p>Complete your transformation with a traditional hair set and makeup styling by our in-house beauty team, available on the spot.</p>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">肆</div>
+          <h4>撮影</h4>
+          <div class="step-en">Photo Time</div>
+          <p>Head out to explore the city or step into our photo studio. Our partner photographers are ready to capture your look.</p>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">伍</div>
+          <h4>ご返却</h4>
+          <div class="step-en">Return</div>
+          <p>Simply return your kimono before closing time. No cleaning required — we take care of everything after you leave.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Guest Reviews · お客様の声</div>
+        <h2 class="section-title">What our <em>guests</em> say</h2>
+      </div>
+      <div class="test-carousel">
+        <div class="test-track" id="testTrack">
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">I walked in knowing nothing about kimono. The ANN staff were so kind and patient. I left feeling like a completely different person. Absolutely worth it.</p>
+            <div class="test-meta">
+              <div class="test-avatar">L</div>
+              <div>
+                <div class="test-name">Nguyen Thuy Linh</div>
+                <div class="test-loc">Ho Chi Minh City · Tourist 2025</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">The hair set and photo package was incredible value. The photos came out so beautifully. I cried looking at them. This is a must-do experience.</p>
+            <div class="test-meta">
+              <div class="test-avatar">Y</div>
+              <div>
+                <div class="test-name">Yuna Yamamoto</div>
+                <div class="test-loc">Seoul · Travel blogger</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">ANN のスタッフは皆とても親切でした。着付けも丁寧で、写真もとても素敵に撮っていただきました。また来たいです。本当にありがとうございました。</p>
+            <div class="test-meta">
+              <div class="test-avatar">田</div>
+              <div>
+                <div class="test-name">田中 美咲</div>
+                <div class="test-loc">Tokyo · Repeat customer</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">Best birthday gift I gave myself. The furisode I chose fit perfectly, and the makeup artist understood exactly the soft Japanese look I wanted. Every photo turned into a frame.</p>
+            <div class="test-meta">
+              <div class="test-avatar">E</div>
+              <div>
+                <div class="test-name">Emma Laurent</div>
+                <div class="test-loc">Paris · Solo traveller</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">친구들과 함께 갔는데 모두 너무 만족했어요. 직원분들이 영어와 한국어를 잘 해주셔서 편하게 고를 수 있었고, 기모노 퀄리티가 정말 좋습니다.</p>
+            <div class="test-meta">
+              <div class="test-avatar">J</div>
+              <div>
+                <div class="test-name">Park Ji-won</div>
+                <div class="test-loc">Busan · Group of 4</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">We booked the couples photo package for our anniversary. The atmosphere felt almost spiritual — the silk, the soft music, the careful dressing ritual. It became our most treasured memory of Japan.</p>
+            <div class="test-meta">
+              <div class="test-avatar">M</div>
+              <div>
+                <div class="test-name">Marco &amp; Sofia Rinaldi</div>
+                <div class="test-loc">Milan · Honeymoon 2025</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">As a kimono enthusiast at home in Hanoi, I worried real Japan would not match my expectations. ANN exceeded them — authentic Tango silk, proper kitsuke, no rushing. The makeup was tasteful and elegant.</p>
+            <div class="test-meta">
+              <div class="test-avatar">H</div>
+              <div>
+                <div class="test-name">Trần Hà My</div>
+                <div class="test-loc">Hà Nội · Returning guest</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card">
+            <div class="test-quote-mark">『</div>
+            <div class="test-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            </div>
+            <p class="test-text">My 60-year-old mother always dreamed of wearing a furisode. The ANN team treated her like royalty. She wore it with such dignity, and the photos still make her cry happy tears. Thank you forever.</p>
+            <div class="test-meta">
+              <div class="test-avatar">A</div>
+              <div>
+                <div class="test-name">Anita Chen</div>
+                <div class="test-loc">Singapore · Mother &amp; daughter trip</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-nav">
+          <button class="test-nav-btn" id="testPrev" aria-label="Previous reviews">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="test-nav-btn" id="testNext" aria-label="More reviews">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container-tight newsletter-inner">
+      <div class="eyebrow">Stay Connected · ご連絡</div>
+      <h2>Get <em>exclusive</em> rental offers</h2>
+      <p>
+        Join our list for early access to seasonal collections, special discounts,
+        and photo session deals. We send only what matters.
+      </p>
+      <form class="newsletter-form" onsubmit="event.preventDefault();alert('ありがとうございます · Thank you')">
+        <input type="email" placeholder="your.email@somewhere.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== SHOP VIEW ===================== -->
+<div class="view" id="view-shop">
+
+  <section class="shop-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#" data-view="home">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Collection</span>
+      </div>
+      <div class="shop-title-row">
+        <div>
+          <h1 class="shop-title">The <em>Collection</em></h1>
+          <div class="shop-title-jp">コレクション 全品</div>
+        </div>
+        <div class="shop-meta">
+          <p>
+            Every garment in stock is photographed in our atelier, in natural Kyoto light.
+            What you see is what arrives — folded by hand, wrapped in washi.
+          </p>
+          <div class="shop-count">Showing 12 of 387 pieces</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="filters-bar">
+    <div class="container">
+      <div class="filters-inner">
+        <!-- Mobile top row: Filter toggle + Sort -->
+        <div class="filter-mobile-row">
+          <button class="filter-toggle-btn" id="filterToggleBtn" aria-expanded="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            <span class="filter-btn-text">Filter</span>
+            <span class="filter-count-badge" id="filterCountBadge" aria-hidden="true"></span>
+          </button>
+          <div class="filter-controls">
+            <select class="sort-select">
+              <option>Sort — Curator's pick</option>
+              <option>Newest first</option>
+              <option>Price: low to high</option>
+              <option>Price: high to low</option>
+              <option>Most beloved</option>
+            </select>
+          </div>
+        </div>
+        <!-- Category chips -->
+        <div class="filter-chips">
+          <button class="filter-chip active">All · 全て</button>
+          <button class="filter-chip">Furisode · 振袖</button>
+          <button class="filter-chip">Houmongi · 訪問着</button>
+          <button class="filter-chip">Tomesode · 留袖</button>
+          <button class="filter-chip">Komon · 小紋</button>
+          <button class="filter-chip">Yukata · 浴衣</button>
+          <button class="filter-chip">Hakama · 袴</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="shop-layout">
+      <aside class="filters-side">
+
+        <div class="filter-group">
+          <h4>Season <small>季節</small></h4>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> Spring · 春 <span class="count">28</span></label>
+            <label><input type="checkbox"> Summer · 夏 <span class="count">22</span></label>
+            <label><input type="checkbox"> Autumn · 秋 <span class="count">31</span></label>
+            <label><input type="checkbox"> Winter · 冬 <span class="count">19</span></label>
+            <label><input type="checkbox"> All seasons <span class="count">14</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Color <small>色</small></h4>
+          <div class="filter-list">
+            <label><input type="checkbox"> Sumi black · 墨 <span class="count">12</span></label>
+            <label><input type="checkbox" checked> Vermillion · 朱 <span class="count">9</span></label>
+            <label><input type="checkbox"> Indigo · 藍 <span class="count">14</span></label>
+            <label><input type="checkbox"> Cream · 生成 <span class="count">21</span></label>
+            <label><input type="checkbox"> Sakura pink · 桜 <span class="count">17</span></label>
+            <label><input type="checkbox"> Moss green · 苔 <span class="count">8</span></label>
+            <label><input type="checkbox"> Gold · 金 <span class="count">6</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Occasion <small>場面</small></h4>
+          <div class="filter-list">
+            <label><input type="checkbox"> Wedding · 婚礼 <span class="count">18</span></label>
+            <label><input type="checkbox"> Tea ceremony · 茶会 <span class="count">22</span></label>
+            <label><input type="checkbox"> Festival · 祭 <span class="count">31</span></label>
+            <label><input type="checkbox"> Coming-of-age · 成人 <span class="count">14</span></label>
+            <label><input type="checkbox"> Photography <span class="count">36</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Price <small>¥</small></h4>
+          <div class="price-range">
+            <input type="number" placeholder="Min" value="20000">
+            <span>—</span>
+            <input type="number" placeholder="Max" value="150000">
+          </div>
+        </div>
+
+        <div class="filter-group" style="border-bottom:none">
+          <h4>Availability</h4>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> In atelier <span class="count">42</span></label>
+            <label><input type="checkbox"> Available to rent <span class="count">128</span></label>
+            <label><input type="checkbox"> Custom order <span class="count">∞</span></label>
+          </div>
+        </div>
+
+        <button class="btn-outline" style="width:100%;justify-content:center;margin-top:8px">Apply Filters</button>
+      </aside>
+
+      <div>
+        <div class="shop-grid" id="shopGrid"></div>
+
+        <div class="pagination">
+          <button class="arrow"><i data-lucide="arrow-left" style="width:12px;height:12px"></i> Prev</button>
+          <button class="active">一</button>
+          <button>二</button>
+          <button>三</button>
+          <button>四</button>
+          <button>五</button>
+          <button class="arrow">Next <i data-lucide="arrow-right" style="width:12px;height:12px"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PRODUCT DETAIL VIEW ===================== -->
+<div class="view" id="view-product">
+  <section class="product-detail">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#" data-view="home">Home</a>
+        <span class="sep">/</span>
+        <a href="#" data-view="shop">Collection</a>
+        <span class="sep">/</span>
+        <a href="#" data-view="shop">Furisode · 振袖</a>
+        <span class="sep">/</span>
+        <span class="current">鶴の舞 · Tsuru no Mai</span>
+      </div>
+
+      <div class="product-layout">
+        <!-- GALLERY -->
+        <div class="product-gallery">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-thumb="0"></div>
+            <div class="gallery-thumb" data-thumb="1"></div>
+            <div class="gallery-thumb" data-thumb="2"></div>
+            <div class="gallery-thumb" data-thumb="3"></div>
+            <div class="gallery-thumb" data-thumb="4"></div>
+          </div>
+          <div class="gallery-main" id="galleryMain"></div>
+        </div>
+
+        <!-- INFO -->
+        <div class="product-info-panel">
+          <div class="product-tags">
+            <span class="product-tag feature">Featured · 推薦</span>
+            <span class="product-tag">Spring · 春</span>
+            <span class="product-tag">Furisode</span>
+            <span class="product-tag">Hand-dyed</span>
+          </div>
+
+          <h1 class="product-detail-name">鶴の舞</h1>
+          <div class="product-detail-name-en">— Tsuru no Mai · The Dance of Cranes</div>
+
+          <div class="product-detail-meta">
+            <div class="product-detail-rating">
+              <div class="stars">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+              </div>
+              <span>4.9 · 87 reviews</span>
+            </div>
+            <div class="product-detail-stock">In atelier · 在庫あり</div>
+          </div>
+
+          <div class="product-detail-price">
+            <div class="price-main">¥85,000</div>
+            <div class="price-sub">to purchase</div>
+            <div class="price-rental">or ¥18,000 · 4-day rental</div>
+          </div>
+
+          <p class="product-detail-desc">
+            A spring furisode dyed in deep vermillion, scattered with hand-painted cranes in
+            flight — a motif borrowed from Edo-period court robes. The silk is from Tango,
+            woven on wooden looms still operated by a single family in their fourth generation.
+            Each crane is painted by master artisan Tanaka Sumire over the course of nine days.
+          </p>
+
+          <div class="variant">
+            <div class="variant-label">
+              Size · サイズ
+              <small>Find your size →</small>
+            </div>
+            <div class="size-options">
+              <div class="size-option">XS<small>148-156</small></div>
+              <div class="size-option active">S<small>156-162</small></div>
+              <div class="size-option">M<small>162-168</small></div>
+              <div class="size-option">L<small>168-174</small></div>
+              <div class="size-option">CUSTOM</div>
+            </div>
+          </div>
+
+          <div class="variant">
+            <div class="variant-label">Color · 色 <small>4 hues</small></div>
+            <div class="color-options">
+              <div class="color-option active" style="background:#A8323F" title="朱 Vermillion"></div>
+              <div class="color-option" style="background:#1E2C45" title="紺 Indigo"></div>
+              <div class="color-option" style="background:#3A332E" title="墨 Sumi"></div>
+              <div class="color-option" style="background:#A8854B" title="金茶 Gold"></div>
+            </div>
+          </div>
+
+          <div class="qty-row">
+            <div class="qty">
+              <button onclick="changeQty(-1)">−</button>
+              <input type="text" value="1" id="productQty">
+              <button onclick="changeQty(1)">+</button>
+            </div>
+            <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sumi-mid);font-weight:500">2 pieces remaining</span>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn" onclick="addToCart()">Add to Cart · 注文する <i data-lucide="arrow-right"></i></button>
+            <button class="icon-btn"><i data-lucide="heart"></i></button>
+            <button class="icon-btn"><i data-lucide="share-2"></i></button>
+          </div>
+
+          <div class="product-features">
+            <div class="product-feat">
+              <i data-lucide="package"></i>
+              <div>
+                <strong>Free shipping</strong>
+                <span>Worldwide over ¥30,000</span>
+              </div>
+            </div>
+            <div class="product-feat">
+              <i data-lucide="award"></i>
+              <div>
+                <strong>Certificate</strong>
+                <span>Hand-signed by maker</span>
+              </div>
+            </div>
+            <div class="product-feat">
+              <i data-lucide="refresh-cw"></i>
+              <div>
+                <strong>30-day return</strong>
+                <span>If unworn, full refund</span>
+              </div>
+            </div>
+            <div class="product-feat">
+              <i data-lucide="camera"></i>
+              <div>
+                <strong>Add photoshoot</strong>
+                <span>+¥48,000 · half-day</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern Dictionary -->
+  <section class="pattern-dictionary">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">The Language of the Cloth</div>
+        <h2 class="section-title">Patterns <em>woven</em> into meaning</h2>
+        <p class="section-subtitle">
+          Every motif on this kimono carries centuries of meaning. Read the cloth, and you read a poem.
+        </p>
+      </div>
+      <div class="pattern-grid">
+        <div class="pattern-card">
+          <svg class="pattern-art" viewBox="0 0 80 80"><g stroke="#A8323F" stroke-width="1" fill="none">
+            <path d="M40 20 Q 28 28 30 40 Q 32 50 40 52 Q 48 50 50 40 Q 52 28 40 20 Z" stroke-width="1.2"/>
+            <path d="M40 28 Q 32 35 35 42" /><path d="M40 28 Q 48 35 45 42"/>
+            <circle cx="36" cy="33" r="1" fill="#A8323F"/><circle cx="44" cy="33" r="1" fill="#A8323F"/>
+            <path d="M25 45 L40 52 L55 45" stroke-width="0.8"/>
+            <path d="M22 25 L40 22 L58 25" stroke-width="0.8"/>
+          </g></svg>
+          <h4>鶴</h4>
+          <div class="pattern-en">Tsuru — Crane</div>
+          <p>Symbol of longevity and faithfulness. A pair of cranes mate for life and are said to live a thousand years.</p>
+        </div>
+        <div class="pattern-card">
+          <svg class="pattern-art" viewBox="0 0 80 80"><g stroke="#A8854B" stroke-width="1" fill="none">
+            <circle cx="40" cy="40" r="20"/>
+            <circle cx="20" cy="40" r="20"/><circle cx="60" cy="40" r="20"/>
+            <circle cx="30" cy="22" r="20"/><circle cx="50" cy="22" r="20"/>
+            <circle cx="30" cy="58" r="20"/><circle cx="50" cy="58" r="20"/>
+          </g></svg>
+          <h4>青海波</h4>
+          <div class="pattern-en">Seigaiha — Waves</div>
+          <p>Endless waves represent peace and good fortune flowing forward without end.</p>
+        </div>
+        <div class="pattern-card">
+          <svg class="pattern-art" viewBox="0 0 80 80"><g stroke="#A8323F" stroke-width="1" fill="none">
+            <g transform="translate(40,40)">
+              <circle r="3" fill="#A8323F"/>
+              <g><ellipse cx="0" cy="-14" rx="6" ry="10"/><ellipse cx="13" cy="-4" rx="6" ry="10" transform="rotate(72 13 -4)"/><ellipse cx="8" cy="13" rx="6" ry="10" transform="rotate(144 8 13)"/><ellipse cx="-8" cy="13" rx="6" ry="10" transform="rotate(216 -8 13)"/><ellipse cx="-13" cy="-4" rx="6" ry="10" transform="rotate(288 -13 -4)"/></g>
+            </g>
+          </g></svg>
+          <h4>桜</h4>
+          <div class="pattern-en">Sakura — Cherry blossom</div>
+          <p>Beauty in transience. Worn in spring, it whispers of life's brief, perfect moments.</p>
+        </div>
+        <div class="pattern-card">
+          <svg class="pattern-art" viewBox="0 0 80 80"><g stroke="#1E2C45" stroke-width="1" fill="none">
+            <path d="M40 12 L60 28 L60 52 L40 68 L20 52 L20 28 Z"/>
+            <path d="M40 40 L40 12"/><path d="M40 40 L20 28"/><path d="M40 40 L60 28"/>
+            <path d="M40 40 L20 52"/><path d="M40 40 L60 52"/><path d="M40 40 L40 68"/>
+          </g></svg>
+          <h4>麻の葉</h4>
+          <div class="pattern-en">Asanoha — Hemp leaf</div>
+          <p>Strength and protection. Traditionally worn by infants to grant rapid, healthy growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications -->
+  <section class="specs-section">
+    <div class="container-narrow">
+      <div class="specs-grid">
+        <div class="specs-image">
+          <svg width="100%" height="100%" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="specBg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3a332e"/><stop offset="1" stop-color="#1A1614"/>
+              </linearGradient>
+              <pattern id="specPat" width="30" height="26" patternUnits="userSpaceOnUse">
+                <path d="M15 0 L30 8 L30 18 L15 26 L0 18 L0 8 Z" fill="none" stroke="#A8854B" stroke-width="0.4" opacity="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="500" height="500" fill="url(#specBg)"/>
+            <rect width="500" height="500" fill="url(#specPat)"/>
+            <g transform="translate(250,250)">
+              <circle r="120" fill="none" stroke="#A8323F" stroke-width="0.5" opacity="0.4"/>
+              <circle r="80" fill="none" stroke="#A8854B" stroke-width="0.5" opacity="0.5"/>
+              <text text-anchor="middle" y="8" font-family="Shippori Mincho" font-size="100" fill="#A8854B" opacity="0.7">絹</text>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="eyebrow">Specifications · 詳細</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1.1;margin-bottom:32px">The <em>making</em> of this piece</h2>
+          <table class="specs-table">
+            <tr><td>Material</td><td>100% Tango silk · <small>絹100%</small></td></tr>
+            <tr><td>Weight</td><td>1.42 kg <small>(including obi)</small></td></tr>
+            <tr><td>Dyeing technique</td><td>Yuzen-zome · <small>友禅染</small></td></tr>
+            <tr><td>Hand-painting</td><td>Tanaka Sumire <small>(9 days)</small></td></tr>
+            <tr><td>Origin</td><td>Tango, Kyoto Prefecture</td></tr>
+            <tr><td>Artisan hours</td><td>74 hours total</td></tr>
+            <tr><td>Era</td><td>Reiwa · 2025 collection</td></tr>
+            <tr><td>Edition</td><td>3 of 5 · numbered</td></tr>
+            <tr><td>Care</td><td>Dry clean only · stored in paulownia</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="reviews-section">
+    <div class="container-narrow">
+      <div class="section-header" style="margin-bottom:48px">
+        <div class="eyebrow">Guest Reviews · ご感想</div>
+        <h2 class="section-title">From those who <em>wore</em> it</h2>
+      </div>
+
+      <div class="reviews-layout">
+        <!-- Summary card -->
+        <aside class="reviews-summary">
+          <div class="reviews-score">4.9<small>/5</small></div>
+          <div class="reviews-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+          </div>
+          <div class="reviews-total">Based on 87 reviews</div>
+
+          <div class="reviews-bars">
+            <div class="reviews-bar-row"><span class="lbl">5★</span><span class="bar"><span class="bar-fill" style="width:84%"></span></span><span class="pct">73</span></div>
+            <div class="reviews-bar-row"><span class="lbl">4★</span><span class="bar"><span class="bar-fill" style="width:13%"></span></span><span class="pct">11</span></div>
+            <div class="reviews-bar-row"><span class="lbl">3★</span><span class="bar"><span class="bar-fill" style="width:2%"></span></span><span class="pct">2</span></div>
+            <div class="reviews-bar-row"><span class="lbl">2★</span><span class="bar"><span class="bar-fill" style="width:1%"></span></span><span class="pct">1</span></div>
+            <div class="reviews-bar-row"><span class="lbl">1★</span><span class="bar"><span class="bar-fill" style="width:0%"></span></span><span class="pct">0</span></div>
+          </div>
+
+          <button class="reviews-write-btn">
+            <i data-lucide="edit-3" style="width:14px;height:14px"></i>
+            Write a review · 投稿する
+          </button>
+        </aside>
+
+        <!-- Review list -->
+        <div>
+          <div class="reviews-list-header">
+            <h3>What guests are saying</h3>
+            <div class="reviews-filter">
+              <button class="reviews-filter-pill active">All</button>
+              <button class="reviews-filter-pill">With photos</button>
+              <button class="reviews-filter-pill">5 stars</button>
+              <button class="reviews-filter-pill">Recent</button>
+            </div>
+          </div>
+
+          <div class="reviews-list" id="reviewsList">
+
+            <div class="review-item">
+              <div class="review-avatar">M</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Mia Tanaka</div>
+                  <div class="review-date">May 28, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">A heritage piece worth every yen</div>
+                <p class="review-text">The hand-painted cranes are even more breathtaking in person. You can feel the weight and softness of the Tango silk — nothing like polyester rentals elsewhere. I rented for my graduation photoshoot in Arashiyama and got compliments from every passerby. Worth booking weeks in advance.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size S · Vermillion</span>
+                  <span>Occasion: Graduation</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item">
+              <div class="review-avatar">H</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Hannah Bergström</div>
+                  <div class="review-date">May 14, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">Best decision of our Japan trip</div>
+                <p class="review-text">My mother and I both rented Tsuru no Mai in different sizes for a temple visit. The dressing took about 25 minutes and the obi was tied so beautifully it stayed perfect for hours. The makeup artist gave us a soft elegant look that suited our European features.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size M · Vermillion</span>
+                  <span>Sweden</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item">
+              <div class="review-avatar">永</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">永田 さくら</div>
+                  <div class="review-date">Apr 30, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">本物の職人技を感じます</div>
+                <p class="review-text">成人式のために借りました。鶴の手描きが本当に美しく、写真館の方にも「最近珍しい良い品」と褒められました。スタッフの着付けも上品で、長時間着ても全く崩れませんでした。ヘアセットとメイクの仕上がりも素晴らしかったです。</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size S · 朱</span>
+                  <span>成人式 · Coming of age</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item">
+              <div class="review-avatar">P</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Priya Ramachandran</div>
+                  <div class="review-date">Apr 18, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">Indigo version is stunning too</div>
+                <p class="review-text">Chose the indigo colorway for a moodier look during cherry blossom season — the contrast against the pink petals was perfection. The atelier let me try two sizes to find the right fit. Kitsuke specialist was patient and explained each layer.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size M · Indigo</span>
+                  <span>Mumbai · Photoshoot</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item">
+              <div class="review-avatar">E</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Elena Rossi</div>
+                  <div class="review-date">Apr 02, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24" opacity="0.3"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">Beautiful, but a little heavy for full-day wear</div>
+                <p class="review-text">The silk quality and embroidery exceeded all expectations — truly museum-worthy. My only note is the obi can feel tight after 6+ hours, so plan a tea break midway. ANN staff offered to loosen it for me at no charge, which was kind.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size L · Vermillion</span>
+                  <span>Rome · Full-day wear</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item hidden">
+              <div class="review-avatar">阮</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Nguyễn Minh Anh</div>
+                  <div class="review-date">Mar 21, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">Tuyệt vời, đáng giá từng đồng</div>
+                <p class="review-text">Mình thuê Tsuru no Mai để chụp ảnh cưới ở Kyoto. Chất liệu lụa rất mịn, hoa văn hạc bay được vẽ tay tinh xảo. Nhân viên ANN nói được tiếng Anh rõ ràng, makeup tự nhiên hợp với nét Á Đông. Bộ ảnh chụp ra đẹp như phim Nhật cổ.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size S · 朱</span>
+                  <span>TP. HCM · Pre-wedding</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item hidden">
+              <div class="review-avatar">K</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">Kim Seo-yeon</div>
+                  <div class="review-date">Mar 09, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">정말 만족스러운 경험</div>
+                <p class="review-text">Sumi 색상으로 빌렸는데 너무 우아하고 사진이 잘 나왔습니다. 직원분들이 한국어 안내문도 준비해주셔서 편했어요. 메이크업까지 포함된 패키지 가격이 합리적입니다. 다음에 또 방문하고 싶어요.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size S · 墨</span>
+                  <span>Seoul · Solo trip</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-item hidden">
+              <div class="review-avatar">J</div>
+              <div class="review-body">
+                <div class="review-header-row">
+                  <div class="review-author">James Whitfield</div>
+                  <div class="review-date">Feb 24, 2026</div>
+                </div>
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
+                </div>
+                <div class="review-title">For my wife — she was speechless</div>
+                <p class="review-text">Booked a surprise rental + photoshoot for our anniversary in Kyoto. The team handled everything in English. The gold colorway was rare and absolutely jaw-dropping in evening light. Photos came back in 5 days exactly as promised.</p>
+                <div class="review-meta">
+                  <span class="review-verified">Verified rental</span>
+                  <span>Size M · Gold</span>
+                  <span>London · Anniversary</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="reviews-more">
+            <button class="reviews-more-btn" id="reviewsLoadMore">Load 3 more reviews · もっと見る</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section featured">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">You may also love</div>
+        <h2 class="section-title">Pieces in <em>kindred</em> spirit</h2>
+      </div>
+      <div class="product-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CHECKOUT VIEW ===================== -->
+<div class="view" id="view-checkout">
+  <section class="checkout-view">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#" data-view="home">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Checkout · ご注文</span>
+      </div>
+
+      <div class="checkout-steps">
+        <div class="checkout-step done">
+          <div class="num"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+          <span>Cart</span>
+          <div class="sep"></div>
+        </div>
+        <div class="checkout-step active">
+          <div class="num">2</div>
+          <span>Information</span>
+          <div class="sep"></div>
+        </div>
+        <div class="checkout-step">
+          <div class="num">3</div>
+          <span>Payment</span>
+          <div class="sep"></div>
+        </div>
+        <div class="checkout-step">
+          <div class="num">4</div>
+          <span>Confirm</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <div>
+          <div class="checkout-section">
+            <h3>Contact <small>— ご連絡先</small></h3>
+            <p class="desc">We will send your order confirmation and tracking to this email.</p>
+            <div class="form-row">
+              <div class="field">
+                <label>First name · 姓</label>
+                <input type="text" placeholder="Sumire">
+              </div>
+              <div class="field">
+                <label>Last name · 名</label>
+                <input type="text" placeholder="Tanaka">
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="field">
+                <label>Email address</label>
+                <input type="email" placeholder="sumire@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label>Country / Region</label>
+                <select>
+                  <option>Japan · 日本</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Singapore</option>
+                  <option>Vietnam</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Phone</label>
+                <input type="tel" placeholder="+81 75 ...">
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <h3>Shipping <small>— お届け先</small></h3>
+            <p class="desc">All packages are wrapped in handmade washi paper and sealed with our atelier hanko.</p>
+            <div class="form-row single">
+              <div class="field">
+                <label>Address line 1</label>
+                <input type="text" placeholder="Number, street">
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="field">
+                <label>Address line 2 <small style="text-transform:none;letter-spacing:0;color:var(--sumi-light)">— optional</small></label>
+                <input type="text" placeholder="Apartment, building, c/o">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label>City · 市</label>
+                <input type="text" placeholder="Kyoto">
+              </div>
+              <div class="field">
+                <label>Postal code · 〒</label>
+                <input type="text" placeholder="600-8001">
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <h3>Delivery method</h3>
+            <div class="ship-options">
+              <div class="ship-option active">
+                <div class="ship-option-radio"></div>
+                <div class="ship-option-info">
+                  <strong>Atelier delivery — 3-5 days</strong>
+                  <span>Hand-wrapped, signed for upon arrival · Yamato Logistics</span>
+                </div>
+                <div class="ship-option-price">¥1,200</div>
+              </div>
+              <div class="ship-option">
+                <div class="ship-option-radio"></div>
+                <div class="ship-option-info">
+                  <strong>Express — next day</strong>
+                  <span>Same wrapping, accelerated route · Sagawa Premium</span>
+                </div>
+                <div class="ship-option-price">¥3,800</div>
+              </div>
+              <div class="ship-option">
+                <div class="ship-option-radio"></div>
+                <div class="ship-option-info">
+                  <strong>Atelier pickup — Kyoto</strong>
+                  <span>Collect from our shop in Higashiyama · We will tea-serve you</span>
+                </div>
+                <div class="ship-option-price">Free</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <h3>Payment <small>— お支払い</small></h3>
+            <p class="desc">All transactions are encrypted and processed via Stripe.</p>
+            <div class="pay-tabs">
+              <div class="pay-tab active">
+                <i data-lucide="credit-card"></i>
+                <span>Card</span>
+              </div>
+              <div class="pay-tab">
+                <i data-lucide="building"></i>
+                <span>Bank Transfer</span>
+              </div>
+              <div class="pay-tab">
+                <i data-lucide="smartphone"></i>
+                <span>PayPay · LINE Pay</span>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="field">
+                <label>Card number</label>
+                <input type="text" placeholder="•••• •••• •••• ••••">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label>Expiry</label>
+                <input type="text" placeholder="MM / YY">
+              </div>
+              <div class="field">
+                <label>CVC</label>
+                <input type="text" placeholder="•••">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" style="width:100%;justify-content:center;padding:22px">
+            Place Order · ご注文確定 — ¥87,200 <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+
+        <aside class="order-summary">
+          <h3>Your Order <small>ご注文内容</small></h3>
+          <div class="order-line">
+            <div class="order-line-img" style="background:linear-gradient(135deg,#A8323F,#8E2530);position:relative">
+              <div class="order-line-qty">1</div>
+            </div>
+            <div class="order-line-info">
+              <strong>鶴の舞</strong>
+              <span>Furisode · Size S · Vermillion</span>
+            </div>
+            <div class="order-line-price">¥85,000</div>
+          </div>
+          <div class="order-line">
+            <div class="order-line-img" style="background:linear-gradient(135deg,#1E2C45,#0f1a2b);position:relative">
+              <div class="order-line-qty">1</div>
+            </div>
+            <div class="order-line-info">
+              <strong>金襴帯</strong>
+              <span>Obi · Brocade · Indigo</span>
+            </div>
+            <div class="order-line-price">¥12,000</div>
+          </div>
+          <div class="order-line">
+            <div class="order-line-img" style="background:linear-gradient(135deg,#A8854B,#7d6037);position:relative">
+              <div class="order-line-qty">1</div>
+            </div>
+            <div class="order-line-info">
+              <strong>かんざし</strong>
+              <span>Hair ornament · Gold</span>
+            </div>
+            <div class="order-line-price">¥4,500</div>
+          </div>
+
+          <div class="promo-box">
+            <input type="text" placeholder="Promo code">
+            <button>Apply</button>
+          </div>
+
+          <div class="cart-totals">
+            <div class="row"><span>Subtotal</span><span>¥101,500</span></div>
+            <div class="row"><span>Shipping</span><span>¥1,200</span></div>
+            <div class="row" style="color:var(--shu)"><span>Discount · WELCOME10</span><span>−¥15,500</span></div>
+            <div class="row total">
+              <span>Total</span>
+              <span>¥87,200</span>
+            </div>
+          </div>
+
+          <div style="text-align:center;font-size:11px;color:var(--sumi-mid);letter-spacing:0.16em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid var(--line)">
+            <i data-lucide="lock" style="width:12px;height:12px;display:inline;vertical-align:middle"></i>
+            Secure SSL Payment
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== STORY VIEW ===================== -->
+<div class="view" id="view-story">
+  <section class="story-hero">
+    <div class="story-hero-content">
+      <h1>Our <em>Heritage</em></h1>
+      <p>沿 革</p>
+    </div>
+  </section>
+
+  <section class="story-ribbon">
+    <div class="container">
+      <div class="ribbon-grid">
+        <div class="ribbon-stat">
+          <div class="ribbon-num"><em>38</em></div>
+          <div class="ribbon-jp">年の歴史</div>
+          <div class="ribbon-en">Years of craft</div>
+        </div>
+        <div class="ribbon-stat">
+          <div class="ribbon-num"><em>12</em></div>
+          <div class="ribbon-jp">職人</div>
+          <div class="ribbon-en">Master artisans</div>
+        </div>
+        <div class="ribbon-stat">
+          <div class="ribbon-num"><em>387</em></div>
+          <div class="ribbon-jp">所蔵</div>
+          <div class="ribbon-en">Garments in archive</div>
+        </div>
+        <div class="ribbon-stat">
+          <div class="ribbon-num"><em>3</em></div>
+          <div class="ribbon-jp">三世代</div>
+          <div class="ribbon-en">Generations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="container-narrow">
+      <div class="story-grid">
+        <div class="story-content">
+          <div class="eyebrow">1987 — Origins</div>
+          <h2>A small <em>dyehouse</em> on a narrow lane</h2>
+          <p>
+            The atelier was founded by Tanaka Hideko in the spring of 1987 — a single room above a tea
+            merchant's shop in northern Kyoto. She dyed silk for nine local kimono houses while raising
+            two daughters in the same building. The fire never went out.
+          </p>
+          <p>
+            Her granddaughter, Tanaka Sumire — who paints the cranes you see on our furisode today — joined
+            the atelier in 2009 after returning from a textile residency in Lyon. She is the third generation
+            of women to dye in this room.
+          </p>
+        </div>
+        <div class="story-image">
+          <div class="story-image-vertical">
+            一<br>九<br>八<br>七<br>年<br>春<br>創<br>業
+          </div>
+          <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HM18-683x1024-1-500x500.jpg"
+               alt="Atelier hands at work"
+               loading="lazy" referrerpolicy="no-referrer"
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,51,46,0.55),rgba(26,22,20,0.88));z-index:1"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="craft-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">The Hands</div>
+        <h2 class="section-title">Twelve <em>Artisans</em></h2>
+        <div class="section-title-jp">職人 十二名</div>
+      </div>
+      <div class="craft-grid">
+        <div class="craft-card">
+          <div class="craft-image">
+            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg"
+                 alt="Tanaka Sumire — Master Painter" loading="lazy" referrerpolicy="no-referrer">
+            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,50,63,0.55),rgba(26,22,20,0.85))"></div>
+            <div class="craft-name">田中 すみれ</div>
+          </div>
+          <div class="craft-content">
+            <h3>田中 すみれ</h3>
+            <div class="craft-en">Tanaka Sumire — Master Painter</div>
+            <p>Trained in Kyoto and Lyon. Specializes in yuzen hand-painting; paints cranes and seasonal motifs that take 7–14 days per piece. Third-generation of the founding family.</p>
+          </div>
+        </div>
+        <div class="craft-card">
+          <div class="craft-image">
+            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R32-683x1024-1-500x500.jpg"
+                 alt="Nakamura Kenichi — Indigo Dyer" loading="lazy" referrerpolicy="no-referrer">
+            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(30,44,69,0.55),rgba(15,26,43,0.88))"></div>
+            <div class="craft-name">中村 健一</div>
+          </div>
+          <div class="craft-content">
+            <h3>中村 健一</h3>
+            <div class="craft-en">Nakamura Kenichi — Indigo Dyer</div>
+            <p>40 years of natural-indigo experience. Maintains our seven dye vats and tracks fermentation across all four seasons — each vat has a name and a logbook.</p>
+          </div>
+        </div>
+        <div class="craft-card">
+          <div class="craft-image">
+            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg"
+                 alt="Yamamoto Aoi — Stitcher" loading="lazy" referrerpolicy="no-referrer">
+            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,133,75,0.55),rgba(92,58,31,0.88))"></div>
+            <div class="craft-name">山本 葵</div>
+          </div>
+          <div class="craft-content">
+            <h3>山本 葵</h3>
+            <div class="craft-en">Yamamoto Aoi — Stitcher</div>
+            <p>Hand-stitches every garment. Maintains the centuries-old "stitch language" of our atelier — each thread is invisible on the right side, decisive on the wrong.</p>
+          </div>
+        </div>
+        <div class="craft-card">
+          <div class="craft-image">
+            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/ph1%EF%BC%92-4-1024x944-1-500x500.jpg"
+                 alt="Suzuki Misaki — Kitsuke Master" loading="lazy" referrerpolicy="no-referrer">
+            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(92,107,71,0.55),rgba(45,53,34,0.88))"></div>
+            <div class="craft-name">鈴木 美咲</div>
+          </div>
+          <div class="craft-content">
+            <h3>鈴木 美咲</h3>
+            <div class="craft-en">Suzuki Misaki — Kitsuke Master</div>
+            <p>Certified third-rank kitsuke (kimono dressing) instructor. Will dress you for any ceremony — wedding, tea, festival — and tell you the meaning of every fold.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CONTACT VIEW ===================== -->
+<div class="view" id="view-contact">
+  <section class="contact-view">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#" data-view="home">Home</a>
+        <span class="sep">/</span>
+        <span class="current">Atelier · 工房</span>
+      </div>
+
+      <div class="contact-layout" style="margin-top:48px">
+        <div class="contact-info">
+          <div class="eyebrow">Visit Us · お越しください</div>
+          <h2>Tea, <em>silk</em>, and a quiet hour.</h2>
+          <p>
+            Our atelier is open by appointment, six days a week. We pour tea, walk you through the
+            garments by hand, and ask only that you arrive with curiosity. There is never any pressure
+            to purchase.
+          </p>
+
+          <div class="contact-blocks">
+            <div class="contact-block">
+              <i data-lucide="map-pin"></i>
+              <div>
+                <h4>Atelier · 工房</h4>
+                <p>京都市東山区祇園町南側 570-128</p>
+                <div class="en">570-128 Gion-machi Minamigawa, Higashiyama-ku, Kyoto</div>
+              </div>
+            </div>
+            <div class="contact-block">
+              <i data-lucide="clock"></i>
+              <div>
+                <h4>Hours · 営業時間</h4>
+                <p>火 — 日 · 10:00 — 18:00</p>
+                <div class="en">Tuesday to Sunday · Monday closed</div>
+              </div>
+            </div>
+            <div class="contact-block">
+              <i data-lucide="phone"></i>
+              <div>
+                <h4>Phone · 電話</h4>
+                <p>+81 75-561-XXXX</p>
+                <div class="en">English, 日本語, 中文 · 한국어</div>
+              </div>
+            </div>
+            <div class="contact-block">
+              <i data-lucide="mail"></i>
+              <div>
+                <h4>Email · メール</h4>
+                <p>atelier@ayame-kyoto.jp</p>
+                <div class="en">Replies within 24 hours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Send a message</h3>
+          <p class="desc">For commissions, restorations, photography bookings, or anything else.</p>
+
+          <div class="form-row">
+            <div class="field">
+              <label>Name · お名前</label>
+              <input type="text">
+            </div>
+            <div class="field">
+              <label>Email · メール</label>
+              <input type="email">
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field">
+              <label>Subject · 件名</label>
+              <select>
+                <option>Rental inquiry</option>
+                <option>Photography booking</option>
+                <option>Custom commission</option>
+                <option>Restoration / repair</option>
+                <option>Wholesale / press</option>
+                <option>General question</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field">
+              <label>Message · ご用件</label>
+              <textarea rows="6" placeholder="Tell us a little about what you would like..."></textarea>
+            </div>
+          </div>
+          <button class="btn" style="width:100%;justify-content:center;margin-top:12px">
+            Send Message · 送信 <i data-lucide="send"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CART DRAWER ===================== -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <div class="drawer-title">お買い物かご <small>— Your bag</small></div>
+    <button class="drawer-close" id="closeDrawer"><i data-lucide="x"></i></button>
+  </div>
+  <div class="drawer-body" id="cartBody">
+    <div class="cart-promo">
+      <i data-lucide="gift"></i>
+      <div>You're <strong>¥4,500</strong> away from <strong>free worldwide shipping</strong>.</div>
+    </div>
+    <!-- items injected -->
+  </div>
+  <div class="drawer-footer">
+    <div class="cart-totals">
+      <div class="row"><span>Subtotal</span><span>¥101,500</span></div>
+      <div class="row"><span>Estimated shipping</span><span>¥1,200</span></div>
+      <div class="row"><span>Tax (consumption)</span><span>included</span></div>
+      <div class="row total"><span>Total</span><span>¥102,700</span></div>
+    </div>
+    <div class="drawer-cta">
+      <button class="btn" style="justify-content:center" data-view="checkout">
+        Proceed to Checkout · ご注文へ <i data-lucide="arrow-right"></i>
+      </button>
+      <button class="btn-link" style="text-align:center" id="closeDrawer2">Continue browsing</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand" style="flex-direction:row;gap:12px;align-items:center">
+          <div class="ann-circle"></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start">
+            <span class="brand-ann" style="color:var(--kinari)">ANN</span>
+            <span class="brand-ann-sub" style="color:var(--kincha-soft)">KIMONO RENTAL</span>
+          </div>
+        </a>
+        <p>
+          Walk-in kimono rental, hair set, and photo service.
+          No reservation needed. Located at basement floor 1.
+          Open 7 days a week.
+        </p>
+        <div class="social">
+          <a href="#"><i data-lucide="instagram"></i></a>
+          <a href="#"><i data-lucide="facebook"></i></a>
+          <a href="#"><i data-lucide="youtube"></i></a>
+          <a href="#"><i data-lucide="message-circle"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">All garments</a></li>
+          <li><a href="#">Furisode · 振袖</a></li>
+          <li><a href="#">Houmongi · 訪問着</a></li>
+          <li><a href="#">Yukata · 浴衣</a></li>
+          <li><a href="#">Obi · 帯</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Atelier</h4>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">The artisans</a></li>
+          <li><a href="#">The process</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Photography</a></li>
+          <li><a href="#">Wedding</a></li>
+          <li><a href="#">Custom commissions</a></li>
+          <li><a href="#">Restoration</a></li>
+          <li><a href="#">Tea ceremony</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size guide</a></li>
+          <li><a href="#">Shipping & returns</a></li>
+          <li><a href="#">Care instructions</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 KIMONO RENTAL ANN · 着物レンタル ANN · All rights reserved · TEL: 080-2382-9516</div>
+      <div class="pay-icons">
+        <span>Visa</span>
+        <span>Master</span>
+        <span>Amex</span>
+        <span>JCB</span>
+        <span>PayPay</span>
+        <span>LINE Pay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ============= ICONS ============= */
+  lucide.createIcons();
+
+  /* ============= ROUTING ============= */
+  const views = document.querySelectorAll('.view');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function showView(name){
+    views.forEach(v=>v.classList.remove('active'));
+    const target = document.getElementById('view-'+name);
+    if(target){target.classList.add('active');window.scrollTo({top:0,behavior:'instant'})}
+    navLinks.forEach(a=>{
+      a.classList.toggle('active', a.dataset.view === name);
+    });
+  }
+
+  document.body.addEventListener('click', e=>{
+    const t = e.target.closest('[data-view]');
+    if(t){
+      e.preventDefault();
+      showView(t.dataset.view);
+      // close drawer if open
+      drawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+    }
+  });
+
+  /* ============= CART DRAWER ============= */
+  const drawer = document.getElementById('cartDrawer');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+  document.getElementById('cartBtn').addEventListener('click',()=>{
+    drawer.classList.add('open');
+    drawerOverlay.classList.add('open');
+  });
+  document.getElementById('closeDrawer').addEventListener('click',()=>{
+    drawer.classList.remove('open');
+    drawerOverlay.classList.remove('open');
+  });
+  document.getElementById('closeDrawer2').addEventListener('click',()=>{
+    drawer.classList.remove('open');
+    drawerOverlay.classList.remove('open');
+  });
+  drawerOverlay.addEventListener('click',()=>{
+    drawer.classList.remove('open');
+    drawerOverlay.classList.remove('open');
+  });
+
+  /* ============= KIMONO ART GENERATOR =============
+     Each kimono card gets a generated SVG illustration so cards look unique and rich. */
+
+  function kimonoSVG(palette, pattern){
+    // palette: {body, accent, bg, deepBg}
+    // pattern: 'crane'|'sakura'|'wave'|'asanoha'|'momiji'|'pine'|'butterfly'|'snow'|'peony'|'shippou'|'flow'|'plum'
+
+    const patternDefs = {
+      crane: `<g><path d="M30 35 Q22 38 24 45 Q28 50 35 48 L40 50 Q45 48 47 45 Q47 40 42 38 L38 35 Z" fill="${palette.accent}" opacity="0.7"/><path d="M40 50 L42 56" stroke="${palette.accent}" stroke-width="0.6"/><path d="M35 48 L33 54" stroke="${palette.accent}" stroke-width="0.6"/></g>`,
+      sakura: `<g transform="translate(0,0)"><circle cx="0" cy="-3" r="2.5" fill="${palette.accent}" opacity="0.85"/><circle cx="3" cy="-1" r="2.5" fill="${palette.accent}" opacity="0.85"/><circle cx="2" cy="3" r="2.5" fill="${palette.accent}" opacity="0.85"/><circle cx="-2" cy="3" r="2.5" fill="${palette.accent}" opacity="0.85"/><circle cx="-3" cy="-1" r="2.5" fill="${palette.accent}" opacity="0.85"/><circle cx="0" cy="0" r="0.8" fill="${palette.bg}"/></g>`,
+      wave: `<g><path d="M-15 0 Q-7.5 -8 0 0 T15 0" fill="none" stroke="${palette.accent}" stroke-width="0.8" opacity="0.7"/><path d="M-15 4 Q-7.5 -4 0 4 T15 4" fill="none" stroke="${palette.accent}" stroke-width="0.6" opacity="0.5"/></g>`,
+      asanoha: `<g><path d="M0 -8 L7 -4 L7 4 L0 8 L-7 4 L-7 -4 Z M0 0 L0 -8 M0 0 L7 -4 M0 0 L7 4 M0 0 L0 8 M0 0 L-7 4 M0 0 L-7 -4" fill="none" stroke="${palette.accent}" stroke-width="0.5" opacity="0.7"/></g>`,
+      momiji: `<path d="M0 -10 L3 -3 L8 -1 L4 3 L6 10 L0 6 L-6 10 L-4 3 L-8 -1 L-3 -3 Z" fill="${palette.accent}" opacity="0.65"/>`,
+      pine: `<g><path d="M0 -10 L0 8 M-5 -5 L5 -5 M-7 0 L7 0 M-5 5 L5 5" stroke="${palette.accent}" stroke-width="0.7" opacity="0.7"/></g>`,
+      butterfly: `<g><path d="M0 0 Q-7 -7 -10 -3 Q-12 3 -7 6 Q-3 5 0 0 Q3 5 7 6 Q12 3 10 -3 Q7 -7 0 0 Z" fill="${palette.accent}" opacity="0.7"/></g>`,
+      snow: `<g><circle cx="0" cy="0" r="6" fill="none" stroke="${palette.accent}" stroke-width="0.5" opacity="0.7"/><circle cx="0" cy="0" r="3" fill="none" stroke="${palette.accent}" stroke-width="0.5" opacity="0.7"/><path d="M-7 0 L7 0 M0 -7 L0 7 M-5 -5 L5 5 M5 -5 L-5 5" stroke="${palette.accent}" stroke-width="0.4" opacity="0.5"/></g>`,
+      peony: `<g><circle r="3" fill="${palette.accent}" opacity="0.8"/><circle cx="-5" cy="0" r="4" fill="${palette.accent}" opacity="0.5"/><circle cx="5" cy="0" r="4" fill="${palette.accent}" opacity="0.5"/><circle cx="0" cy="-5" r="4" fill="${palette.accent}" opacity="0.5"/><circle cx="0" cy="5" r="4" fill="${palette.accent}" opacity="0.5"/></g>`,
+      shippou: `<g><circle cx="0" cy="0" r="6" fill="none" stroke="${palette.accent}" stroke-width="0.6" opacity="0.6"/><circle cx="6" cy="0" r="6" fill="none" stroke="${palette.accent}" stroke-width="0.6" opacity="0.4"/><circle cx="-6" cy="0" r="6" fill="none" stroke="${palette.accent}" stroke-width="0.6" opacity="0.4"/></g>`,
+      flow: `<path d="M-12 0 Q-6 -4 0 0 T12 0" fill="none" stroke="${palette.accent}" stroke-width="1" opacity="0.6"/>`,
+      plum: `<g><circle cx="0" cy="-4" r="2" fill="${palette.accent}" opacity="0.85"/><circle cx="4" cy="-1" r="2" fill="${palette.accent}" opacity="0.85"/><circle cx="2.5" cy="3.5" r="2" fill="${palette.accent}" opacity="0.85"/><circle cx="-2.5" cy="3.5" r="2" fill="${palette.accent}" opacity="0.85"/><circle cx="-4" cy="-1" r="2" fill="${palette.accent}" opacity="0.85"/></g>`
+    };
+
+    // Generate scattered pattern positions
+    let scatteredPattern = '';
+    const positions = [
+      [80,140],[140,110],[100,210],[170,180],[120,260],[80,310],[160,300],
+      [110,360],[150,420],[90,420],[140,490],[100,540],[150,560],[120,620]
+    ];
+    positions.forEach(([x,y])=>{
+      scatteredPattern += `<g transform="translate(${x} ${y}) rotate(${Math.random()*360})">${patternDefs[pattern]||patternDefs.sakura}</g>`;
+    });
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 700" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bg-${pattern}-${palette.body.replace('#','')}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${palette.bg}"/>
+          <stop offset="1" stop-color="${palette.deepBg}"/>
+        </linearGradient>
+      </defs>
+      <rect width="240" height="700" fill="url(#bg-${pattern}-${palette.body.replace('#','')})"/>
+      
+      <!-- Kimono silhouette -->
+      <g transform="translate(120,350)">
+        <!-- Sleeves -->
+        <path d="M-100 -180 L-95 -50 L-65 -30 L-65 -180 Z" fill="${palette.body}" opacity="0.95"/>
+        <path d="M100 -180 L95 -50 L65 -30 L65 -180 Z" fill="${palette.body}" opacity="0.95"/>
+        <!-- Body -->
+        <path d="M-65 -180 L-65 200 L-50 270 L0 290 L50 270 L65 200 L65 -180 L40 -195 L0 -200 L-40 -195 Z" fill="${palette.body}"/>
+        <!-- Collar -->
+        <path d="M-30 -200 L0 -180 L30 -200 L25 -150 L0 -130 L-25 -150 Z" fill="${palette.deepBg}" opacity="0.7"/>
+        <!-- Center seam -->
+        <path d="M0 -180 L0 290" stroke="${palette.bg}" stroke-width="0.5" opacity="0.4"/>
+        <!-- Obi -->
+        <rect x="-67" y="50" width="134" height="60" fill="${palette.deepBg}" opacity="0.85"/>
+        <rect x="-67" y="55" width="134" height="2" fill="${palette.accent}" opacity="0.6"/>
+        <rect x="-67" y="105" width="134" height="2" fill="${palette.accent}" opacity="0.6"/>
+      </g>
+      
+      <!-- Pattern scattered on kimono -->
+      ${scatteredPattern}
+
+      <!-- Subtle washi paper texture overlay -->
+      <rect width="240" height="700" fill="url(#washi-${pattern})" opacity="0.1"/>
+    </svg>`;
+  }
+
+  /* ============= PRODUCT DATA — ANN Kimono Rental ============= */
+  const products = [
+    {jp:'鶴の舞',en:'Tsuru no Mai',cat:'Furisode · 振袖',price:'¥18,000',rent:'¥18,000/day',pattern:'crane',
+     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},badge:'featured',
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg'},
+    {jp:'桜霞',en:'Sakura Kasumi',cat:'Houmongi · 訪問着',price:'¥12,000',rent:'¥12,000/day',pattern:'sakura',
+     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#C1404A'},badge:'new',
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255815-500x500.jpg'},
+    {jp:'流水',en:'Ryuusui',cat:'Komon · 小紋',price:'¥8,000',rent:'¥8,000/day',pattern:'wave',
+     palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#EBA0AA'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R32-683x1024-1-500x500.jpg'},
+    {jp:'月光',en:'Gekkou',cat:'Tomesode · 留袖',price:'¥15,000',rent:'¥15,000/day',pattern:'asanoha',
+     palette:{body:'#3D1515',bg:'#FDEEF0',deepBg:'#200808',accent:'#EBA0AA'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/P14-2-995x1024-1-500x500.jpg'},
+    {jp:'紅葉',en:'Momiji',cat:'Komon · 小紋',price:'¥7,000',rent:'¥7,000/day',pattern:'momiji',
+     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R20-768x1024-1-500x500.jpg'},
+    {jp:'松竹梅',en:'Shouchikubai',cat:'Houmongi · 訪問着',price:'¥14,000',rent:'¥14,000/day',pattern:'pine',
+     palette:{body:'#5C8050',bg:'#F0F5EE',deepBg:'#1d2515',accent:'#F5C0C8'},badge:'featured',
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/ph1%EF%BC%92-4-1024x944-1-500x500.jpg'},
+    {jp:'夏祭り',en:'Natsumatsuri',cat:'Yukata · 浴衣',price:'¥4,500',rent:'¥4,500/day',pattern:'butterfly',
+     palette:{body:'#FFF8F8',bg:'#FDEEF0',deepBg:'#EBA0AA',accent:'#C1404A'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/K36-2-891x1024-1-500x500.jpg'},
+    {jp:'雪輪',en:'Yukiwa',cat:'Furisode · 振袖',price:'¥16,000',rent:'¥16,000/day',pattern:'snow',
+     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F3-500x500.jpg'},
+    {jp:'牡丹',en:'Botan',cat:'Furisode · 振袖',price:'¥20,000',rent:'¥20,000/day',pattern:'peony',
+     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#FFF8F8'},badge:'featured',
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HF1-683x1024-1-500x500.jpg'},
+    {jp:'七宝',en:'Shippou',cat:'Tomesode · 留袖',price:'¥17,000',rent:'¥17,000/day',pattern:'shippou',
+     palette:{body:'#3D1515',bg:'#FFF8F8',deepBg:'#1A0808',accent:'#EBA0AA'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/hef2-777x1024-1-500x500.jpg'},
+    {jp:'蝶々',en:'Chouchou',cat:'Yukata · 浴衣',price:'¥5,000',rent:'¥5,000/day',pattern:'butterfly',
+     palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#F5C0C8'},
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R36-722x1024-1-500x500.jpg'},
+    {jp:'桜牡丹',en:'Sakura Botan',cat:'Houmongi · 訪問着',price:'¥13,000',rent:'¥13,000/day',pattern:'peony',
+     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},badge:'new',
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg'}
+  ];
+
+  /* Render real photo from yae-japan.com instead of SVG mockup */
+  function productImage(p){
+    return `<img src="${p.image}" alt="${p.en}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" referrerpolicy="no-referrer">`;
+  }
+
+  function productCard(p,i){
+    const badge = p.badge==='featured' ? '<span class="product-badge">Featured</span>'
+                : p.badge==='new' ? '<span class="product-badge new">New · 新作</span>'
+                : '';
+    return `<a class="product-card" data-view="product" href="#">
+      <div class="product-image">
+        ${badge}
+        <div class="product-image-inner">${productImage(p)}</div>
+        <div class="product-quick">
+          <span>Quick view · 詳細</span>
+          <i data-lucide="arrow-right"></i>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.jp}</div>
+        <div class="product-name-en">${p.en}</div>
+        <div class="product-price">${p.price} <small>RENTAL / DAY</small></div>
+      </div>
+    </a>`;
+  }
+
+  // Featured (8)
+  document.getElementById('featuredGrid').innerHTML = products.slice(0,8).map(productCard).join('');
+  // Shop (12)
+  document.getElementById('shopGrid').innerHTML = products.map(productCard).join('');
+  // Related (4)
+  document.getElementById('relatedGrid').innerHTML = products.slice(2,6).map(productCard).join('');
+
+  // Product detail gallery
+  const galleryProduct = products[0];
+  const galleryMain = document.getElementById('galleryMain');
+  const galleryAlts = [
+    products[0],
+    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/f20-683x1024-1-500x500.jpg'},
+    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F3-500x500.jpg'},
+    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HF1-683x1024-1-500x500.jpg'},
+    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/hef2-777x1024-1-500x500.jpg'}
+  ];
+  function loadGallery(idx){
+    galleryMain.innerHTML = `
+      <button class="gallery-main-zoom"><i data-lucide="zoom-in"></i></button>
+      ${productImage(galleryAlts[idx])}
+    `;
+    lucide.createIcons();
+  }
+  loadGallery(0);
+  document.querySelectorAll('.gallery-thumb').forEach((t,i)=>{
+    t.innerHTML = productImage(galleryAlts[i]);
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      loadGallery(i);
+    });
+  });
+
+  // Cart drawer items
+  const cartItems = [
+    {jp:'鶴の舞',en:'Tsuru no Mai · Size S · Vermillion',cat:'Furisode',price:'¥85,000',qty:1,
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg'},
+    {jp:'金襴帯',en:'Brocade Obi · Indigo',cat:'Obi',price:'¥12,000',qty:1,
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg'},
+    {jp:'かんざし',en:'Hair Ornament · Gold pin',cat:'Accessory',price:'¥4,500',qty:1,
+     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/KGK1-899x1024-1-500x500.jpg'}
+  ];
+  function renderCart(){
+    const cartBody = document.getElementById('cartBody');
+    const itemsHtml = cartItems.map(it=>`
+      <div class="cart-item">
+        <div class="cart-item-img">${productImage(it)}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-cat">${it.cat}</div>
+          <div class="cart-item-name">${it.jp}</div>
+          <div class="cart-item-name-en">${it.en}</div>
+          <div class="cart-item-qty">
+            <button>−</button><span>${it.qty}</span><button>+</button>
+          </div>
+        </div>
+        <div class="cart-item-right">
+          <div class="cart-item-price">${it.price}</div>
+          <button class="cart-item-remove">Remove</button>
+        </div>
+      </div>
+    `).join('');
+    const promo = `<div class="cart-promo">
+      <i data-lucide="gift"></i>
+      <div>You're <strong>¥4,500</strong> away from <strong>free worldwide shipping</strong>.</div>
+    </div>`;
+    cartBody.innerHTML = promo + itemsHtml;
+    lucide.createIcons();
+  }
+  renderCart();
+
+  /* ============= PRODUCT INTERACTIONS ============= */
+  // Size options
+  document.querySelectorAll('.size-options').forEach(group=>{
+    group.querySelectorAll('.size-option').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        group.querySelectorAll('.size-option').forEach(x=>x.classList.remove('active'));
+        opt.classList.add('active');
+      });
+    });
+  });
+  // Color options
+  document.querySelectorAll('.color-options').forEach(group=>{
+    group.querySelectorAll('.color-option').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        group.querySelectorAll('.color-option').forEach(x=>x.classList.remove('active'));
+        opt.classList.add('active');
+      });
+    });
+  });
+  // Filter chips
+  document.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+  // Ship options
+  document.querySelectorAll('.ship-option').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      document.querySelectorAll('.ship-option').forEach(x=>x.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+  // Pay tabs
+  document.querySelectorAll('.pay-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.pay-tab').forEach(x=>x.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Quantity
+  function changeQty(delta){
+    const inp = document.getElementById('productQty');
+    let n = parseInt(inp.value)||1;
+    n = Math.max(1, Math.min(10, n+delta));
+    inp.value = n;
+  }
+
+  // Add to cart
+  function addToCart(){
+    drawer.classList.add('open');
+    drawerOverlay.classList.add('open');
+    const c = document.getElementById('cartCount');
+    c.textContent = parseInt(c.textContent)+1;
+  }
+
+  // Make functions globally accessible
+  window.changeQty = changeQty;
+  window.addToCart = addToCart;
+
+  /* ===== Mobile filter toggle ===== */
+  const filterToggleBtn = document.getElementById('filterToggleBtn');
+  const filtersSide = document.querySelector('#view-shop .filters-side');
+  const filterBtnText = filterToggleBtn ? filterToggleBtn.querySelector('.filter-btn-text') : null;
+
+  if(filterToggleBtn && filtersSide){
+    filterToggleBtn.addEventListener('click', ()=>{
+      const isOpen = filtersSide.classList.toggle('mobile-open');
+      filterToggleBtn.setAttribute('aria-expanded', isOpen);
+      if(filterBtnText) filterBtnText.textContent = isOpen ? 'Close' : 'Filter';
+    });
+    // Close filter panel when navigating away from shop view
+    document.body.addEventListener('click', e=>{
+      const t = e.target.closest('[data-view]');
+      if(t && t.dataset.view !== 'shop'){
+        filtersSide.classList.remove('mobile-open');
+        filterToggleBtn.setAttribute('aria-expanded','false');
+        if(filterBtnText) filterBtnText.textContent = 'Filter';
+      }
+    });
+    // Count active filters (checkboxes) and update badge
+    function updateFilterBadge(){
+      const badge = document.getElementById('filterCountBadge');
+      if(!badge) return;
+      const active = filtersSide.querySelectorAll('input[type=checkbox]:checked').length;
+      if(active > 0){
+        badge.textContent = active;
+        badge.classList.add('visible');
+      } else {
+        badge.classList.remove('visible');
+      }
+    }
+    filtersSide.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+      cb.addEventListener('change', updateFilterBadge);
+    });
+    updateFilterBadge();
+  }
+
+  /* ============= TESTIMONIALS CAROUSEL ============= */
+  (function initTestCarousel(){
+    const track = document.getElementById('testTrack');
+    const prev = document.getElementById('testPrev');
+    const next = document.getElementById('testNext');
+    if(!track || !prev || !next) return;
+
+    function getStep(){
+      const card = track.querySelector('.test-card');
+      if(!card) return track.clientWidth * 0.9;
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || 0);
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function updateBtns(){
+      const max = track.scrollWidth - track.clientWidth - 1;
+      prev.disabled = track.scrollLeft <= 0;
+      next.disabled = track.scrollLeft >= max;
+    }
+
+    prev.addEventListener('click', ()=> track.scrollBy({left: -getStep(), behavior:'smooth'}));
+    next.addEventListener('click', ()=> track.scrollBy({left:  getStep(), behavior:'smooth'}));
+    track.addEventListener('scroll', updateBtns, {passive:true});
+    window.addEventListener('resize', updateBtns);
+    updateBtns();
+  })();
+
+  /* ============= PRODUCT REVIEWS — show more ============= */
+  (function initProductReviews(){
+    const btn = document.getElementById('reviewsLoadMore');
+    if(!btn) return;
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.review-item.hidden').forEach(el=>el.classList.remove('hidden'));
+      btn.remove();
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -119,15 +119,17 @@
   .topbar-marquee{display:flex;gap:40px;overflow:hidden;flex:1}
   .topbar-marquee span{white-space:nowrap;opacity:0.85}
   .topbar-marquee span::before{content:'◆';margin-right:14px;color:var(--shu);font-size:8px;vertical-align:middle}
-  .lang-switch{display:flex;gap:14px;align-items:center}
-  .lang-switch button{
-    background:none;border:none;color:var(--kinari);
-    font:inherit;letter-spacing:0.2em;cursor:pointer;
-    opacity:0.55;transition:opacity .2s;
-    font-size:11px;
+  .lang-switch{display:flex;align-items:center;gap:0}
+  .lang-btn{
+    background:none;border:none;color:rgba(255,248,248,0.5);
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;
+    letter-spacing:0.18em;font-weight:600;cursor:pointer;
+    padding:0 9px;text-transform:uppercase;transition:color .15s;
+    border-right:1px solid rgba(255,248,248,0.15);white-space:nowrap;
   }
-  .lang-switch button.active{opacity:1;color:var(--kincha-soft)}
-  .lang-switch .sep{opacity:0.3}
+  .lang-btn:last-child{border-right:none}
+  .lang-btn.active{color:var(--kinari)}
+  .lang-btn:hover{color:var(--kinari)}
 
   /* ============ HEADER ============ */
   .site-sticky{
@@ -148,11 +150,12 @@
   .header-inner{
     display:grid;
     grid-template-columns:1fr auto 1fr;
-    align-items:center;
-    padding:20px 48px;
+    align-items:stretch;
+    min-height:72px;
+    padding:0 0 0 48px;
     gap:32px;
   }
-  nav.main-nav{display:flex;gap:38px;align-items:center}
+  nav.main-nav{display:flex;gap:38px;align-items:center;padding:0 0}
   nav.main-nav a{
     color:var(--sumi);text-decoration:none;
     font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
@@ -169,7 +172,7 @@
   .brand{
     display:flex;flex-direction:column;align-items:center;
     cursor:pointer;text-decoration:none;color:var(--sumi);
-    line-height:1;
+    line-height:1;align-self:center;
   }
   .brand-jp{
     font-family:'Shippori Mincho',serif;
@@ -186,7 +189,25 @@
     font-style:italic;
     font-weight:400;
   }
-  .header-actions{display:flex;gap:22px;align-items:center;justify-content:flex-end}
+  .header-actions{
+    display:flex;gap:20px;align-items:center;justify-content:flex-end;
+    align-self:stretch;
+  }
+  .header-reservation-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:0 28px;
+    align-self:stretch;
+    background:var(--shu);
+    color:var(--kinari);
+    font-size:10px;letter-spacing:0.24em;font-weight:700;
+    text-transform:uppercase;
+    border:none;cursor:pointer;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    transition:background .2s;
+    white-space:nowrap;
+  }
+  .header-reservation-btn:hover{background:var(--sumi)}
+  .header-reservation-btn svg{width:11px;height:11px;flex-shrink:0}
   .header-icon{
     background:none;border:none;cursor:pointer;
     color:var(--sumi);width:36px;height:36px;
@@ -697,7 +718,7 @@
   .ritual .eyebrow::before,.ritual .eyebrow::after{background:var(--kincha-soft)}
   .ritual-steps{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(6,1fr);
     gap:0;
     margin-top:80px;
     position:relative;
@@ -790,52 +811,6 @@
   }
   .test-name{font-size:13px;font-weight:600;letter-spacing:0.04em}
   .test-loc{font-size:11px;color:var(--sumi-mid);letter-spacing:0.16em;text-transform:uppercase;margin-top:2px}
-  .test-stars{display:flex;gap:3px;color:var(--shu);margin-bottom:14px}
-  .test-stars svg{width:15px;height:15px;fill:currentColor;stroke:none}
-
-  /* Testimonials horizontal scroll carousel */
-  .test-carousel{position:relative}
-  .test-track{
-    display:flex;
-    gap:32px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    scroll-behavior:smooth;
-    padding:8px 4px 24px;
-    margin:0 -4px;
-    scrollbar-width:none;
-  }
-  .test-track::-webkit-scrollbar{display:none}
-  .test-track .test-card{
-    flex:0 0 calc((100% - 64px) / 3);
-    min-width:300px;
-    scroll-snap-align:start;
-    margin:0;
-  }
-  .test-nav{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:24px;
-  }
-  .test-nav-btn{
-    width:46px;height:46px;
-    border-radius:50%;
-    border:1px solid var(--line-strong);
-    background:var(--kinari);
-    color:var(--sumi);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    transition:all 0.25s ease;
-  }
-  .test-nav-btn:hover{
-    background:var(--shu);
-    color:var(--kinari);
-    border-color:var(--shu);
-    transform:translateY(-2px);
-  }
-  .test-nav-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;background:var(--kinari);color:var(--sumi);border-color:var(--line)}
-  .test-nav-btn svg{width:18px;height:18px}
 
   /* ============ NEWSLETTER ============ */
   .newsletter{
@@ -1483,138 +1458,6 @@
     font-style:italic;
   }
 
-  /* ============ PRODUCT REVIEWS (detail page) ============ */
-  .reviews-section{padding:96px 0;background:var(--kinari-deep);position:relative}
-  .reviews-layout{
-    display:grid;
-    grid-template-columns:340px 1fr;
-    gap:72px;
-    align-items:start;
-  }
-  .reviews-summary{
-    background:var(--kinari);
-    border:1px solid var(--line);
-    padding:36px 32px;
-    position:sticky;top:120px;
-  }
-  .reviews-score{
-    font-family:'Cormorant Garamond',serif;
-    font-size:72px;
-    font-weight:300;
-    line-height:1;
-    color:var(--sumi);
-    margin-bottom:8px;
-  }
-  .reviews-score small{
-    font-size:18px;color:var(--sumi-mid);
-    font-family:'Plus Jakarta Sans',sans-serif;
-    letter-spacing:0.04em;margin-left:6px;
-  }
-  .reviews-stars{display:flex;gap:3px;color:var(--shu);margin-bottom:8px}
-  .reviews-stars svg{width:18px;height:18px;fill:currentColor;stroke:none}
-  .reviews-total{
-    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--sumi-mid);font-weight:500;margin-bottom:28px;
-  }
-  .reviews-bars{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
-  .reviews-bar-row{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--sumi-mid)}
-  .reviews-bar-row .lbl{width:34px;font-weight:500;color:var(--sumi)}
-  .reviews-bar-row .bar{
-    flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;
-  }
-  .reviews-bar-row .bar-fill{
-    height:100%;background:var(--shu);border-radius:3px;
-  }
-  .reviews-bar-row .pct{width:38px;text-align:right}
-  .reviews-write-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 18px;
-    background:var(--sumi);color:var(--kinari);
-    border:none;font-size:11px;letter-spacing:0.22em;
-    text-transform:uppercase;font-weight:500;cursor:pointer;
-    transition:background 0.2s;width:100%;justify-content:center;
-  }
-  .reviews-write-btn:hover{background:var(--shu)}
-
-  .reviews-list{display:flex;flex-direction:column;gap:0}
-  .reviews-list-header{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:24px;
-  }
-  .reviews-list-header h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:32px;font-weight:400;color:var(--sumi);
-  }
-  .reviews-filter{
-    display:flex;gap:6px;flex-wrap:wrap;
-  }
-  .reviews-filter-pill{
-    padding:7px 14px;
-    border:1px solid var(--line-strong);
-    background:transparent;color:var(--sumi-mid);
-    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
-    cursor:pointer;font-weight:500;transition:all 0.2s;
-  }
-  .reviews-filter-pill.active,
-  .reviews-filter-pill:hover{
-    background:var(--sumi);color:var(--kinari);border-color:var(--sumi);
-  }
-  .review-item{
-    padding:28px 0;
-    border-bottom:1px solid var(--line);
-    display:flex;gap:20px;
-  }
-  .review-item.hidden{display:none}
-  .review-avatar{
-    width:48px;height:48px;border-radius:50%;
-    background:var(--sumi);color:var(--kinari);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Shippori Mincho',serif;font-size:18px;
-    flex-shrink:0;
-  }
-  .review-body{flex:1;min-width:0}
-  .review-header-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    gap:16px;flex-wrap:wrap;margin-bottom:6px;
-  }
-  .review-author{font-size:14px;font-weight:600;color:var(--sumi);letter-spacing:0.02em}
-  .review-date{
-    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--sumi-mid);font-weight:500;
-  }
-  .review-stars{display:flex;gap:2px;color:var(--shu);margin-bottom:10px}
-  .review-stars svg{width:13px;height:13px;fill:currentColor;stroke:none}
-  .review-title{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;font-size:18px;color:var(--sumi);
-    margin-bottom:6px;line-height:1.4;
-  }
-  .review-text{
-    font-size:14px;line-height:1.7;color:var(--sumi-soft);
-    margin-bottom:12px;
-  }
-  .review-meta{
-    display:flex;gap:14px;flex-wrap:wrap;
-    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
-    color:var(--sumi-mid);font-weight:500;
-  }
-  .review-verified{
-    display:inline-flex;align-items:center;gap:4px;color:var(--koke);
-  }
-  .review-verified::before{
-    content:'';width:6px;height:6px;border-radius:50%;background:var(--koke);
-  }
-  .reviews-more{
-    margin-top:28px;text-align:center;
-  }
-  .reviews-more-btn{
-    padding:14px 32px;background:transparent;
-    border:1px solid var(--sumi);color:var(--sumi);
-    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
-    font-weight:500;cursor:pointer;transition:all 0.2s;
-  }
-  .reviews-more-btn:hover{background:var(--sumi);color:var(--kinari)}
-
   /* ============ CART DRAWER ============ */
   .drawer-overlay{
     position:fixed;inset:0;
@@ -2227,6 +2070,291 @@
     font-weight:300;
   }
 
+  /* ============ SOCIAL BAR ============ */
+  /* ---- Social Grid (Contact page) ---- */
+  .social-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+    margin:32px 0 48px;
+  }
+  .sc{
+    display:flex;flex-direction:column;gap:0;
+    padding:28px 24px;
+    background:var(--kinari);
+    text-decoration:none;color:inherit;
+    transition:background .18s;
+    position:relative;
+  }
+  .sc::after{
+    content:'';position:absolute;
+    left:0;top:0;bottom:0;width:0;
+    background:var(--shu);
+    transition:width .18s ease;
+  }
+  .sc:not(.no-link):hover{background:#f5f0ea}
+  .sc:not(.no-link):hover::after{width:2px}
+  .sc-icon{
+    width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;margin-bottom:16px;color:var(--sumi);
+  }
+  .sc-icon svg{width:20px;height:20px;fill:currentColor}
+  /* platform icon colors */
+  .sc-wa .sc-icon{color:#25D366}
+  .sc-line .sc-icon{color:#06C755}
+  .sc-fb .sc-icon{color:#1877F2}
+  .sc-ig .sc-icon{color:#E1306C}
+  .sc-tt .sc-icon{color:#010101}
+  .sc-rn .sc-icon{color:#FF2442}
+  .sc-wc .sc-icon{color:#07C160}
+  .sc-ph .sc-icon{color:var(--shu)}
+  .sc-name{
+    font-size:10px;letter-spacing:0.22em;font-weight:700;
+    text-transform:uppercase;color:var(--sumi);
+    margin-bottom:8px;
+  }
+  .sc-handle{
+    font-size:12px;color:var(--sumi-mid);font-weight:400;
+    line-height:1.5;margin-bottom:4px;
+  }
+  .sc-phone{
+    font-size:13px;color:var(--sumi);font-weight:500;
+    letter-spacing:0.04em;margin-bottom:0;
+    font-variant-numeric:tabular-nums;
+  }
+  .sc-cta{
+    display:inline-flex;align-items:center;gap:5px;
+    margin-top:20px;
+    font-size:10px;letter-spacing:0.18em;font-weight:700;
+    text-transform:uppercase;color:var(--shu);
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .sc.no-link{cursor:default}
+  .sc.no-link .sc-cta{color:var(--sumi-mid)}
+
+  /* ============ POLICY CARDS ============ */
+  .policy-cards{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--line-strong);
+    margin-bottom:72px;
+  }
+  .policy-card{
+    padding:36px 32px;
+    border-right:1px solid var(--line-strong);
+  }
+  .policy-card:last-child{border-right:none}
+  .policy-card-eyebrow{
+    font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:600;color:var(--shu);margin-bottom:14px;
+  }
+  .policy-card-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;font-weight:400;
+    color:var(--sumi);margin-bottom:12px;line-height:1.3;
+  }
+  .policy-card-body{
+    font-size:13px;line-height:1.9;
+    color:var(--sumi-soft);font-weight:300;
+  }
+  .policy-card.highlight{
+    background:var(--sumi);border-right:none;
+  }
+  .policy-card.highlight .policy-card-eyebrow{color:var(--sakura)}
+  .policy-card.highlight .policy-card-title{color:var(--kinari)}
+  .policy-card.highlight .policy-card-body{color:rgba(250,247,242,0.65)}
+
+  /* ============ BOOKING CALENDAR ============ */
+  .booking-section{
+    padding:64px 0 72px;
+    border-bottom:1px solid var(--line-strong);
+    margin-bottom:52px;
+  }
+  .booking-section-header{margin-bottom:40px}
+  .booking-section-header h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;font-weight:300;line-height:1.1;
+    margin:10px 0 14px;
+  }
+  .booking-section-header h2 em{font-style:italic;color:var(--shu)}
+  .booking-section-header p{
+    color:var(--sumi-soft);font-weight:300;
+    font-size:14px;line-height:1.9;max-width:540px;
+  }
+  .booking-cal-wrap{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:0;border:1px solid var(--line-strong);
+  }
+  .booking-cal-left{
+    padding:36px;
+    border-right:1px solid var(--line-strong);
+  }
+  .booking-cal-right{
+    padding:36px;
+    background:var(--kinari-deep);
+    min-height:420px;
+    display:flex;flex-direction:column;
+  }
+  /* Cal nav */
+  .cal-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:24px;
+  }
+  .cal-month-label{
+    font-family:'Shippori Mincho',serif;
+    font-size:17px;font-weight:500;
+    letter-spacing:0.08em;color:var(--sumi);
+  }
+  .cal-nav-btn{
+    width:32px;height:32px;
+    border:1px solid var(--line-strong);background:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--sumi-mid);font-size:14px;
+    transition:all .2s;
+  }
+  .cal-nav-btn:hover{background:var(--sumi);color:var(--kinari);border-color:var(--sumi)}
+  /* Weekday headers */
+  .cal-weekdays{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    margin-bottom:8px;
+  }
+  .cal-weekdays span{
+    text-align:center;
+    font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:600;
+    padding:6px 0;
+  }
+  /* Day grid */
+  .cal-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:3px;
+  }
+  .cal-day{
+    aspect-ratio:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all .18s;
+    position:relative;
+    font-size:13px;font-weight:500;color:var(--sumi);
+    gap:3px;
+  }
+  .cal-day:hover:not(.past):not(.full-day){
+    border-color:var(--shu);background:rgba(193,64,74,0.04);
+  }
+  .cal-day.selected{
+    background:var(--sumi) !important;
+    color:var(--kinari) !important;
+    border-color:var(--sumi) !important;
+  }
+  .cal-day.selected .cal-day-dot{background:var(--kinari) !important}
+  .cal-day.past{color:var(--sumi-soft);cursor:default;opacity:0.35}
+  .cal-day.full-day{color:var(--sumi-soft);cursor:not-allowed;text-decoration:line-through;opacity:0.5}
+  .cal-day.empty{cursor:default}
+  .cal-day-num{line-height:1}
+  .cal-day-dot{
+    width:5px;height:5px;border-radius:50%;
+  }
+  .cal-day.avail .cal-day-dot{background:#4CAF7D}
+  .cal-day.few .cal-day-dot{background:#E8A838}
+  .cal-day.full-day .cal-day-dot{background:#C1404A;opacity:0.5}
+  /* Legend */
+  .cal-legend{
+    display:flex;gap:20px;margin-top:16px;
+    padding-top:16px;border-top:1px solid var(--line);
+  }
+  .cal-legend span{
+    display:flex;align-items:center;gap:7px;
+    font-size:11px;letter-spacing:0.08em;color:var(--sumi-mid);
+  }
+  .cal-dot{
+    width:7px;height:7px;border-radius:50%;flex-shrink:0;
+  }
+  .cal-dot.avail{background:#4CAF7D}
+  .cal-dot.few{background:#E8A838}
+  .cal-dot.full{background:#C1404A;opacity:0.5}
+  /* Right panel */
+  .booking-prompt{
+    flex:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;color:var(--sumi-soft);gap:16px;
+  }
+  .booking-prompt-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:28px;color:var(--line-strong);
+    letter-spacing:0.3em;line-height:2;
+  }
+  .booking-prompt p{font-size:13px;font-weight:300;line-height:1.8}
+  .booking-slots-panel{display:flex;flex-direction:column;gap:0;flex:1}
+  .slots-date-label{
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;font-weight:500;letter-spacing:0.06em;
+    padding-bottom:16px;margin-bottom:20px;
+    border-bottom:1px solid var(--line-strong);
+    color:var(--sumi);
+  }
+  .slots-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+    margin-bottom:24px;
+  }
+  .slot-btn{
+    padding:12px 8px;
+    border:1px solid var(--line-strong);
+    background:var(--kinari);
+    cursor:pointer;text-align:center;
+    font-size:13px;font-weight:600;color:var(--sumi);
+    letter-spacing:0.04em;
+    transition:all .18s;
+  }
+  .slot-btn:hover:not(.slot-full){background:var(--sumi);color:var(--kinari);border-color:var(--sumi)}
+  .slot-btn.selected{background:var(--shu);color:#fff;border-color:var(--shu)}
+  .slot-btn.slot-full{
+    background:transparent;color:var(--sumi-soft);
+    text-decoration:line-through;cursor:not-allowed;opacity:0.4;
+  }
+  .slot-btn small{display:block;font-size:10px;font-weight:400;letter-spacing:0.1em;margin-top:3px;opacity:0.7}
+  /* Mini form */
+  .booking-mini-form{
+    border-top:1px solid var(--line-strong);
+    padding-top:20px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .booking-mini-form .field label{
+    display:block;font-size:10px;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--sumi-mid);
+    font-weight:600;margin-bottom:6px;
+  }
+  .booking-mini-form .field input,
+  .booking-mini-form .field select{
+    width:100%;padding:10px 14px;
+    border:1px solid var(--line-strong);background:var(--kinari);
+    font-size:13px;color:var(--sumi);font-family:inherit;
+    outline:none;box-sizing:border-box;
+  }
+  .booking-mini-form .field input:focus,
+  .booking-mini-form .field select:focus{border-color:var(--shu)}
+  .booking-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .booking-confirm-btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px;background:#25D366;color:#fff;
+    border:none;cursor:pointer;font-family:inherit;
+    font-size:12px;letter-spacing:0.14em;font-weight:700;
+    text-transform:uppercase;transition:all .2s;
+    margin-top:4px;
+  }
+  .booking-confirm-btn:hover{background:#1da857}
+  @media(max-width:900px){
+    .booking-cal-wrap{grid-template-columns:1fr}
+    .booking-cal-left{border-right:none;border-bottom:1px solid var(--line-strong)}
+    .social-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:540px){
+    .social-grid{grid-template-columns:1fr}
+  }
+
   /* ============ FOOTER ============ */
   footer{
     background:var(--sumi);
@@ -2312,7 +2440,7 @@
   /* ---- Laptop down (≤1280px): tighten container & typography ---- */
   @media (max-width:1280px){
     .container,.container-narrow,.container-tight{padding:0 32px}
-    .header-inner{padding:18px 32px;gap:20px}
+    .header-inner{padding:0 0 0 32px;min-height:64px;gap:20px}
     .filters-bar{top:103px}
     .filters-side{top:187px}
     nav.main-nav{gap:28px}
@@ -2341,7 +2469,7 @@
     /* Header – brand left, hamburger could go here later */
     .header-inner{
       grid-template-columns:auto 1fr auto;
-      padding:14px 28px;gap:16px;
+      padding:0 0 0 28px;min-height:58px;gap:16px;
     }
     nav.main-nav{order:2;justify-content:center;gap:22px}
     nav.main-nav a{font-size:11px;letter-spacing:0.18em}
@@ -2389,17 +2517,6 @@
     .pattern-grid{grid-template-columns:repeat(2,1fr)}
     .ribbon-grid{grid-template-columns:repeat(2,1fr)}
     .test-grid{grid-template-columns:1fr}
-    .test-track .test-card{flex:0 0 85%;min-width:0}
-    .test-nav{justify-content:center}
-
-    .reviews-section{padding:64px 0}
-    .reviews-layout{grid-template-columns:1fr;gap:40px}
-    .reviews-summary{position:static;padding:28px 24px}
-    .reviews-score{font-size:56px}
-    .reviews-list-header{flex-direction:column;align-items:flex-start;gap:14px}
-    .reviews-list-header h3{font-size:26px}
-    .review-item{gap:14px;padding:22px 0}
-    .review-avatar{width:40px;height:40px;font-size:15px}
 
     /* Story sections – image first then content */
     .story-grid{gap:40px}
@@ -2427,11 +2544,12 @@
     .header-inner{
       grid-template-columns:1fr auto;
       grid-template-areas:'brand actions' 'nav nav';
-      padding:12px 20px 0;
-      gap:12px 16px;
+      padding:0 0 0 20px;min-height:52px;
+      gap:0 16px;align-items:center;
     }
-    .brand{grid-area:brand;align-items:flex-start}
-    .header-actions{grid-area:actions;gap:10px}
+    .brand{grid-area:brand;align-items:flex-start;align-self:center}
+    .header-actions{grid-area:actions;gap:10px;align-self:stretch}
+    .header-reservation-btn{padding:0 18px;font-size:9px;letter-spacing:0.18em}
     .header-icon{width:32px;height:32px}
     .header-icon svg{width:18px;height:18px}
     .brand-jp{font-size:24px}
@@ -2533,24 +2651,9 @@
     .cart-item-name{font-size:15px}
     .cart-item-name-en{font-size:11px}
 
-    /* Product detail page — mobile: stack main image on top, thumbs row below */
-    .product-gallery{
-      grid-template-columns:1fr !important;
-      gap:12px !important;
-      position:static !important;
-      top:auto !important;
-    }
-    .product-gallery .gallery-main{aspect-ratio:3/4;order:1}
-    .gallery-thumbs{
-      order:2;
-      flex-direction:row !important;
-      display:grid !important;
-      grid-template-columns:repeat(5,1fr) !important;
-      gap:8px !important;
-    }
-    .gallery-thumb{
-      width:auto !important;
-    }
+    /* Product detail page */
+    .product-gallery .gallery-main{aspect-ratio:3/4}
+    .gallery-thumbs{grid-template-columns:repeat(5,1fr) !important;gap:8px !important}
     .product-detail h1{font-size:38px !important}
     .product-tabs{flex-wrap:wrap;gap:0}
     .product-tab{flex:1;text-align:center;padding:12px 16px !important;font-size:11px !important}
@@ -2561,26 +2664,10 @@
     .ritual-steps{grid-template-columns:1fr;gap:20px}
 
     /* Top bar minimal */
-    .lang-switch button{font-size:10px;letter-spacing:0.14em}
-    .lang-switch{gap:8px}
-    .lang-switch .sep{font-size:10px}
+    .lang-btn{font-size:9px;letter-spacing:0.12em;padding:0 7px}
 
     /* Big bg numbers */
     .stats-bg-number,.heritage-bg{font-size:140px !important}
-
-    /* Shop hero — title stacks, smaller font */
-    .shop-hero{padding:48px 0 32px}
-    .shop-title-row{
-      flex-direction:column;
-      align-items:flex-start;
-      gap:24px;
-    }
-    .shop-title{font-size:44px;line-height:1.05}
-    .shop-title-jp{font-size:16px;letter-spacing:0.3em;margin-top:10px}
-    .shop-meta{text-align:left;width:100%}
-    .shop-meta p{max-width:none;font-size:13px}
-    .shop-count{font-size:11px;letter-spacing:0.18em;margin-top:12px}
-    .breadcrumb{font-size:10px;letter-spacing:0.14em;margin-bottom:20px;flex-wrap:wrap}
 
     /* ── Mobile filter bar ── */
     .filters-bar{
@@ -2655,7 +2742,8 @@
   /* ---- Mobile (≤480px) ---- */
   @media (max-width:480px){
     .container,.container-narrow,.container-tight{padding:0 16px}
-    .header-inner{padding:10px 16px}
+    .header-inner{padding:0 0 0 16px;min-height:48px}
+    .header-reservation-btn{padding:0 14px;font-size:9px;letter-spacing:0.14em}
     .hero-text{padding:40px 16px 36px}
     .hero-title{font-size:46px}
     .hero-title .ja-accent{font-size:15px}
@@ -2736,6 +2824,494 @@
     background:linear-gradient(90deg,transparent,var(--sakura),var(--shu),var(--sakura),transparent);
     opacity:0.5;
   }
+
+  /* ============ ANN LOGO IMAGE ============ */
+  .header-logo-img{
+    height:48px;width:auto;
+    display:block;
+    object-fit:contain;
+    object-position:left center;
+    mix-blend-mode:multiply;
+  }
+  .footer-logo-img{
+    height:44px;width:auto;
+    display:block;
+    object-fit:contain;
+    margin-bottom:20px;
+    filter:invert(1);
+    mix-blend-mode:screen;
+  }
+
+  /* ============ HERO CAROUSEL ============ */
+  .hero-carousel{
+    position:relative;
+    height:100vh;min-height:600px;
+    overflow:hidden;
+    background:var(--sumi);
+  }
+  .carousel-slide{
+    position:absolute;inset:0;
+    opacity:0;
+    transition:opacity 1s ease;
+    pointer-events:none;
+  }
+  .carousel-slide.active{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .carousel-slide-bg{
+    position:absolute;inset:0;
+    background-size:cover;
+    background-position:center;
+    transform:scale(1);
+    transition:transform 9s ease-out;
+  }
+  .carousel-slide.active .carousel-slide-bg{
+    transform:scale(1.06);
+  }
+  .carousel-slide-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(
+      135deg,
+      rgba(61,21,21,0.72) 0%,
+      rgba(61,21,21,0.45) 50%,
+      rgba(61,21,21,0.25) 100%
+    );
+  }
+  .carousel-content{
+    position:absolute;
+    top:50%;left:10%;
+    transform:translateY(-50%);
+    max-width:560px;
+    z-index:4;
+    color:var(--kinari);
+  }
+  .carousel-eyebrow{
+    font-family:'Shippori Mincho',serif;
+    font-size:13px;
+    letter-spacing:0.5em;
+    color:var(--kincha-soft);
+    margin-bottom:28px;
+    display:flex;align-items:center;gap:14px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s .3s, transform .7s .3s;
+  }
+  .carousel-slide.active .carousel-eyebrow{opacity:1;transform:none}
+  .carousel-eyebrow::after{content:'';height:1px;width:60px;background:var(--kincha-soft);opacity:0.7}
+  .carousel-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:88px;
+    font-weight:300;
+    line-height:0.95;
+    letter-spacing:-0.02em;
+    color:var(--kinari);
+    margin-bottom:28px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .7s .5s, transform .7s .5s;
+  }
+  .carousel-slide.active .carousel-title{opacity:1;transform:none}
+  .carousel-title em{font-style:italic;color:var(--kincha-soft)}
+  .carousel-sub{
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(255,248,248,0.85);
+    font-weight:300;
+    margin-bottom:40px;
+    max-width:420px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s .7s, transform .7s .7s;
+  }
+  .carousel-slide.active .carousel-sub{opacity:1;transform:none}
+  .carousel-cta-row{
+    display:flex;gap:20px;align-items:center;
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .7s .9s, transform .7s .9s;
+  }
+  .carousel-slide.active .carousel-cta-row{opacity:1;transform:none}
+  .carousel-btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 32px;
+    background:var(--shu);color:var(--kinari);
+    border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;font-family:inherit;
+    transition:all .3s;
+    text-decoration:none;
+  }
+  .carousel-btn:hover{background:var(--kinari);color:var(--sumi);transform:translateY(-1px)}
+  .carousel-btn svg{width:14px;height:14px}
+  .carousel-link{
+    color:var(--kinari);
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;font-family:inherit;
+    padding:8px 0;border-bottom:1px solid rgba(255,248,248,0.5);
+    cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;
+    transition:all .25s;
+  }
+  .carousel-link:hover{color:var(--kincha-soft);border-color:var(--kincha-soft)}
+
+  /* Walk-in stamp on carousel */
+  .carousel-stamp{
+    position:absolute;
+    top:80px;right:10%;
+    width:100px;height:100px;
+    border:2px solid var(--shu);
+    background:var(--shu);
+    color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(-8deg);
+    z-index:4;
+    animation:stampPulse 3s ease-in-out infinite;
+  }
+  .carousel-stamp::before{
+    content:'';position:absolute;inset:7px;
+    border:1px solid rgba(255,248,248,0.5);
+  }
+  .carousel-stamp span{
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;letter-spacing:0.1em;
+    line-height:1.4;text-align:center;font-weight:600;z-index:1;
+  }
+
+  /* Carousel controls */
+  .carousel-arrow{
+    position:absolute;top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+    width:52px;height:52px;
+    background:rgba(250,247,242,0.12);
+    border:1px solid rgba(250,247,242,0.3);
+    color:var(--kinari);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s;
+    backdrop-filter:blur(4px);
+  }
+  .carousel-arrow:hover{background:rgba(193,64,74,0.5);border-color:transparent}
+  .carousel-arrow svg{width:20px;height:20px;stroke-width:1.5}
+  .carousel-arrow.prev{left:32px}
+  .carousel-arrow.next{right:32px}
+
+  /* Carousel dots */
+  .carousel-nav{
+    position:absolute;bottom:28px;left:50%;
+    transform:translateX(-50%);
+    display:flex;gap:12px;z-index:5;
+  }
+  .carousel-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(250,247,242,0.4);
+    cursor:pointer;
+    transition:all .3s;
+    border:none;
+  }
+  .carousel-dot.active{
+    background:var(--kincha-soft);
+    width:28px;border-radius:3px;
+  }
+
+  /* Progress bar */
+  .carousel-progress{
+    position:absolute;bottom:0;left:0;right:0;
+    height:3px;
+    background:rgba(250,247,242,0.15);
+    z-index:5;
+  }
+  .carousel-progress-bar{
+    height:100%;
+    background:var(--shu);
+    width:0%;
+    transition:width 8s linear;
+  }
+
+  /* Slide service indicator */
+  .carousel-service-tag{
+    position:absolute;
+    bottom:60px;right:10%;
+    z-index:4;
+    color:rgba(250,247,242,0.6);
+    font-size:10px;letter-spacing:0.4em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+
+  /* ============ RENTAL PACKAGES SECTION ============ */
+  .packages-section{
+    padding:96px 0 80px;
+    background:var(--kinari);
+    position:relative;
+  }
+  .packages-section::before{
+    content:'';position:absolute;
+    top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--line-strong),transparent);
+  }
+  .package-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    margin-top:64px;
+    border:1px solid var(--line-strong);
+  }
+  .package-tile{
+    padding:40px 32px;
+    border-right:1px solid var(--line-strong);
+    cursor:pointer;
+    transition:all .25s;
+    position:relative;
+    background:var(--kinari);
+  }
+  .package-tile:last-child{border-right:none}
+  .package-tile:hover{background:var(--kinari-deep)}
+  .package-tile:hover .package-cta{gap:16px;color:var(--shu)}
+  .package-num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:13px;
+    color:var(--shu);
+    letter-spacing:0.1em;margin-bottom:20px;
+  }
+  .package-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:26px;font-weight:500;
+    color:var(--sumi);
+    margin-bottom:4px;
+    letter-spacing:0.06em;
+    line-height:1.2;
+  }
+  .package-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:14px;
+    color:var(--sumi-mid);
+    margin-bottom:24px;
+    font-weight:400;
+  }
+  .package-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px;font-weight:400;
+    color:var(--sumi);
+    letter-spacing:-0.01em;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .package-price-label{
+    font-size:10px;letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:500;
+    margin-bottom:20px;
+  }
+  .package-desc{
+    font-size:12px;color:var(--sumi-soft);
+    line-height:1.7;font-weight:300;
+    margin-bottom:24px;
+    min-height:52px;
+  }
+  .package-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--sumi);font-weight:500;
+    transition:gap .25s, color .25s;
+  }
+  .package-cta svg{width:12px;height:12px}
+  .package-tile.kids-tile .package-jp{color:var(--shu)}
+  .package-tile.kids-tile .package-price{color:var(--shu)}
+
+  /* ============ ADD-ON STRIP ============ */
+  .addon-strip{
+    background:var(--sumi);
+    padding:80px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .addon-strip::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 500px 300px at 20% 50%,rgba(245,192,200,0.07),transparent),
+      radial-gradient(ellipse 400px 400px at 80% 30%,rgba(235,160,170,0.05),transparent);
+  }
+  .addon-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    position:relative;z-index:2;
+    border:1px solid rgba(250,247,242,0.1);
+  }
+  .addon-card{
+    padding:56px 64px;
+    border-right:1px solid rgba(250,247,242,0.1);
+    position:relative;
+    transition:background .3s;
+  }
+  .addon-card:last-child{border-right:none}
+  .addon-card:hover{background:rgba(250,247,242,0.03)}
+  .addon-service-num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:13px;
+    color:var(--kincha-soft);
+    letter-spacing:0.1em;margin-bottom:28px;
+  }
+  .addon-icon{
+    width:48px;height:48px;
+    color:var(--kinari);
+    margin-bottom:24px;stroke-width:1;
+  }
+  .addon-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:32px;font-weight:500;
+    color:var(--kinari);margin-bottom:6px;
+  }
+  .addon-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:16px;
+    color:var(--kincha-soft);
+    margin-bottom:24px;
+    letter-spacing:0.06em;
+  }
+  .addon-desc{
+    color:rgba(250,247,242,0.7);
+    font-size:14px;line-height:1.8;
+    font-weight:300;margin-bottom:32px;
+    max-width:400px;
+  }
+  .addon-link{
+    color:var(--kinari);text-decoration:none;
+    font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+    font-weight:500;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:gap .25s,color .25s;
+  }
+  .addon-link:hover{gap:16px;color:var(--kincha-soft)}
+  .addon-link svg{width:14px;height:14px}
+
+  /* ============ SHOP LINE SECTIONS ============ */
+  .line-section{
+    padding:72px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .line-section:last-child{border-bottom:none}
+  .line-header{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:end;
+    gap:32px;
+    margin-bottom:48px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .line-title-block{}
+  .line-num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:13px;
+    color:var(--shu);letter-spacing:0.1em;
+    margin-bottom:12px;
+  }
+  .line-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:40px;font-weight:500;
+    color:var(--sumi);
+    letter-spacing:0.06em;line-height:1.1;
+    margin-bottom:4px;
+  }
+  .line-en{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:20px;
+    color:var(--sumi-mid);font-weight:400;
+  }
+  .line-price-block{
+    text-align:right;
+    flex-shrink:0;
+  }
+  .line-price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;font-weight:400;
+    color:var(--sumi);
+    letter-spacing:-0.01em;line-height:1;
+  }
+  .line-price-label{
+    font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--sumi-mid);font-weight:500;
+    margin-top:4px;
+  }
+  .line-section-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+
+  /* ============ FREE-SIZE BADGE ============ */
+  .free-size-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;
+    background:var(--kinari-deep);
+    border:1px solid var(--line-strong);
+    margin-bottom:28px;
+  }
+  .free-size-badge svg{width:18px;height:18px;color:var(--shu);stroke-width:1.5}
+  .free-size-badge strong{
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--sumi);font-weight:600;
+  }
+  .free-size-badge small{
+    font-size:11px;color:var(--sumi-mid);font-weight:300;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    letter-spacing:0;text-transform:none;
+  }
+
+  /* Kids age selector (reuses .size-options / .size-option classes) */
+  .age-size-option{
+    width:auto;min-width:80px;height:64px;padding:0 14px;
+    flex-direction:column;gap:3px;
+  }
+  .age-size-option .age-height{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13px;font-weight:600;
+    letter-spacing:0.05em;
+    color:inherit;
+  }
+  .age-size-option .age-approx{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:9px;color:var(--sumi-mid);
+    margin-top:2px;letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .size-option.active .age-approx{color:var(--kincha-soft)}
+
+  /* ============ RESPONSIVE ADDITIONS ============ */
+  @media (max-width:1024px){
+    .package-grid{grid-template-columns:repeat(3,1fr)}
+    .package-tile{border-bottom:1px solid var(--line-strong)}
+    .package-tile:nth-child(3){border-right:none}
+    .package-tile:nth-child(4){border-right:1px solid var(--line-strong)}
+    .carousel-title{font-size:72px}
+    .carousel-content{max-width:480px}
+    .addon-card{padding:40px 40px}
+    .line-section-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:768px){
+    .package-grid{grid-template-columns:1fr 1fr}
+    .package-tile{border-right:none;border-bottom:1px solid var(--line-strong)}
+    .package-tile:nth-child(odd){border-right:1px solid var(--line-strong)}
+    .addon-grid{grid-template-columns:1fr}
+    .addon-card{border-right:none;border-bottom:1px solid rgba(250,247,242,0.1)}
+    .line-section-grid{grid-template-columns:1fr 1fr}
+    .carousel-title{font-size:56px}
+    .carousel-stamp{display:none}
+    .carousel-arrow{display:none}
+    .line-header{grid-template-columns:1fr}
+    .line-price-block{text-align:left}
+  }
+  @media (max-width:480px){
+    .package-grid{grid-template-columns:1fr}
+    .package-tile{border-right:none}
+    .line-section-grid{grid-template-columns:1fr}
+    .carousel-content{left:5%;max-width:90%}
+    .carousel-title{font-size:48px}
+  }
 </style>
 </head>
 <body>
@@ -2757,15 +3333,16 @@
   <div class="container">
     <div class="topbar-inner">
       <div class="topbar-marquee">
-        <span>手ぶらでOK! Walk In OK — No reservation required</span>
-        <span>着物レンタル · Kimono Rental · Hair Set · Photo Service</span>
-        <span>Rental from ¥3,000 · 当ビルB1 · This building basement 1</span>
+        <span data-i18n="tb.walkin">手ぶらでOK! Walk In OK — No reservation required</span>
+        <span data-i18n="tb.services">着物レンタル · Kimono Rental · Hair Set · Photo Service</span>
+        <span data-i18n="tb.rental">Rental from ¥3,000 · 当ビルB1 · This building basement 1</span>
       </div>
-      <div class="lang-switch">
-        <button>EN</button><span class="sep">/</span>
-        <button class="active">日本</button><span class="sep">/</span>
-        <button>VN</button><span class="sep">/</span>
-        <button>中文</button>
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn active" data-lang="ja">&#26085;&#26412;&#35486;</button>
+        <button class="lang-btn" data-lang="vi">VI</button>
+        <button class="lang-btn" data-lang="zh">&#20013;&#25991;</button>
+        <button class="lang-btn" data-lang="ko">&#54620;&#44397;&#50612;</button>
       </div>
     </div>
   </div>
@@ -2775,21 +3352,20 @@
 <header>
   <div class="header-inner">
     <nav class="main-nav">
-      <a href="#" class="nav-link active" data-view="home">Home</a>
-      <a href="#" class="nav-link" data-view="shop">Collection</a>
-      <a href="#" class="nav-link" data-view="story">Story</a>
-      <a href="#" class="nav-link" data-view="contact">Atelier</a>
+      <a href="#" class="nav-link active" data-view="home" data-i18n="nav.home">Home</a>
+      <a href="#" class="nav-link" data-view="shop" data-i18n="nav.collection">Collection</a>
+      <a href="#" class="nav-link" data-view="story" data-i18n="nav.story">Story</a>
+      <a href="#" class="nav-link" data-view="contact" data-i18n="nav.atelier">Atelier</a>
     </nav>
-    <a href="#" class="brand" data-view="home" style="flex-direction:row;gap:12px;align-items:center">
-      <div class="ann-circle"></div>
-      <div style="display:flex;flex-direction:column;align-items:flex-start">
-        <span class="brand-ann">ANN</span>
-        <span class="brand-ann-sub">着物レンタル · KIMONO RENTAL</span>
-      </div>
+    <a href="#" class="brand" data-view="home" style="flex-direction:row;gap:0;align-items:center">
+      <img src="./ANN/Logo/Logo Ann-03.png" alt="KIMONO RENTAL ANN" class="header-logo-img">
     </a>
     <div class="header-actions">
+      <button class="header-reservation-btn" data-view="checkout">
+        <span data-i18n="nav.reservation">Reservation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
       <button class="header-icon" aria-label="Search"><i data-lucide="search"></i></button>
-      <button class="header-icon" aria-label="Account"><i data-lucide="user"></i></button>
       <button class="header-icon" aria-label="Wishlist"><i data-lucide="heart"></i></button>
       <button class="header-icon" id="cartBtn" aria-label="Cart">
         <i data-lucide="shopping-bag"></i>
@@ -2803,101 +3379,187 @@
 <!-- ===================== HOME VIEW ===================== -->
 <div class="view active" id="view-home">
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-text">
-      <div class="hero-jp">着物レンタル · KIMONO RENTAL ANN</div>
-      <h1 class="hero-title">
-        Step into<br><em>your</em><br>kimono<br>story
-        <span class="ja-accent">手ぶらでOK!</span>
-      </h1>
-      <p class="hero-sub">
-        Walk in, dress up, and let us handle everything else.
-        Kimono rental, hair set, and photo service all under one roof.
-        No reservation needed.
-      </p>
-      <div class="hero-cta">
-        <button class="btn" data-view="shop">Browse Kimonos <i data-lucide="arrow-right"></i></button>
-        <button class="btn-link" data-view="contact">Book a Photo Shoot</button>
+  <!-- Hero Carousel -->
+  <section class="hero-carousel" id="heroCarousel">
+
+    <!-- Slide 1: Kimono Rental (8s) -->
+    <div class="carousel-slide active" id="carouselSlide0">
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_9181.jpg');background-position:center 20%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow" data-i18n="h1.eyebrow">着物レンタル · KIMONO RENTAL ANN</div>
+        <h1 class="carousel-title" data-i18n="h1.title">Step into<br><em>your</em><br>kimono<br>story</h1>
+        <p class="carousel-sub" data-i18n="h1.sub">Walk in, dress up, and let us handle everything else. Kimono rental, hair set, and photo — all under one roof. No reservation needed.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="shop"><span data-i18n="h1.cta1">Browse Kimonos</span> <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="shop" data-i18n="h1.cta2">View all lines →</button>
+        </div>
       </div>
+      <div class="carousel-stamp"><span>WALK<br>IN OK</span></div>
+      <div class="carousel-service-tag">着物レンタル</div>
     </div>
-    <div class="hero-image">
-      <div class="hero-image-content"></div>
-      <div class="hero-floating-stamp"><span>WALK<br>IN OK</span></div>
-      <div class="hero-image-overlay">
-        <div class="vertical">一期一会</div>
+
+    <!-- Slide 2: Hair & Makeup (5s) -->
+    <div class="carousel-slide" id="carouselSlide1">
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/traditional-kimono-couple-sensoji-1v22.webp');background-position:center 15%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow">ヘアセット · HAIR & MAKEUP</div>
+        <h1 class="carousel-title">Traditional<br><em>beauty</em><br>crafted<br>for you</h1>
+        <p class="carousel-sub">Hair set, makeup, and kitsuke by certified specialists. A complete traditional transformation in under 30 minutes.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="contact">Book Hair & Makeup <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="story" data-i18n="h2.cta2">About ANN →</button>
+        </div>
       </div>
+      <div class="carousel-service-tag">ヘアセット</div>
     </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-text">SCROLL</div>
-      <div class="hero-scroll-line"></div>
+
+    <!-- Slide 3: Photo Service (5s) -->
+    <div class="carousel-slide" id="carouselSlide2">
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');background-position:center 15%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow" data-i18n="h2.eyebrow">写真撮影 · PHOTO SERVICE</div>
+        <h1 class="carousel-title" data-i18n="h2.title">Capture<br>your<br><em>moment</em><br>forever</h1>
+        <p class="carousel-sub" data-i18n="h2.sub">Professional photo sessions at our studio or nearby scenic spots. 20+ edited digital photos, delivered within 3 days.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="contact"><span data-i18n="h3.cta1">Book a Photo Session</span> <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="shop" data-i18n="h3.cta2">Browse kimonos →</button>
+        </div>
+      </div>
+      <div class="carousel-service-tag">写真撮影</div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-arrow next" id="carouselNext" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="carousel-nav">
+      <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+      <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+      <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="carousel-progress">
+      <div class="carousel-progress-bar" id="carouselProgress"></div>
     </div>
   </section>
 
-  <!-- Featured Collection -->
+  <!-- Rental Package Lines -->
+  <section class="packages-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow" data-i18n="pkg.eyebrow">Rental Packages · レンタルプラン</div>
+        <h2 class="section-title" data-i18n="pkg.title">Five <em>lines</em>, one visit</h2>
+        <div class="brush-divider"></div>
+        <div class="section-title-jp" data-i18n="pkg.titleJp">五つのプラン · すべて１日レンタル</div>
+        <p class="section-subtitle" data-i18n="pkg.subtitle">Every package includes kimono, obi, accessories, dressing by our specialists, and all accessories. Walk in — walk out beautiful.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="package-grid">
+        <div class="package-tile" data-view="shop">
+          <div class="package-num">— 一 —</div>
+          <div class="package-jp">振袖</div>
+          <div class="package-en">Furisode Premium</div>
+          <div class="package-price" data-price-jpy="18000">¥18,000</div>
+          <div class="package-price-label">per day · 1日レンタル</div>
+          <p class="package-desc">Long-sleeved formal silk furisode for ceremonies, coming-of-age, and wedding guests.</p>
+          <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+        <div class="package-tile" data-view="shop">
+          <div class="package-num">— 二 —</div>
+          <div class="package-jp">訪問着</div>
+          <div class="package-en">Houmongi</div>
+          <div class="package-price" data-price-jpy="18000">¥12,000</div>
+          <div class="package-price-label">per day · 1日レンタル</div>
+          <p class="package-desc">Elegant semi-formal visiting dress with flowing patterns. Perfect for tea ceremony and parties.</p>
+          <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+        <div class="package-tile" data-view="shop">
+          <div class="package-num">— 三 —</div>
+          <div class="package-jp">小紋</div>
+          <div class="package-en">Komon</div>
+          <div class="package-price" data-price-jpy="18000">¥8,000</div>
+          <div class="package-price-label">per day · 1日レンタル</div>
+          <p class="package-desc">Casual repeat-patterned kimono. Ideal for sightseeing, outings, and everyday photography.</p>
+          <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+        <div class="package-tile" data-view="shop">
+          <div class="package-num">— 四 —</div>
+          <div class="package-jp">浴衣</div>
+          <div class="package-en">Yukata</div>
+          <div class="package-price" data-price-jpy="18000">¥4,500</div>
+          <div class="package-price-label">per day · 1日レンタル</div>
+          <p class="package-desc">Light cotton summer yukata. Great for festivals, evening walks, and warm-weather outings.</p>
+          <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+        <div class="package-tile kids-tile" data-view="shop">
+          <div class="package-num">— 五 —</div>
+          <div class="package-jp">キッズ</div>
+          <div class="package-en">Kids Set</div>
+          <div class="package-price" data-price-jpy="18000">¥6,000</div>
+          <div class="package-price-label">per day · 1日レンタル</div>
+          <p class="package-desc">Complete kids kimono sets for ages 3–9 (100–130 cm). Includes full accessories and kitsuke.</p>
+          <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Pieces -->
   <section class="section featured">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">Featured Kimonos · 人気着物</div>
-        <h2 class="section-title"><em>Popular</em> Styles</h2>
+        <div class="eyebrow" data-i18n="feat.eyebrow">Popular Pieces · 人気着物</div>
+        <h2 class="section-title" data-i18n="feat.title"><em>Guest</em> Favourites</h2>
         <div class="brush-divider"></div>
         <div class="section-title-jp">今シーズン おすすめ</div>
         <p class="section-subtitle">
-          From vibrant furisode to elegant houmongi and playful yukata.
-          Every piece is cleaned, pressed, and ready to wear the moment you arrive.
+          Hand-picked styles across all rental lines. Every piece is professionally cleaned, pressed, and ready to wear the moment you arrive.
         </p>
       </div>
       <div class="product-grid" id="featuredGrid"></div>
       <div style="text-align:center;margin-top:64px">
-        <button class="btn-link" data-view="shop">View Full Collection — 全アイテムを見る</button>
+        <button class="btn-link" data-view="shop" data-i18n="feat.link">View Full Collection — 全スタイルを見る</button>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="section services" style="padding:0">
-    <div class="container" style="padding:96px 48px 0">
-      <div class="section-header">
-        <div class="eyebrow">Our Services · 三つのサービス</div>
-        <h2 class="section-title">Three services. <em>One</em> visit.</h2>
+  <!-- Add-On Services Strip -->
+  <section class="addon-strip">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:48px">
+        <div class="eyebrow" style="color:var(--kincha-soft)" data-i18n="addon.eyebrow">Add-On Services · オプションサービス</div>
+        <h2 class="section-title" style="color:var(--kinari)" data-i18n="addon.title">Enhance your <em>experience</em></h2>
+        <p class="section-subtitle" style="color:rgba(255,248,248,0.7)" data-i18n="addon.subtitle">Add hair & makeup or a photo session to any rental. Bundle and save.</p>
+      </div>
+      <div class="addon-grid">
+        <div class="addon-card">
+          <div class="addon-service-num">— 追加 一 —</div>
+          <i data-lucide="sparkles" class="addon-icon"></i>
+          <h3 class="addon-jp">ヘアセット・メイク</h3>
+          <p class="addon-en" data-i18n="addon.hair.en">Hair Set & Makeup</p>
+          <p class="addon-desc">Complete traditional hair styling and makeup by our in-house certified specialists. Available as a bundle with rental or as a standalone service. Complimentary with Furisode Premium package.</p>
+          <a href="#" class="addon-link" data-view="contact">Book hair & makeup <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
+        </div>
+        <div class="addon-card">
+          <div class="addon-service-num">— 追加 二 —</div>
+          <i data-lucide="camera" class="addon-icon"></i>
+          <h3 class="addon-jp">写真撮影</h3>
+          <p class="addon-en" data-i18n="addon.photo.en">Photo Service</p>
+          <p class="addon-desc">Professional photo sessions at our in-house studio or at nearby scenic spots. Includes 20+ hand-edited digital photos delivered within 3 days. Indoor and outdoor options available.</p>
+          <a href="#" class="addon-link" data-view="contact"><span data-i18n="addon.photo.link">Book a photo session</span> <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
+        </div>
       </div>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-num">— 一 —</div>
-        <i data-lucide="shirt" class="service-icon"></i>
-        <h3 class="service-title">着物レンタル</h3>
-        <p class="service-title-en">Kimono Rental</p>
-        <p class="service-desc">
-          Over 200 styles of kimono, yukata, and hakama. Walk in without a reservation and our
-          staff will help you choose and dress in under 30 minutes.
-        </p>
-        <a href="#" class="service-link">Browse kimonos <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
-      </div>
-      <div class="service-card">
-        <div class="service-num">— 二 —</div>
-        <i data-lucide="sparkles" class="service-icon"></i>
-        <h3 class="service-title">ヘアセット</h3>
-        <p class="service-title-en">Hair Set & Makeup</p>
-        <p class="service-desc">
-          Complete traditional hair styling and makeup by our in-house specialists.
-          Available as a bundle with rental or as a standalone service.
-        </p>
-        <a href="#" class="service-link">Book hair & makeup <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
-      </div>
-      <div class="service-card">
-        <div class="service-num">— 三 —</div>
-        <i data-lucide="camera" class="service-icon"></i>
-        <h3 class="service-title">写真撮影</h3>
-        <p class="service-title-en">Photo Service</p>
-        <p class="service-desc">
-          Professional photo sessions at our studio or at nearby scenic spots.
-          Includes 20+ edited digital photos delivered within 3 days.
-        </p>
-        <a href="#" class="service-link">Book a photo shoot <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
-      </div>
-    </div>
-    <div style="height:96px"></div>
   </section>
 
   <!-- Story -->
@@ -2908,15 +3570,15 @@
           <div class="story-image-vertical">
             着<br>物<br>を<br>纏<br>う<br>美<br>し<br>さ
           </div>
-          <img src="https://picsum.photos/seed/kimono-ann-story/600/750"
+          <img src="https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_0717.jpg"
                alt="Woman dressed in kimono at ANN rental studio"
                loading="lazy"
                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(193,64,74,0.25),rgba(61,21,21,0.75));z-index:1"></div>
         </div>
         <div class="story-content">
-          <div class="eyebrow">About ANN · 私たちについて</div>
-          <h2>Where every guest feels <em>beautiful</em>.</h2>
+          <div class="eyebrow" data-i18n="h2.cta2">About ANN · 私たちについて</div>
+          <h2 data-i18n="story.title">Where every guest feels <em>beautiful</em>.</h2>
           <p>
             KIMONO RENTAL ANN was born from a simple belief: that the joy of wearing a kimono
             should be easy, welcoming, and unforgettable. No prior experience needed.
@@ -2930,7 +3592,7 @@
             "I had never worn a kimono before. The ANN team made me feel like I had been wearing one my whole life."
             <span class="story-quote-author">- Nguyen Thi Lan, Guest from Hanoi</span>
           </blockquote>
-          <button class="btn-link" data-view="story">Our story</button>
+          <button class="btn-link" data-view="story" data-i18n="story.link">Our story</button>
         </div>
       </div>
     </div>
@@ -2940,11 +3602,11 @@
   <section class="ritual">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">Your Visit · ご来店の流れ</div>
-        <h2 class="section-title">Your <em>Five</em> Steps</h2>
-        <div class="section-title-jp">五つのステップ</div>
+        <div class="eyebrow" data-i18n="ritual.eyebrow">Your Visit · ご来店の流れ</div>
+        <h2 class="section-title" data-i18n="ritual.title">Your <em>Five</em> Steps</h2>
+        <div class="section-title-jp" data-i18n="feat.titleJp">五つのステップ</div>
       </div>
-      <div class="ritual-steps">
+      <div class="ritual-steps" style="grid-template-columns:repeat(5,1fr)">
         <div class="ritual-step">
           <div class="ritual-num">壱</div>
           <h4>着物選び</h4>
@@ -2959,9 +3621,9 @@
         </div>
         <div class="ritual-step">
           <div class="ritual-num">参</div>
-          <h4>ヘア＆メイク</h4>
-          <div class="step-en">Hair &amp; Make up</div>
-          <p>Complete your transformation with a traditional hair set and makeup styling by our in-house beauty team, available on the spot.</p>
+          <h4>メイク＆ヘアセット</h4>
+          <div class="step-en">Make Up &amp; Hair Design</div>
+          <p>Our makeup artists create a custom look that enhances your features and matches your kimono's palette. <strong>Complimentary hair styling and arrangement included</strong> — your certified stylist ensures every detail complements your overall appearance.</p>
         </div>
         <div class="ritual-step">
           <div class="ritual-num">肆</div>
@@ -2983,163 +3645,42 @@
   <section class="testimonials">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">Guest Reviews · お客様の声</div>
-        <h2 class="section-title">What our <em>guests</em> say</h2>
+        <div class="eyebrow" data-i18n="test.eyebrow">Guest Reviews · お客様の声</div>
+        <h2 class="section-title" data-i18n="test.title">What our <em>guests</em> say</h2>
       </div>
-      <div class="test-carousel">
-        <div class="test-track" id="testTrack">
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">I walked in knowing nothing about kimono. The ANN staff were so kind and patient. I left feeling like a completely different person. Absolutely worth it.</p>
-            <div class="test-meta">
-              <div class="test-avatar">L</div>
-              <div>
-                <div class="test-name">Nguyen Thuy Linh</div>
-                <div class="test-loc">Ho Chi Minh City · Tourist 2025</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">The hair set and photo package was incredible value. The photos came out so beautifully. I cried looking at them. This is a must-do experience.</p>
-            <div class="test-meta">
-              <div class="test-avatar">Y</div>
-              <div>
-                <div class="test-name">Yuna Yamamoto</div>
-                <div class="test-loc">Seoul · Travel blogger</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">ANN のスタッフは皆とても親切でした。着付けも丁寧で、写真もとても素敵に撮っていただきました。また来たいです。本当にありがとうございました。</p>
-            <div class="test-meta">
-              <div class="test-avatar">田</div>
-              <div>
-                <div class="test-name">田中 美咲</div>
-                <div class="test-loc">Tokyo · Repeat customer</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">Best birthday gift I gave myself. The furisode I chose fit perfectly, and the makeup artist understood exactly the soft Japanese look I wanted. Every photo turned into a frame.</p>
-            <div class="test-meta">
-              <div class="test-avatar">E</div>
-              <div>
-                <div class="test-name">Emma Laurent</div>
-                <div class="test-loc">Paris · Solo traveller</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">친구들과 함께 갔는데 모두 너무 만족했어요. 직원분들이 영어와 한국어를 잘 해주셔서 편하게 고를 수 있었고, 기모노 퀄리티가 정말 좋습니다.</p>
-            <div class="test-meta">
-              <div class="test-avatar">J</div>
-              <div>
-                <div class="test-name">Park Ji-won</div>
-                <div class="test-loc">Busan · Group of 4</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">We booked the couples photo package for our anniversary. The atmosphere felt almost spiritual — the silk, the soft music, the careful dressing ritual. It became our most treasured memory of Japan.</p>
-            <div class="test-meta">
-              <div class="test-avatar">M</div>
-              <div>
-                <div class="test-name">Marco &amp; Sofia Rinaldi</div>
-                <div class="test-loc">Milan · Honeymoon 2025</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">As a kimono enthusiast at home in Hanoi, I worried real Japan would not match my expectations. ANN exceeded them — authentic Tango silk, proper kitsuke, no rushing. The makeup was tasteful and elegant.</p>
-            <div class="test-meta">
-              <div class="test-avatar">H</div>
-              <div>
-                <div class="test-name">Trần Hà My</div>
-                <div class="test-loc">Hà Nội · Returning guest</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card">
-            <div class="test-quote-mark">『</div>
-            <div class="test-stars">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            </div>
-            <p class="test-text">My 60-year-old mother always dreamed of wearing a furisode. The ANN team treated her like royalty. She wore it with such dignity, and the photos still make her cry happy tears. Thank you forever.</p>
-            <div class="test-meta">
-              <div class="test-avatar">A</div>
-              <div>
-                <div class="test-name">Anita Chen</div>
-                <div class="test-loc">Singapore · Mother &amp; daughter trip</div>
-              </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-quote-mark">『</div>
+          <p class="test-text">I walked in knowing nothing about kimono. The ANN staff were so kind and patient. I left feeling like a completely different person. Absolutely worth it.</p>
+          <div class="test-meta">
+            <div class="test-avatar">L</div>
+            <div>
+              <div class="test-name">Nguyen Thuy Linh</div>
+              <div class="test-loc">Ho Chi Minh City · Tourist 2025</div>
             </div>
           </div>
         </div>
-        <div class="test-nav">
-          <button class="test-nav-btn" id="testPrev" aria-label="Previous reviews">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button class="test-nav-btn" id="testNext" aria-label="More reviews">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+        <div class="test-card">
+          <div class="test-quote-mark">『</div>
+          <p class="test-text">The hair set and photo package was incredible value. The photos came out so beautifully. I cried looking at them. This is a must-do experience.</p>
+          <div class="test-meta">
+            <div class="test-avatar">Y</div>
+            <div>
+              <div class="test-name">Yuna Yamamoto</div>
+              <div class="test-loc">Seoul · Travel blogger</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-quote-mark">『</div>
+          <p class="test-text">ANN のスタッフは皆とても親切でした。着付けも丁寧で、写真もとても素敵に撮っていただきました。また来たいです。本当にありがとうございました。</p>
+          <div class="test-meta">
+            <div class="test-avatar">田</div>
+            <div>
+              <div class="test-name">田中 美咲</div>
+              <div class="test-loc">Tokyo · Repeat customer</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3171,133 +3712,23 @@
       <div class="breadcrumb">
         <a href="#" data-view="home">Home</a>
         <span class="sep">/</span>
-        <span class="current">Collection</span>
+        <span class="current" data-i18n="shop.breadcrumb">Rental Collection</span>
       </div>
       <div class="shop-title-row">
         <div>
-          <h1 class="shop-title">The <em>Collection</em></h1>
-          <div class="shop-title-jp">コレクション 全品</div>
+          <h1 class="shop-title" data-i18n="shop.title">Rental <em>Collection</em></h1>
+          <div class="shop-title-jp">レンタル コレクション</div>
         </div>
         <div class="shop-meta">
-          <p>
-            Every garment in stock is photographed in our atelier, in natural Kyoto light.
-            What you see is what arrives — folded by hand, wrapped in washi.
-          </p>
-          <div class="shop-count">Showing 12 of 387 pieces</div>
+          <p>Five rental lines from everyday komon to formal furisode. All-inclusive packages — kimono, obi, accessories, and professional dressing included.</p>
+          <div class="shop-count">Walk in · No reservation needed · 手ぶらでOK</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="filters-bar">
-    <div class="container">
-      <div class="filters-inner">
-        <!-- Mobile top row: Filter toggle + Sort -->
-        <div class="filter-mobile-row">
-          <button class="filter-toggle-btn" id="filterToggleBtn" aria-expanded="false">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-            <span class="filter-btn-text">Filter</span>
-            <span class="filter-count-badge" id="filterCountBadge" aria-hidden="true"></span>
-          </button>
-          <div class="filter-controls">
-            <select class="sort-select">
-              <option>Sort — Curator's pick</option>
-              <option>Newest first</option>
-              <option>Price: low to high</option>
-              <option>Price: high to low</option>
-              <option>Most beloved</option>
-            </select>
-          </div>
-        </div>
-        <!-- Category chips -->
-        <div class="filter-chips">
-          <button class="filter-chip active">All · 全て</button>
-          <button class="filter-chip">Furisode · 振袖</button>
-          <button class="filter-chip">Houmongi · 訪問着</button>
-          <button class="filter-chip">Tomesode · 留袖</button>
-          <button class="filter-chip">Komon · 小紋</button>
-          <button class="filter-chip">Yukata · 浴衣</button>
-          <button class="filter-chip">Hakama · 袴</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="shop-layout">
-      <aside class="filters-side">
-
-        <div class="filter-group">
-          <h4>Season <small>季節</small></h4>
-          <div class="filter-list">
-            <label><input type="checkbox" checked> Spring · 春 <span class="count">28</span></label>
-            <label><input type="checkbox"> Summer · 夏 <span class="count">22</span></label>
-            <label><input type="checkbox"> Autumn · 秋 <span class="count">31</span></label>
-            <label><input type="checkbox"> Winter · 冬 <span class="count">19</span></label>
-            <label><input type="checkbox"> All seasons <span class="count">14</span></label>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <h4>Color <small>色</small></h4>
-          <div class="filter-list">
-            <label><input type="checkbox"> Sumi black · 墨 <span class="count">12</span></label>
-            <label><input type="checkbox" checked> Vermillion · 朱 <span class="count">9</span></label>
-            <label><input type="checkbox"> Indigo · 藍 <span class="count">14</span></label>
-            <label><input type="checkbox"> Cream · 生成 <span class="count">21</span></label>
-            <label><input type="checkbox"> Sakura pink · 桜 <span class="count">17</span></label>
-            <label><input type="checkbox"> Moss green · 苔 <span class="count">8</span></label>
-            <label><input type="checkbox"> Gold · 金 <span class="count">6</span></label>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <h4>Occasion <small>場面</small></h4>
-          <div class="filter-list">
-            <label><input type="checkbox"> Wedding · 婚礼 <span class="count">18</span></label>
-            <label><input type="checkbox"> Tea ceremony · 茶会 <span class="count">22</span></label>
-            <label><input type="checkbox"> Festival · 祭 <span class="count">31</span></label>
-            <label><input type="checkbox"> Coming-of-age · 成人 <span class="count">14</span></label>
-            <label><input type="checkbox"> Photography <span class="count">36</span></label>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <h4>Price <small>¥</small></h4>
-          <div class="price-range">
-            <input type="number" placeholder="Min" value="20000">
-            <span>—</span>
-            <input type="number" placeholder="Max" value="150000">
-          </div>
-        </div>
-
-        <div class="filter-group" style="border-bottom:none">
-          <h4>Availability</h4>
-          <div class="filter-list">
-            <label><input type="checkbox" checked> In atelier <span class="count">42</span></label>
-            <label><input type="checkbox"> Available to rent <span class="count">128</span></label>
-            <label><input type="checkbox"> Custom order <span class="count">∞</span></label>
-          </div>
-        </div>
-
-        <button class="btn-outline" style="width:100%;justify-content:center;margin-top:8px">Apply Filters</button>
-      </aside>
-
-      <div>
-        <div class="shop-grid" id="shopGrid"></div>
-
-        <div class="pagination">
-          <button class="arrow"><i data-lucide="arrow-left" style="width:12px;height:12px"></i> Prev</button>
-          <button class="active">一</button>
-          <button>二</button>
-          <button>三</button>
-          <button>四</button>
-          <button>五</button>
-          <button class="arrow">Next <i data-lucide="arrow-right" style="width:12px;height:12px"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Line sections rendered by JS -->
+  <div class="container" id="shopLines" style="padding-top:32px;padding-bottom:80px"></div>
 </div>
 
 <!-- ===================== PRODUCT DETAIL VIEW ===================== -->
@@ -3354,41 +3785,19 @@
           </div>
 
           <div class="product-detail-price">
-            <div class="price-main">¥85,000</div>
-            <div class="price-sub">to purchase</div>
-            <div class="price-rental">or ¥18,000 · 4-day rental</div>
+            <div class="price-main" id="productPriceMain">¥18,000</div>
+            <div class="price-sub" id="productPriceSub">/day · 1日レンタル</div>
           </div>
 
-          <p class="product-detail-desc">
+          <p class="product-detail-desc" id="productDesc">
             A spring furisode dyed in deep vermillion, scattered with hand-painted cranes in
             flight — a motif borrowed from Edo-period court robes. The silk is from Tango,
             woven on wooden looms still operated by a single family in their fourth generation.
             Each crane is painted by master artisan Tanaka Sumire over the course of nine days.
           </p>
 
-          <div class="variant">
-            <div class="variant-label">
-              Size · サイズ
-              <small>Find your size →</small>
-            </div>
-            <div class="size-options">
-              <div class="size-option">XS<small>148-156</small></div>
-              <div class="size-option active">S<small>156-162</small></div>
-              <div class="size-option">M<small>162-168</small></div>
-              <div class="size-option">L<small>168-174</small></div>
-              <div class="size-option">CUSTOM</div>
-            </div>
-          </div>
-
-          <div class="variant">
-            <div class="variant-label">Color · 色 <small>4 hues</small></div>
-            <div class="color-options">
-              <div class="color-option active" style="background:#A8323F" title="朱 Vermillion"></div>
-              <div class="color-option" style="background:#1E2C45" title="紺 Indigo"></div>
-              <div class="color-option" style="background:#3A332E" title="墨 Sumi"></div>
-              <div class="color-option" style="background:#A8854B" title="金茶 Gold"></div>
-            </div>
-          </div>
+          <!-- Variant selector: rendered by JS (free-size badge for adults, age selector for kids) -->
+          <div id="productVariantBlock"></div>
 
           <div class="qty-row">
             <div class="qty">
@@ -3407,31 +3816,31 @@
 
           <div class="product-features">
             <div class="product-feat">
-              <i data-lucide="package"></i>
+              <i data-lucide="shirt"></i>
               <div>
-                <strong>Free shipping</strong>
-                <span>Worldwide over ¥30,000</span>
+                <strong>All-inclusive rental</strong>
+                <span>Kimono · obi · accessories · dressing</span>
               </div>
             </div>
             <div class="product-feat">
-              <i data-lucide="award"></i>
+              <i data-lucide="clock"></i>
               <div>
-                <strong>Certificate</strong>
-                <span>Hand-signed by maker</span>
+                <strong>Walk in · no reservation</strong>
+                <span>Ready in under 30 minutes</span>
               </div>
             </div>
             <div class="product-feat">
-              <i data-lucide="refresh-cw"></i>
+              <i data-lucide="sparkles"></i>
               <div>
-                <strong>30-day return</strong>
-                <span>If unworn, full refund</span>
+                <strong>Add hair & makeup</strong>
+                <span>By certified in-house stylists</span>
               </div>
             </div>
             <div class="product-feat">
               <i data-lucide="camera"></i>
               <div>
-                <strong>Add photoshoot</strong>
-                <span>+¥48,000 · half-day</span>
+                <strong>Add photo session</strong>
+                <span>Studio or scenic spots</span>
               </div>
             </div>
           </div>
@@ -3541,257 +3950,6 @@
     </div>
   </section>
 
-  <!-- Customer Reviews -->
-  <section class="reviews-section">
-    <div class="container-narrow">
-      <div class="section-header" style="margin-bottom:48px">
-        <div class="eyebrow">Guest Reviews · ご感想</div>
-        <h2 class="section-title">From those who <em>wore</em> it</h2>
-      </div>
-
-      <div class="reviews-layout">
-        <!-- Summary card -->
-        <aside class="reviews-summary">
-          <div class="reviews-score">4.9<small>/5</small></div>
-          <div class="reviews-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-          </div>
-          <div class="reviews-total">Based on 87 reviews</div>
-
-          <div class="reviews-bars">
-            <div class="reviews-bar-row"><span class="lbl">5★</span><span class="bar"><span class="bar-fill" style="width:84%"></span></span><span class="pct">73</span></div>
-            <div class="reviews-bar-row"><span class="lbl">4★</span><span class="bar"><span class="bar-fill" style="width:13%"></span></span><span class="pct">11</span></div>
-            <div class="reviews-bar-row"><span class="lbl">3★</span><span class="bar"><span class="bar-fill" style="width:2%"></span></span><span class="pct">2</span></div>
-            <div class="reviews-bar-row"><span class="lbl">2★</span><span class="bar"><span class="bar-fill" style="width:1%"></span></span><span class="pct">1</span></div>
-            <div class="reviews-bar-row"><span class="lbl">1★</span><span class="bar"><span class="bar-fill" style="width:0%"></span></span><span class="pct">0</span></div>
-          </div>
-
-          <button class="reviews-write-btn">
-            <i data-lucide="edit-3" style="width:14px;height:14px"></i>
-            Write a review · 投稿する
-          </button>
-        </aside>
-
-        <!-- Review list -->
-        <div>
-          <div class="reviews-list-header">
-            <h3>What guests are saying</h3>
-            <div class="reviews-filter">
-              <button class="reviews-filter-pill active">All</button>
-              <button class="reviews-filter-pill">With photos</button>
-              <button class="reviews-filter-pill">5 stars</button>
-              <button class="reviews-filter-pill">Recent</button>
-            </div>
-          </div>
-
-          <div class="reviews-list" id="reviewsList">
-
-            <div class="review-item">
-              <div class="review-avatar">M</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Mia Tanaka</div>
-                  <div class="review-date">May 28, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">A heritage piece worth every yen</div>
-                <p class="review-text">The hand-painted cranes are even more breathtaking in person. You can feel the weight and softness of the Tango silk — nothing like polyester rentals elsewhere. I rented for my graduation photoshoot in Arashiyama and got compliments from every passerby. Worth booking weeks in advance.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size S · Vermillion</span>
-                  <span>Occasion: Graduation</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item">
-              <div class="review-avatar">H</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Hannah Bergström</div>
-                  <div class="review-date">May 14, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">Best decision of our Japan trip</div>
-                <p class="review-text">My mother and I both rented Tsuru no Mai in different sizes for a temple visit. The dressing took about 25 minutes and the obi was tied so beautifully it stayed perfect for hours. The makeup artist gave us a soft elegant look that suited our European features.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size M · Vermillion</span>
-                  <span>Sweden</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item">
-              <div class="review-avatar">永</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">永田 さくら</div>
-                  <div class="review-date">Apr 30, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">本物の職人技を感じます</div>
-                <p class="review-text">成人式のために借りました。鶴の手描きが本当に美しく、写真館の方にも「最近珍しい良い品」と褒められました。スタッフの着付けも上品で、長時間着ても全く崩れませんでした。ヘアセットとメイクの仕上がりも素晴らしかったです。</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size S · 朱</span>
-                  <span>成人式 · Coming of age</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item">
-              <div class="review-avatar">P</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Priya Ramachandran</div>
-                  <div class="review-date">Apr 18, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">Indigo version is stunning too</div>
-                <p class="review-text">Chose the indigo colorway for a moodier look during cherry blossom season — the contrast against the pink petals was perfection. The atelier let me try two sizes to find the right fit. Kitsuke specialist was patient and explained each layer.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size M · Indigo</span>
-                  <span>Mumbai · Photoshoot</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item">
-              <div class="review-avatar">E</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Elena Rossi</div>
-                  <div class="review-date">Apr 02, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24" opacity="0.3"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">Beautiful, but a little heavy for full-day wear</div>
-                <p class="review-text">The silk quality and embroidery exceeded all expectations — truly museum-worthy. My only note is the obi can feel tight after 6+ hours, so plan a tea break midway. ANN staff offered to loosen it for me at no charge, which was kind.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size L · Vermillion</span>
-                  <span>Rome · Full-day wear</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item hidden">
-              <div class="review-avatar">阮</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Nguyễn Minh Anh</div>
-                  <div class="review-date">Mar 21, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">Tuyệt vời, đáng giá từng đồng</div>
-                <p class="review-text">Mình thuê Tsuru no Mai để chụp ảnh cưới ở Kyoto. Chất liệu lụa rất mịn, hoa văn hạc bay được vẽ tay tinh xảo. Nhân viên ANN nói được tiếng Anh rõ ràng, makeup tự nhiên hợp với nét Á Đông. Bộ ảnh chụp ra đẹp như phim Nhật cổ.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size S · 朱</span>
-                  <span>TP. HCM · Pre-wedding</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item hidden">
-              <div class="review-avatar">K</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">Kim Seo-yeon</div>
-                  <div class="review-date">Mar 09, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">정말 만족스러운 경험</div>
-                <p class="review-text">Sumi 색상으로 빌렸는데 너무 우아하고 사진이 잘 나왔습니다. 직원분들이 한국어 안내문도 준비해주셔서 편했어요. 메이크업까지 포함된 패키지 가격이 합리적입니다. 다음에 또 방문하고 싶어요.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size S · 墨</span>
-                  <span>Seoul · Solo trip</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-item hidden">
-              <div class="review-avatar">J</div>
-              <div class="review-body">
-                <div class="review-header-row">
-                  <div class="review-author">James Whitfield</div>
-                  <div class="review-date">Feb 24, 2026</div>
-                </div>
-                <div class="review-stars">
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                  <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.5 9 9"/></svg>
-                </div>
-                <div class="review-title">For my wife — she was speechless</div>
-                <p class="review-text">Booked a surprise rental + photoshoot for our anniversary in Kyoto. The team handled everything in English. The gold colorway was rare and absolutely jaw-dropping in evening light. Photos came back in 5 days exactly as promised.</p>
-                <div class="review-meta">
-                  <span class="review-verified">Verified rental</span>
-                  <span>Size M · Gold</span>
-                  <span>London · Anniversary</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="reviews-more">
-            <button class="reviews-more-btn" id="reviewsLoadMore">Load 3 more reviews · もっと見る</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Related -->
   <section class="section featured">
     <div class="container">
@@ -3811,18 +3969,18 @@
       <div class="breadcrumb">
         <a href="#" data-view="home">Home</a>
         <span class="sep">/</span>
-        <span class="current">Checkout · ご注文</span>
+        <span class="current" data-i18n="checkout.breadcrumb">Checkout · ご注文</span>
       </div>
 
       <div class="checkout-steps">
         <div class="checkout-step done">
           <div class="num"><i data-lucide="check" style="width:14px;height:14px"></i></div>
-          <span>Cart</span>
+          <span>Selection</span>
           <div class="sep"></div>
         </div>
         <div class="checkout-step active">
           <div class="num">2</div>
-          <span>Information</span>
+          <span>Your Details</span>
           <div class="sep"></div>
         </div>
         <div class="checkout-step">
@@ -3832,108 +3990,129 @@
         </div>
         <div class="checkout-step">
           <div class="num">4</div>
-          <span>Confirm</span>
+          <span>Confirmed</span>
         </div>
       </div>
 
       <div class="checkout-layout">
         <div>
           <div class="checkout-section">
-            <h3>Contact <small>— ご連絡先</small></h3>
-            <p class="desc">We will send your order confirmation and tracking to this email.</p>
+            <h3 data-i18n="checkout.details.title">Your Details <small>— ご予約情報</small></h3>
+            <p class="desc">No account needed. We'll send your booking confirmation to this email. Just bring it (or show on your phone) when you visit.</p>
             <div class="form-row">
               <div class="field">
-                <label>First name · 姓</label>
+                <label>First name · 名</label>
                 <input type="text" placeholder="Sumire">
               </div>
               <div class="field">
-                <label>Last name · 名</label>
+                <label>Last name · 姓</label>
                 <input type="text" placeholder="Tanaka">
               </div>
             </div>
             <div class="form-row single">
               <div class="field">
-                <label>Email address</label>
+                <label>Email address · メールアドレス</label>
                 <input type="email" placeholder="sumire@example.com">
               </div>
             </div>
             <div class="form-row">
               <div class="field">
-                <label>Country / Region</label>
+                <label>Phone (optional) · 電話番号</label>
+                <input type="tel" placeholder="+81 / +84 / +1 ...">
+              </div>
+              <div class="field">
+                <label>Country / Region · 国</label>
                 <select>
                   <option>Japan · 日本</option>
+                  <option>Vietnam · ベトナム</option>
+                  <option>South Korea · 韓国</option>
+                  <option>China · 中国</option>
+                  <option>Singapore · シンガポール</option>
                   <option>United States</option>
-                  <option>United Kingdom</option>
-                  <option>Singapore</option>
-                  <option>Vietnam</option>
+                  <option>Other</option>
                 </select>
               </div>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <h3 data-i18n="checkout.date.title">Visit Date <small>— ご来店予定日</small></h3>
+            <p class="desc">Pick a date from the calendar — walk-ins always welcome, but reserving ahead guarantees your slot.</p>
+
+            <div class="booking-cal-wrap" style="margin-top:24px">
+              <!-- LEFT: Calendar -->
+              <div class="booking-cal-left">
+                <div class="cal-nav">
+                  <button class="cal-nav-btn" id="calPrev">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+                  </button>
+                  <span class="cal-month-label" id="calMonthLabel">July 2026</span>
+                  <button class="cal-nav-btn" id="calNext">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+                <div class="cal-weekdays">
+                  <span>Sun</span><span>Mon</span><span>Tue</span>
+                  <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+                <div class="cal-legend">
+                  <span><span class="cal-dot avail"></span>Available</span>
+                  <span><span class="cal-dot few"></span>Few spots</span>
+                  <span><span class="cal-dot full"></span>Fully booked</span>
+                </div>
+              </div>
+
+              <!-- RIGHT: Slots + confirm -->
+              <div class="booking-cal-right">
+                <div class="booking-prompt" id="bookingPrompt">
+                  <div class="booking-prompt-jp">選<br>日<br>付</div>
+                  <p>Select a date to see<br>available time slots</p>
+                </div>
+                <div class="booking-slots-panel" id="slotsPanel" style="display:none">
+                  <div class="slots-date-label" id="slotsDateLabel"></div>
+                  <div class="slots-grid" id="slotsGrid"></div>
+                  <div class="booking-mini-form" id="miniForm" style="display:none;flex-direction:column;gap:14px">
+                    <div class="booking-form-row">
+                      <div class="field">
+                        <label>Your Name · お名前</label>
+                        <input type="text" id="bfName" placeholder="e.g. Sarah">
+                      </div>
+                      <div class="field">
+                        <label>Guests · 人数</label>
+                        <input type="number" id="bfGuests" min="1" max="6" value="1">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label>Contact via · 連絡方法</label>
+                      <select id="bfContact">
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="LINE">LINE</option>
+                        <option value="Email">Email</option>
+                      </select>
+                    </div>
+                    <button class="booking-confirm-btn" id="bookingConfirmBtn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.55 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.46 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      Confirm via WhatsApp
+                    </button>
+                    <p style="text-align:center;font-size:10px;color:var(--sumi-mid);letter-spacing:0.1em;margin-top:2px">
+                      Opens WhatsApp with booking details pre-filled
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row single" style="margin-top:20px">
               <div class="field">
-                <label>Phone</label>
-                <input type="tel" placeholder="+81 75 ...">
+                <label>Special requests <small style="text-transform:none;letter-spacing:0;color:var(--sumi-light)">— optional</small></label>
+                <textarea placeholder="E.g. add hair &amp; makeup, group of 3, children's size, any requests..."></textarea>
               </div>
             </div>
           </div>
 
           <div class="checkout-section">
-            <h3>Shipping <small>— お届け先</small></h3>
-            <p class="desc">All packages are wrapped in handmade washi paper and sealed with our atelier hanko.</p>
-            <div class="form-row single">
-              <div class="field">
-                <label>Address line 1</label>
-                <input type="text" placeholder="Number, street">
-              </div>
-            </div>
-            <div class="form-row single">
-              <div class="field">
-                <label>Address line 2 <small style="text-transform:none;letter-spacing:0;color:var(--sumi-light)">— optional</small></label>
-                <input type="text" placeholder="Apartment, building, c/o">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label>City · 市</label>
-                <input type="text" placeholder="Kyoto">
-              </div>
-              <div class="field">
-                <label>Postal code · 〒</label>
-                <input type="text" placeholder="600-8001">
-              </div>
-            </div>
-          </div>
-
-          <div class="checkout-section">
-            <h3>Delivery method</h3>
-            <div class="ship-options">
-              <div class="ship-option active">
-                <div class="ship-option-radio"></div>
-                <div class="ship-option-info">
-                  <strong>Atelier delivery — 3-5 days</strong>
-                  <span>Hand-wrapped, signed for upon arrival · Yamato Logistics</span>
-                </div>
-                <div class="ship-option-price">¥1,200</div>
-              </div>
-              <div class="ship-option">
-                <div class="ship-option-radio"></div>
-                <div class="ship-option-info">
-                  <strong>Express — next day</strong>
-                  <span>Same wrapping, accelerated route · Sagawa Premium</span>
-                </div>
-                <div class="ship-option-price">¥3,800</div>
-              </div>
-              <div class="ship-option">
-                <div class="ship-option-radio"></div>
-                <div class="ship-option-info">
-                  <strong>Atelier pickup — Kyoto</strong>
-                  <span>Collect from our shop in Higashiyama · We will tea-serve you</span>
-                </div>
-                <div class="ship-option-price">Free</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="checkout-section">
-            <h3>Payment <small>— お支払い</small></h3>
+            <h3 data-i18n="checkout.payment.title">Payment <small>— お支払い</small></h3>
             <p class="desc">All transactions are encrypted and processed via Stripe.</p>
             <div class="pay-tabs">
               <div class="pay-tab active">
@@ -3967,62 +4146,54 @@
             </div>
           </div>
 
-          <button class="btn" style="width:100%;justify-content:center;padding:22px">
-            Place Order · ご注文確定 — ¥87,200 <i data-lucide="arrow-right"></i>
+          <button class="btn" style="width:100%;justify-content:center;padding:22px" onclick="alert('ご予約を受け付けました · Booking confirmed! We will contact you within 24 hours.')">
+            Confirm Booking · ご予約確定 — ¥23,000 <i data-lucide="arrow-right"></i>
           </button>
+          <p style="text-align:center;font-size:11px;color:var(--sumi-light);margin-top:14px;letter-spacing:0.1em;line-height:1.8">No payment required now · Visit us and pay on the day</p>
         </div>
 
         <aside class="order-summary">
-          <h3>Your Order <small>ご注文内容</small></h3>
+          <h3 data-i18n="checkout.summary.title">Booking Summary <small>ご予約内容</small></h3>
           <div class="order-line">
-            <div class="order-line-img" style="background:linear-gradient(135deg,#A8323F,#8E2530);position:relative">
+            <div class="order-line-img" style="background:linear-gradient(135deg,#C1404A,#5C2828);position:relative;overflow:hidden">
+              <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
               <div class="order-line-qty">1</div>
             </div>
             <div class="order-line-info">
               <strong>鶴の舞</strong>
-              <span>Furisode · Size S · Vermillion</span>
+              <span>Furisode Premium · 1-day rental</span>
             </div>
-            <div class="order-line-price">¥85,000</div>
+            <div class="order-line-price">¥18,000</div>
           </div>
           <div class="order-line">
-            <div class="order-line-img" style="background:linear-gradient(135deg,#1E2C45,#0f1a2b);position:relative">
+            <div class="order-line-img" style="background:linear-gradient(135deg,#F5C0C8,#CCA8B0);position:relative;overflow:hidden">
+              <img src="https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_9181-681x1024.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
               <div class="order-line-qty">1</div>
             </div>
             <div class="order-line-info">
-              <strong>金襴帯</strong>
-              <span>Obi · Brocade · Indigo</span>
+              <strong>Hair &amp; Makeup</strong>
+              <span>Add-on service · ヘアセット</span>
             </div>
-            <div class="order-line-price">¥12,000</div>
-          </div>
-          <div class="order-line">
-            <div class="order-line-img" style="background:linear-gradient(135deg,#A8854B,#7d6037);position:relative">
-              <div class="order-line-qty">1</div>
-            </div>
-            <div class="order-line-info">
-              <strong>かんざし</strong>
-              <span>Hair ornament · Gold</span>
-            </div>
-            <div class="order-line-price">¥4,500</div>
+            <div class="order-line-price">+¥5,000</div>
           </div>
 
           <div class="promo-box">
-            <input type="text" placeholder="Promo code">
+            <input type="text" placeholder="Promo code · クーポン">
             <button>Apply</button>
           </div>
 
           <div class="cart-totals">
-            <div class="row"><span>Subtotal</span><span>¥101,500</span></div>
-            <div class="row"><span>Shipping</span><span>¥1,200</span></div>
-            <div class="row" style="color:var(--shu)"><span>Discount · WELCOME10</span><span>−¥15,500</span></div>
+            <div class="row"><span>Furisode rental · 1 day</span><span>¥18,000</span></div>
+            <div class="row"><span>Hair &amp; Makeup add-on</span><span>¥5,000</span></div>
             <div class="row total">
               <span>Total</span>
-              <span>¥87,200</span>
+              <span>¥23,000</span>
             </div>
           </div>
 
-          <div style="text-align:center;font-size:11px;color:var(--sumi-mid);letter-spacing:0.16em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid var(--line)">
+          <div style="text-align:center;font-size:11px;color:var(--sumi-mid);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid var(--line);line-height:1.8">
             <i data-lucide="lock" style="width:12px;height:12px;display:inline;vertical-align:middle"></i>
-            Secure SSL Payment
+            Secure payment · Pay on arrival also available
           </div>
         </aside>
       </div>
@@ -4087,9 +4258,9 @@
           <div class="story-image-vertical">
             一<br>九<br>八<br>七<br>年<br>春<br>創<br>業
           </div>
-          <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HM18-683x1024-1-500x500.jpg"
+          <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/premium-furisode-couple-momiji-885.jpg"
                alt="Atelier hands at work"
-               loading="lazy" referrerpolicy="no-referrer"
+               loading="lazy"
                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,51,46,0.55),rgba(26,22,20,0.88));z-index:1"></div>
         </div>
@@ -4107,8 +4278,8 @@
       <div class="craft-grid">
         <div class="craft-card">
           <div class="craft-image">
-            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg"
-                 alt="Tanaka Sumire — Master Painter" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg"
+                 alt="Tanaka Sumire — Master Painter" loading="lazy">
             <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,50,63,0.55),rgba(26,22,20,0.85))"></div>
             <div class="craft-name">田中 すみれ</div>
           </div>
@@ -4120,8 +4291,8 @@
         </div>
         <div class="craft-card">
           <div class="craft-image">
-            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R32-683x1024-1-500x500.jpg"
-                 alt="Nakamura Kenichi — Indigo Dyer" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/hakama-kimono-asakusa-2-683x1024.jpg"
+                 alt="Nakamura Kenichi — Indigo Dyer" loading="lazy">
             <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(30,44,69,0.55),rgba(15,26,43,0.88))"></div>
             <div class="craft-name">中村 健一</div>
           </div>
@@ -4133,8 +4304,8 @@
         </div>
         <div class="craft-card">
           <div class="craft-image">
-            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg"
-                 alt="Yamamoto Aoi — Stitcher" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/kids-kimono-asakusa-1.jpg"
+                 alt="Yamamoto Aoi — Stitcher" loading="lazy">
             <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,133,75,0.55),rgba(92,58,31,0.88))"></div>
             <div class="craft-name">山本 葵</div>
           </div>
@@ -4146,8 +4317,8 @@
         </div>
         <div class="craft-card">
           <div class="craft-image">
-            <img src="https://yae-japan.com/wp2025/wp-content/uploads/2025/10/ph1%EF%BC%92-4-1024x944-1-500x500.jpg"
-                 alt="Suzuki Misaki — Kitsuke Master" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/lace-kimono-asakusa-10-681x1024.jpg"
+                 alt="Suzuki Misaki — Kitsuke Master" loading="lazy">
             <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(92,107,71,0.55),rgba(45,53,34,0.88))"></div>
             <div class="craft-name">鈴木 美咲</div>
           </div>
@@ -4169,91 +4340,214 @@
       <div class="breadcrumb">
         <a href="#" data-view="home">Home</a>
         <span class="sep">/</span>
-        <span class="current">Atelier · 工房</span>
+        <span class="current" data-i18n="contact.breadcrumb">Atelier · お問い合わせ</span>
       </div>
 
-      <div class="contact-layout" style="margin-top:48px">
+      <div style="margin-top:40px;margin-bottom:8px">
+        <div class="eyebrow" data-i18n="contact.eyebrow">Connect With Us · ご連絡はこちら</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;line-height:1.1;margin-top:12px">
+          Walk in, or reach us <em style="font-style:italic;color:var(--shu)">anytime</em>.
+        </h2>
+        <p style="color:var(--sumi-soft);font-weight:300;line-height:1.9;max-width:600px;margin-top:16px">
+          No reservation needed — walk in any day between 8:00 AM and 7:00 PM.
+          For early morning shoots, evening sessions, or group bookings, reach us via WhatsApp or LINE first.
+        </p>
+      </div>
+
+      <!-- Social Grid -->
+      <div class="social-grid">
+
+        <!-- WhatsApp -->
+        <a class="sc sc-wa" href="https://wa.me/message/T4Y57G37NFODJ1" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="sc-name">WhatsApp</div>
+          <div class="sc-handle">Kimono Rental Ann</div>
+          <div class="sc-phone">080-2382-9516</div>
+          <div class="sc-cta">Book Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- LINE -->
+        <a class="sc sc-line" href="https://line.me/ti/p/NpXsh_7Z43" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          </div>
+          <div class="sc-name">LINE</div>
+          <div class="sc-handle">Ann</div>
+          <div class="sc-cta">Chat on LINE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- Facebook -->
+        <a class="sc sc-fb" href="https://www.facebook.com/share/1E9AVZVYEb/" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="sc-name">Facebook</div>
+          <div class="sc-handle">Kimono Rental Ann</div>
+          <div class="sc-cta">Visit Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- Instagram -->
+        <a class="sc sc-ig" href="https://www.instagram.com/kimono_rental_ann" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div class="sc-name">Instagram</div>
+          <div class="sc-handle">@kimono_rental_ann</div>
+          <div class="sc-cta">Follow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- TikTok -->
+        <a class="sc sc-tt" href="https://www.tiktok.com/@kimonorentalann" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          </div>
+          <div class="sc-name">TikTok</div>
+          <div class="sc-handle">@kimonorentalann</div>
+          <div class="sc-cta">Watch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- Rednote -->
+        <a class="sc sc-rn" href="https://xhslink.com/m/1oVEvcrm1qF" target="_blank" rel="noopener">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.5 4.5h-5v1.25h2v1.5h-2.75v1.5h2.75v4.75h1.5v-4.75h2.75v-1.5H12v-1.5h2.5V6.5z"/></svg>
+          </div>
+          <div class="sc-name">&#23567;&#32418;&#20070; Rednote</div>
+          <div class="sc-handle">Kimono Rental Ann</div>
+          <div class="sc-cta">View Profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- WeChat -->
+        <div class="sc sc-wc no-link">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.295.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-3.99-6.348-7.601-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.138 0 .25-.114.25-.25 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.74 2.532a.961.961 0 010 1.922.961.961 0 010-1.922zm7.468 0a.961.961 0 010 1.922.961.961 0 010-1.922z"/></svg>
+          </div>
+          <div class="sc-name">WeChat</div>
+          <div class="sc-handle">Kimono Rental Ann</div>
+          <div class="sc-phone">080-2382-9516</div>
+          <div class="sc-cta">Search ID on WeChat</div>
+        </div>
+
+        <!-- Phone -->
+        <a class="sc sc-ph" href="tel:+81802382516">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="sc-name">Phone</div>
+          <div class="sc-handle">Kimono Rental Ann</div>
+          <div class="sc-phone">080-2382-9516</div>
+          <div class="sc-cta">Call Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+      </div>
+
+      <!-- Policy Cards -->
+      <div class="policy-cards">
+        <div class="policy-card">
+          <div class="policy-card-eyebrow">🕙 Return Policy</div>
+          <div class="policy-card-title">Free Next-Day Return</div>
+          <div class="policy-card-body">Return your kimono before <strong>10:00 AM</strong> the following morning at no additional charge. Enjoy your evening — no rush.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-card-eyebrow">🌅 Flexible Hours</div>
+          <div class="policy-card-title">Early &amp; Evening Slots</div>
+          <div class="policy-card-body">Appointments outside regular hours (before 8 AM or after 7 PM) are available at <strong>no extra charge</strong> — advance reservation required via WhatsApp or LINE.</div>
+        </div>
+        <div class="policy-card highlight">
+          <div class="policy-card-eyebrow">⭐ Grand Opening Offer</div>
+          <div class="policy-card-title">10% OFF for Every Guest</div>
+          <div class="policy-card-body">Leave us a <strong>Google Maps review</strong> and show it to our staff before payment. 10% off your total — no code needed.</div>
+        </div>
+      </div>
+
+      <!-- Contact Layout -->
+      <div class="contact-layout">
         <div class="contact-info">
-          <div class="eyebrow">Visit Us · お越しください</div>
-          <h2>Tea, <em>silk</em>, and a quiet hour.</h2>
-          <p>
-            Our atelier is open by appointment, six days a week. We pour tea, walk you through the
-            garments by hand, and ask only that you arrive with curiosity. There is never any pressure
-            to purchase.
-          </p>
+          <div class="eyebrow" data-i18n="contact.find.eyebrow">Find Us · アクセス</div>
+          <h2 data-i18n="contact.find.title">Come visit <em>us</em> in Asakusa.</h2>
+          <p>We're 2 minutes from Sensoji Temple in the heart of historic Asakusa. Walk-ins welcome every day — no booking needed.</p>
 
           <div class="contact-blocks">
             <div class="contact-block">
               <i data-lucide="map-pin"></i>
               <div>
-                <h4>Atelier · 工房</h4>
-                <p>京都市東山区祇園町南側 570-128</p>
-                <div class="en">570-128 Gion-machi Minamigawa, Higashiyama-ku, Kyoto</div>
+                <h4>Address · 住所</h4>
+                <p>アモール 4F, 浅草 1-36-11<br>台東区, 東京</p>
+                <div class="en">Amor Bldg 4F, 1-36-11 Asakusa, Taito City, Tokyo</div>
+                <a href="https://maps.app.goo.gl/5Y9bQG8HGf8z13gs9" target="_blank" rel="noopener"
+                   style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--shu);text-decoration:none;margin-top:10px;letter-spacing:0.08em;font-weight:600">
+                  <i data-lucide="external-link" style="width:12px;height:12px"></i>Open in Google Maps
+                </a>
               </div>
             </div>
             <div class="contact-block">
               <i data-lucide="clock"></i>
               <div>
                 <h4>Hours · 営業時間</h4>
-                <p>火 — 日 · 10:00 — 18:00</p>
-                <div class="en">Tuesday to Sunday · Monday closed</div>
+                <p>毎日 · 8:00 — 19:00</p>
+                <div class="en">Open daily · Walk-ins welcome<br>Early &amp; late slots by reservation</div>
               </div>
             </div>
             <div class="contact-block">
               <i data-lucide="phone"></i>
               <div>
-                <h4>Phone · 電話</h4>
-                <p>+81 75-561-XXXX</p>
-                <div class="en">English, 日本語, 中文 · 한국어</div>
+                <h4>Phone / WhatsApp · 電話</h4>
+                <p>080-2382-9516</p>
+                <div class="en">Japanese · English · Vietnamese · Chinese</div>
               </div>
             </div>
             <div class="contact-block">
-              <i data-lucide="mail"></i>
+              <i data-lucide="navigation"></i>
               <div>
-                <h4>Email · メール</h4>
-                <p>atelier@ayame-kyoto.jp</p>
-                <div class="en">Replies within 24 hours</div>
+                <h4>Access · 最寄り駅</h4>
+                <p>浅草駅 · 徒歩5分</p>
+                <div class="en">Asakusa Station — 5 min walk<br>Sensoji Temple — 2 min walk</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="contact-form">
-          <h3>Send a message</h3>
-          <p class="desc">For commissions, restorations, photography bookings, or anything else.</p>
+          <h3 data-i18n="contact.form.title">Send a message · お問い合わせ</h3>
+          <p class="desc">For group bookings, photography sessions, or any questions — we reply within a few hours.</p>
 
           <div class="form-row">
             <div class="field">
               <label>Name · お名前</label>
-              <input type="text">
+              <input type="text" placeholder="Your name">
             </div>
             <div class="field">
               <label>Email · メール</label>
-              <input type="email">
+              <input type="email" placeholder="your@email.com">
             </div>
           </div>
           <div class="form-row single">
             <div class="field">
               <label>Subject · 件名</label>
               <select>
-                <option>Rental inquiry</option>
-                <option>Photography booking</option>
-                <option>Custom commission</option>
-                <option>Restoration / repair</option>
-                <option>Wholesale / press</option>
-                <option>General question</option>
+                <option>Rental inquiry · レンタルのお問い合わせ</option>
+                <option>Photography booking · 撮影予約</option>
+                <option>Group / family booking · グループ予約</option>
+                <option>Hair &amp; makeup add-on · ヘアセット</option>
+                <option>Early / evening reservation · 時間外予約</option>
+                <option>General question · その他</option>
               </select>
             </div>
           </div>
           <div class="form-row single">
             <div class="field">
               <label>Message · ご用件</label>
-              <textarea rows="6" placeholder="Tell us a little about what you would like..."></textarea>
+              <textarea rows="5" placeholder="Date, number of guests, kimono type, or anything else..."></textarea>
             </div>
           </div>
-          <button class="btn" style="width:100%;justify-content:center;margin-top:12px">
+          <button class="btn" style="width:100%;justify-content:center;margin-top:12px"
+            onclick="alert('Thank you! We will reply within a few hours.\nFor faster response, message us on WhatsApp: 080-2382-9516')">
             Send Message · 送信 <i data-lucide="send"></i>
           </button>
+          <p style="text-align:center;font-size:11px;color:var(--sumi-mid);margin-top:14px;letter-spacing:0.1em;line-height:1.8">
+            Faster reply via WhatsApp or LINE · 通常数時間以内に返信
+          </p>
         </div>
       </div>
     </div>
@@ -4264,26 +4558,22 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <aside class="drawer" id="cartDrawer">
   <div class="drawer-header">
-    <div class="drawer-title">お買い物かご <small>— Your bag</small></div>
+    <div class="drawer-title">ご予約かご <small>— Booking bag</small></div>
     <button class="drawer-close" id="closeDrawer"><i data-lucide="x"></i></button>
   </div>
   <div class="drawer-body" id="cartBody">
-    <div class="cart-promo">
-      <i data-lucide="gift"></i>
-      <div>You're <strong>¥4,500</strong> away from <strong>free worldwide shipping</strong>.</div>
-    </div>
-    <!-- items injected -->
+    <!-- items injected by JS -->
   </div>
   <div class="drawer-footer">
     <div class="cart-totals">
-      <div class="row"><span>Subtotal</span><span>¥101,500</span></div>
-      <div class="row"><span>Estimated shipping</span><span>¥1,200</span></div>
-      <div class="row"><span>Tax (consumption)</span><span>included</span></div>
-      <div class="row total"><span>Total</span><span>¥102,700</span></div>
+      <div class="row"><span>Furisode rental · 1 day</span><span>¥18,000</span></div>
+      <div class="row"><span>Hair &amp; Makeup</span><span>¥5,000</span></div>
+      <div class="row"><span>Tax</span><span>included</span></div>
+      <div class="row total"><span>Total</span><span>¥23,000</span></div>
     </div>
     <div class="drawer-cta">
       <button class="btn" style="justify-content:center" data-view="checkout">
-        Proceed to Checkout · ご注文へ <i data-lucide="arrow-right"></i>
+        Confirm Booking · ご予約へ <i data-lucide="arrow-right"></i>
       </button>
       <button class="btn-link" style="text-align:center" id="closeDrawer2">Continue browsing</button>
     </div>
@@ -4295,12 +4585,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="brand" style="flex-direction:row;gap:12px;align-items:center">
-          <div class="ann-circle"></div>
-          <div style="display:flex;flex-direction:column;align-items:flex-start">
-            <span class="brand-ann" style="color:var(--kinari)">ANN</span>
-            <span class="brand-ann-sub" style="color:var(--kincha-soft)">KIMONO RENTAL</span>
-          </div>
+        <a href="#" data-view="home">
+          <img src="./ANN/Logo/Logo Ann-03.png" alt="KIMONO RENTAL ANN" class="footer-logo-img">
         </a>
         <p>
           Walk-in kimono rental, hair set, and photo service.
@@ -4308,10 +4594,27 @@
           Open 7 days a week.
         </p>
         <div class="social">
-          <a href="#"><i data-lucide="instagram"></i></a>
-          <a href="#"><i data-lucide="facebook"></i></a>
-          <a href="#"><i data-lucide="youtube"></i></a>
-          <a href="#"><i data-lucide="message-circle"></i></a>
+          <a href="https://www.instagram.com/kimono_rental_ann" target="_blank" rel="noopener" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/share/1E9AVZVYEb/" target="_blank" rel="noopener" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@kimonorentalann" target="_blank" rel="noopener" title="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          </a>
+          <a href="https://wa.me/message/T4Y57G37NFODJ1" target="_blank" rel="noopener" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://line.me/ti/p/NpXsh_7Z43" target="_blank" rel="noopener" title="LINE">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          </a>
+          <a href="https://xhslink.com/m/1oVEvcrm1qF" target="_blank" rel="noopener" title="小红书 Rednote">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.5 4.5h-5v1.25h2v1.5h-2.75v1.5h2.75v4.75h1.5v-4.75h2.75v-1.5H12v-1.5h2.5V6.5z"/></svg>
+          </a>
+          <a href="#" title="WeChat · 080-2382-9516" style="cursor:default">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.295.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-3.99-6.348-7.601-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.138 0 .25-.114.25-.25 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.74 2.532a.961.961 0 010 1.922.961.961 0 010-1.922zm7.468 0a.961.961 0 010 1.922.961.961 0 010-1.922z"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-col">
@@ -4391,8 +4694,16 @@
     const t = e.target.closest('[data-view]');
     if(t){
       e.preventDefault();
-      showView(t.dataset.view);
-      // close drawer if open
+      const view = t.dataset.view;
+      // If navigating to product, load the correct line/variant first
+      if(view === 'product'){
+        const lineId = t.dataset.line || 'furisode';
+        const vidx   = parseInt(t.dataset.vidx) || 0;
+        showView('product');
+        loadProductDetail(lineId, vidx);
+      } else {
+        showView(view);
+      }
       drawer.classList.remove('open');
       drawerOverlay.classList.remove('open');
     }
@@ -4484,61 +4795,171 @@
     </svg>`;
   }
 
-  /* ============= PRODUCT DATA — ANN Kimono Rental ============= */
-  const products = [
-    {jp:'鶴の舞',en:'Tsuru no Mai',cat:'Furisode · 振袖',price:'¥18,000',rent:'¥18,000/day',pattern:'crane',
-     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},badge:'featured',
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg'},
-    {jp:'桜霞',en:'Sakura Kasumi',cat:'Houmongi · 訪問着',price:'¥12,000',rent:'¥12,000/day',pattern:'sakura',
-     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#C1404A'},badge:'new',
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255815-500x500.jpg'},
-    {jp:'流水',en:'Ryuusui',cat:'Komon · 小紋',price:'¥8,000',rent:'¥8,000/day',pattern:'wave',
-     palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#EBA0AA'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R32-683x1024-1-500x500.jpg'},
-    {jp:'月光',en:'Gekkou',cat:'Tomesode · 留袖',price:'¥15,000',rent:'¥15,000/day',pattern:'asanoha',
-     palette:{body:'#3D1515',bg:'#FDEEF0',deepBg:'#200808',accent:'#EBA0AA'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/P14-2-995x1024-1-500x500.jpg'},
-    {jp:'紅葉',en:'Momiji',cat:'Komon · 小紋',price:'¥7,000',rent:'¥7,000/day',pattern:'momiji',
-     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R20-768x1024-1-500x500.jpg'},
-    {jp:'松竹梅',en:'Shouchikubai',cat:'Houmongi · 訪問着',price:'¥14,000',rent:'¥14,000/day',pattern:'pine',
-     palette:{body:'#5C8050',bg:'#F0F5EE',deepBg:'#1d2515',accent:'#F5C0C8'},badge:'featured',
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/ph1%EF%BC%92-4-1024x944-1-500x500.jpg'},
-    {jp:'夏祭り',en:'Natsumatsuri',cat:'Yukata · 浴衣',price:'¥4,500',rent:'¥4,500/day',pattern:'butterfly',
-     palette:{body:'#FFF8F8',bg:'#FDEEF0',deepBg:'#EBA0AA',accent:'#C1404A'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/K36-2-891x1024-1-500x500.jpg'},
-    {jp:'雪輪',en:'Yukiwa',cat:'Furisode · 振袖',price:'¥16,000',rent:'¥16,000/day',pattern:'snow',
-     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F3-500x500.jpg'},
-    {jp:'牡丹',en:'Botan',cat:'Furisode · 振袖',price:'¥20,000',rent:'¥20,000/day',pattern:'peony',
-     palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#FFF8F8'},badge:'featured',
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HF1-683x1024-1-500x500.jpg'},
-    {jp:'七宝',en:'Shippou',cat:'Tomesode · 留袖',price:'¥17,000',rent:'¥17,000/day',pattern:'shippou',
-     palette:{body:'#3D1515',bg:'#FFF8F8',deepBg:'#1A0808',accent:'#EBA0AA'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/hef2-777x1024-1-500x500.jpg'},
-    {jp:'蝶々',en:'Chouchou',cat:'Yukata · 浴衣',price:'¥5,000',rent:'¥5,000/day',pattern:'butterfly',
-     palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#F5C0C8'},
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/R36-722x1024-1-500x500.jpg'},
-    {jp:'桜牡丹',en:'Sakura Botan',cat:'Houmongi · 訪問着',price:'¥13,000',rent:'¥13,000/day',pattern:'peony',
-     palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},badge:'new',
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg'}
+  /* ============= PRODUCT DATA — ANN Kimono Rental v3 (line-based) ============= */
+  const productLines = [
+    {
+      id:'furisode', jp:'振袖', en:'Furisode Premium', price:'¥18,000', priceNum:18000,
+      num:'一', tag:'Formal · フォーマル',
+      desc:'Long-sleeved silk furisode for coming-of-age, wedding guests, and special ceremonies. All-inclusive rental.',
+      variants:[
+        {jp:'鶴の舞',en:'Tsuru no Mai',pattern:'crane',
+         palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},badge:'featured',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg'},
+        {jp:'雪輪',en:'Yukiwa',pattern:'snow',
+         palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-1.jpg'},
+        {jp:'牡丹',en:'Botan',pattern:'peony',
+         palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#FFF8F8'},badge:'featured',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/luxury-furisode-asakusa-7-683x1024.jpg'},
+      ]
+    },
+    {
+      id:'houmongi', jp:'訪問着', en:'Houmongi', price:'¥12,000', priceNum:12000,
+      num:'二', tag:'Semi-formal · 準礼装',
+      desc:'Elegant visiting dress with flowing patterns across seams. Suitable for tea ceremony, wedding guests, and formal parties.',
+      variants:[
+        {jp:'桜霞',en:'Sakura Kasumi',pattern:'sakura',
+         palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#C1404A'},badge:'new',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/traditional-kimono-asakusa-1.jpg'},
+        {jp:'松竹梅',en:'Shouchikubai',pattern:'pine',
+         palette:{body:'#5C8050',bg:'#F0F5EE',deepBg:'#1d2515',accent:'#F5C0C8'},badge:'featured',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/traditional-kimono-asakusa-2.jpg'},
+        {jp:'桜牡丹',en:'Sakura Botan',pattern:'peony',
+         palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#3D1515'},badge:'new',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/traditional-kimono-asakusa-3.jpg'},
+      ]
+    },
+    {
+      id:'komon', jp:'小紋', en:'Komon', price:'¥8,000', priceNum:8000,
+      num:'三', tag:'Casual · カジュアル',
+      desc:'Patterned everyday kimono with repeat motifs. Perfect for sightseeing, casual outings, and photography.',
+      variants:[
+        {jp:'流水',en:'Ryuusui',pattern:'wave',
+         palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#EBA0AA'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/basic-kimono-asakusa-1.jpg'},
+        {jp:'紅葉',en:'Momiji',pattern:'momiji',
+         palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/basic-kimono-asakusa-2.jpg'},
+      ]
+    },
+    {
+      id:'yukata', jp:'浴衣', en:'Yukata', price:'¥4,500', priceNum:4500,
+      num:'四', tag:'Summer · 夏',
+      desc:'Light cotton summer yukata. Ideal for festivals, evening strolls, and warm-weather photography.',
+      variants:[
+        {jp:'夏祭り',en:'Natsumatsuri',pattern:'butterfly',
+         palette:{body:'#FFF8F8',bg:'#FDEEF0',deepBg:'#EBA0AA',accent:'#C1404A'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/lace-kimono-asakusa-1.jpg'},
+        {jp:'蝶々',en:'Chouchou',pattern:'butterfly',
+         palette:{body:'#A8B8D8',bg:'#EEF0F8',deepBg:'#3D4A68',accent:'#F5C0C8'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/lace-kimono-asakusa-10-681x1024.jpg'},
+      ]
+    },
+    {
+      id:'kids', jp:'キッズ', en:'Kids Set', price:'¥6,000', priceNum:6000,
+      num:'五', tag:'Kids · お子様',
+      desc:'Complete kimono sets for children 100–130 cm. Includes kimono, obi, accessories, and kitsuke assistance.',
+      ageSizes:[
+        {height:'100cm', age:'約3歳'},
+        {height:'110cm', age:'約5歳'},
+        {height:'120cm', age:'約7歳'},
+        {height:'130cm', age:'約9歳'},
+      ],
+      variants:[
+        {jp:'小花',en:'Kohana',pattern:'sakura',
+         palette:{body:'#F5C0C8',bg:'#FFF8F8',deepBg:'#CCA8B0',accent:'#C1404A'},
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/03/kids-kimono-asakusa-1.jpg'},
+        {jp:'七五三',en:'Shichi-go-san',pattern:'crane',
+         palette:{body:'#C1404A',bg:'#FDEEF0',deepBg:'#5C2828',accent:'#EBA0AA'},badge:'featured',
+         image:'https://kimonorentalann.com/wp-content/uploads/2026/02/042A7346-683x1024.jpg'},
+      ]
+    }
   ];
 
-  /* Render real photo from yae-japan.com instead of SVG mockup */
+  /* Flatten all variants into a simple list for backwards-compat where needed */
+  const products = productLines.flatMap(line =>
+    line.variants.map(v => ({
+      ...v,
+      cat: line.jp + ' · ' + line.en,
+      price: line.price,
+      rent: line.price + '/day',
+      lineId: line.id,
+      linePrice: line.priceNum
+    }))
+  );
+
+  /* Track currently viewed product line + variant */
+  let currentLineId = 'furisode';
+  let currentVariantIdx = 0;
+
+  /* ============= CAROUSEL CONTROLLER ============= */
+  const carouselDwells = [8000, 5000, 5000];
+  let currentSlide = 0;
+  let carouselTimer = null;
+
+  function goToSlide(idx){
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const bar = document.getElementById('carouselProgress');
+    if(!slides.length) return;
+
+    slides[currentSlide].classList.remove('active');
+    if(dots[currentSlide]) dots[currentSlide].classList.remove('active');
+
+    currentSlide = ((idx % slides.length) + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    if(dots[currentSlide]) dots[currentSlide].classList.add('active');
+
+    // Reset & restart progress bar
+    if(bar){
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      void bar.offsetWidth;
+      bar.style.transition = `width ${carouselDwells[currentSlide]}ms linear`;
+      bar.style.width = '100%';
+    }
+
+    if(carouselTimer) clearTimeout(carouselTimer);
+    carouselTimer = setTimeout(()=> goToSlide(currentSlide + 1), carouselDwells[currentSlide]);
+  }
+
+  function initCarousel(){
+    const carousel = document.getElementById('heroCarousel');
+    if(!carousel) return;
+
+    document.getElementById('carouselPrev').addEventListener('click', ()=> goToSlide(currentSlide - 1));
+    document.getElementById('carouselNext').addEventListener('click', ()=> goToSlide(currentSlide + 1));
+    document.querySelectorAll('.carousel-dot').forEach(dot=>{
+      dot.addEventListener('click', ()=> goToSlide(parseInt(dot.dataset.slide)));
+    });
+
+    // Auto-pause on hover
+    carousel.addEventListener('mouseenter', ()=>{ if(carouselTimer) clearTimeout(carouselTimer); });
+    carousel.addEventListener('mouseleave', ()=>{
+      carouselTimer = setTimeout(()=> goToSlide(currentSlide + 1), carouselDwells[currentSlide]);
+    });
+
+    goToSlide(0);
+  }
+  initCarousel();
+
+  /* ============= RENDER FUNCTIONS ============= */
   function productImage(p){
     return `<img src="${p.image}" alt="${p.en}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" referrerpolicy="no-referrer">`;
   }
 
-  function productCard(p,i){
+  function productCard(p, linePrice){
     const badge = p.badge==='featured' ? '<span class="product-badge">Featured</span>'
                 : p.badge==='new' ? '<span class="product-badge new">New · 新作</span>'
                 : '';
-    return `<a class="product-card" data-view="product" href="#">
+    const jpyAmt = linePrice || p.linePrice || 0;
+    const priceStr = window.fmt ? window.fmt(jpyAmt) : (p.price || '¥'+jpyAmt.toLocaleString());
+    return `<a class="product-card" data-view="product" href="#" data-line="${p.lineId||''}" data-vidx="${p._vidx||0}">
       <div class="product-image">
         ${badge}
         <div class="product-image-inner">${productImage(p)}</div>
         <div class="product-quick">
-          <span>Quick view · 詳細</span>
+          <span>View details · 詳細</span>
           <i data-lucide="arrow-right"></i>
         </div>
       </div>
@@ -4546,53 +4967,166 @@
         <div class="product-cat">${p.cat}</div>
         <div class="product-name">${p.jp}</div>
         <div class="product-name-en">${p.en}</div>
-        <div class="product-price">${p.price} <small>RENTAL / DAY</small></div>
+        <div class="product-price">${priceStr} <small>RENTAL / DAY</small></div>
       </div>
     </a>`;
   }
 
-  // Featured (8)
-  document.getElementById('featuredGrid').innerHTML = products.slice(0,8).map(productCard).join('');
-  // Shop (12)
-  document.getElementById('shopGrid').innerHTML = products.map(productCard).join('');
-  // Related (4)
-  document.getElementById('relatedGrid').innerHTML = products.slice(2,6).map(productCard).join('');
+  // Featured grid: 8 items across all lines
+  const featuredProducts = productLines.flatMap(line =>
+    line.variants.map((v,i) => ({
+      ...v, cat: line.jp + ' · ' + line.en,
+      price: line.price, linePrice: line.priceNum, lineId: line.id, _vidx: i
+    }))
+  ).slice(0,8);
+  document.getElementById('featuredGrid').innerHTML = featuredProducts.map(productCard).join('');
 
-  // Product detail gallery
-  const galleryProduct = products[0];
-  const galleryMain = document.getElementById('galleryMain');
-  const galleryAlts = [
-    products[0],
-    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/f20-683x1024-1-500x500.jpg'},
-    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F3-500x500.jpg'},
-    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/HF1-683x1024-1-500x500.jpg'},
-    {...products[0],image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/hef2-777x1024-1-500x500.jpg'}
-  ];
-  function loadGallery(idx){
-    galleryMain.innerHTML = `
-      <button class="gallery-main-zoom"><i data-lucide="zoom-in"></i></button>
-      ${productImage(galleryAlts[idx])}
-    `;
+  // Shop: line-based sections
+  function renderShopLines(){
+    const container = document.getElementById('shopLines');
+    if(!container) return;
+    const nums = ['一','二','三','四','五'];
+    container.innerHTML = productLines.map((line, li) => `
+      <section class="line-section">
+        <div class="line-header">
+          <div class="line-title-block">
+            <div class="line-num">— ${nums[li]} — ${line.tag}</div>
+            <div class="line-jp">${line.jp}</div>
+            <div class="line-en">${line.en}</div>
+          </div>
+          <div class="line-price-block">
+            <div class="line-price">${window.fmt ? window.fmt(line.priceNum) : line.price}</div>
+            <div class="line-price-label">${window.t ? window.t('pkg.perday') : 'per day · 1日レンタル'}</div>
+          </div>
+        </div>
+        <div class="line-section-grid">
+          ${line.variants.map((v,i) => {
+            const p = {...v, cat: line.jp + ' · ' + line.en, price: line.price, linePrice: line.priceNum, lineId: line.id, _vidx: i};
+            return productCard(p, line.priceNum);
+          }).join('')}
+        </div>
+      </section>
+    `).join('');
     lucide.createIcons();
   }
-  loadGallery(0);
-  document.querySelectorAll('.gallery-thumb').forEach((t,i)=>{
-    t.innerHTML = productImage(galleryAlts[i]);
-    t.addEventListener('click',()=>{
-      document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      loadGallery(i);
-    });
-  });
+  renderShopLines();
 
-  // Cart drawer items
+  // Related (4 items from different lines)
+  const relatedProducts = [
+    {...productLines[1].variants[0], cat:'訪問着 · Houmongi', price:'¥12,000', linePrice:12000, lineId:'houmongi', _vidx:0},
+    {...productLines[2].variants[0], cat:'小紋 · Komon',     price:'¥8,000',  linePrice:8000,  lineId:'komon',    _vidx:0},
+    {...productLines[3].variants[0], cat:'浴衣 · Yukata',    price:'¥4,500',  linePrice:4500,  lineId:'yukata',   _vidx:0},
+    {...productLines[4].variants[0], cat:'キッズ · Kids',    price:'¥6,000',  linePrice:6000,  lineId:'kids',     _vidx:0},
+  ];
+  document.getElementById('relatedGrid').innerHTML = relatedProducts.map(productCard).join('');
+
+  /* ============= PRODUCT DETAIL LOADER ============= */
+  function loadProductDetail(lineId, vidx){
+    const line = productLines.find(l => l.id === lineId) || productLines[0];
+    const variant = line.variants[vidx] || line.variants[0];
+    currentLineId = line.id;
+    currentVariantIdx = vidx;
+
+    // Update breadcrumb current
+    const bc = document.querySelector('#view-product .breadcrumb .current');
+    if(bc) bc.textContent = variant.jp + ' · ' + variant.en;
+
+    // Update name
+    const nameEl = document.querySelector('.product-detail-name');
+    if(nameEl) nameEl.textContent = variant.jp;
+    const nameEnEl = document.querySelector('.product-detail-name-en');
+    if(nameEnEl) nameEnEl.textContent = `— ${variant.en}`;
+
+    // Update tags
+    const tagsEl = document.querySelector('.product-tags');
+    if(tagsEl){
+      const badgeHtml = variant.badge==='featured' ? '<span class="product-tag feature">Featured · 推薦</span>'
+                      : variant.badge==='new'      ? '<span class="product-tag feature" style="background:var(--kincha);border-color:var(--kincha)">New · 新作</span>'
+                      : '';
+      tagsEl.innerHTML = `${badgeHtml}<span class="product-tag">${line.tag}</span><span class="product-tag">${line.en}</span>`;
+    }
+
+    // Update price
+    document.getElementById('productPriceMain').textContent = line.price;
+    document.getElementById('productPriceSub').textContent = '/day · 1日レンタル';
+
+    // Update desc (generic per line for mockup)
+    document.getElementById('productDesc').textContent = line.desc;
+
+    // Variant selector block
+    const variantBlock = document.getElementById('productVariantBlock');
+    if(variantBlock){
+      if(line.id === 'kids'){
+        variantBlock.innerHTML = `
+          <div class="variant">
+            <div class="variant-label">Height · サイズ <small>Select your child's height</small></div>
+            <div class="size-options" id="ageSelector">
+              ${(line.ageSizes||[]).map((s,i)=>`
+                <div class="size-option age-size-option${i===0?' active':''}">
+                  <span class="age-height">${s.height}</span>
+                  <span class="age-approx">${s.age}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>`;
+        // Wire up age selector clicks
+        variantBlock.querySelectorAll('.size-option').forEach(opt=>{
+          opt.addEventListener('click',()=>{
+            variantBlock.querySelectorAll('.size-option').forEach(x=>x.classList.remove('active'));
+            opt.classList.add('active');
+          });
+        });
+      } else {
+        variantBlock.innerHTML = `
+          <div class="free-size-badge">
+            <i data-lucide="check-circle"></i>
+            <strong>Free Size · フリーサイズ</strong>
+            <small>One size fits all · 着付けで調整します</small>
+          </div>`;
+        lucide.createIcons();
+      }
+    }
+
+    // Gallery
+    const galleryMain = document.getElementById('galleryMain');
+    const galleryAlts = [
+      variant,
+      {...variant, image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-1.jpg'},
+      {...variant, image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-2.jpg'},
+      {...variant, image:'https://kimonorentalann.com/wp-content/uploads/2026/03/premium-furisode-Sensoji-couple-001-683x1024.jpg'},
+      {...variant, image:'https://kimonorentalann.com/wp-content/uploads/2026/03/premium-furisode-couple-momiji-885-683x1024.jpg'}
+    ];
+    function loadGallery(idx){
+      galleryMain.innerHTML = `
+        <button class="gallery-main-zoom"><i data-lucide="zoom-in"></i></button>
+        ${productImage(galleryAlts[idx])}`;
+      lucide.createIcons();
+    }
+    loadGallery(0);
+    document.querySelectorAll('.gallery-thumb').forEach((t,i)=>{
+      t.innerHTML = productImage(galleryAlts[i]);
+      t.addEventListener('click',()=>{
+        document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        loadGallery(i);
+      });
+    });
+
+    // Update Add to Cart button label
+    const cartBtn = document.querySelector('.product-actions .btn');
+    if(cartBtn) cartBtn.innerHTML = `Reserve This Style · 予約する <i data-lucide="arrow-right"></i>`;
+    lucide.createIcons();
+  }
+
+  // Load default product detail (furisode line, first variant)
+  loadProductDetail('furisode', 0);
+
+  // Cart drawer items — line-based rental labels
   const cartItems = [
-    {jp:'鶴の舞',en:'Tsuru no Mai · Size S · Vermillion',cat:'Furisode',price:'¥85,000',qty:1,
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/F2-500x500.jpg'},
-    {jp:'金襴帯',en:'Brocade Obi · Indigo',cat:'Obi',price:'¥12,000',qty:1,
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/S__11255836-500x500.jpg'},
-    {jp:'かんざし',en:'Hair Ornament · Gold pin',cat:'Accessory',price:'¥4,500',qty:1,
-     image:'https://yae-japan.com/wp2025/wp-content/uploads/2025/10/KGK1-899x1024-1-500x500.jpg'}
+    {jp:'鶴の舞',en:'Furisode Premium · 1-day rental',cat:'振袖',price:'¥18,000',qty:1,
+     image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg'},
+    {jp:'Hair &amp; Makeup',en:'Add-on service · ヘアセット',cat:'オプション',price:'¥5,000',qty:1,
+     image:'https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_9181-681x1024.jpg'}
   ];
   function renderCart(){
     const cartBody = document.getElementById('cartBody');
@@ -4613,9 +5147,10 @@
         </div>
       </div>
     `).join('');
+    const total = cartItems.reduce((sum, it) => sum + parseInt(it.price.replace(/[¥,+]/g,'')), 0);
     const promo = `<div class="cart-promo">
-      <i data-lucide="gift"></i>
-      <div>You're <strong>¥4,500</strong> away from <strong>free worldwide shipping</strong>.</div>
+      <i data-lucide="calendar-check"></i>
+      <div>Walk-in always welcome — or confirm your date at checkout for guaranteed availability.</div>
     </div>`;
     cartBody.innerHTML = promo + itemsHtml;
     lucide.createIcons();
@@ -4623,39 +5158,7 @@
   renderCart();
 
   /* ============= PRODUCT INTERACTIONS ============= */
-  // Size options
-  document.querySelectorAll('.size-options').forEach(group=>{
-    group.querySelectorAll('.size-option').forEach(opt=>{
-      opt.addEventListener('click',()=>{
-        group.querySelectorAll('.size-option').forEach(x=>x.classList.remove('active'));
-        opt.classList.add('active');
-      });
-    });
-  });
-  // Color options
-  document.querySelectorAll('.color-options').forEach(group=>{
-    group.querySelectorAll('.color-option').forEach(opt=>{
-      opt.addEventListener('click',()=>{
-        group.querySelectorAll('.color-option').forEach(x=>x.classList.remove('active'));
-        opt.classList.add('active');
-      });
-    });
-  });
-  // Filter chips
-  document.querySelectorAll('.filter-chip').forEach(chip=>{
-    chip.addEventListener('click',()=>{
-      document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
-      chip.classList.add('active');
-    });
-  });
-  // Ship options
-  document.querySelectorAll('.ship-option').forEach(opt=>{
-    opt.addEventListener('click',()=>{
-      document.querySelectorAll('.ship-option').forEach(x=>x.classList.remove('active'));
-      opt.classList.add('active');
-    });
-  });
-  // Pay tabs
+  // Pay tabs (checkout)
   document.querySelectorAll('.pay-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.pay-tab').forEach(x=>x.classList.remove('active'));
@@ -4671,7 +5174,7 @@
     inp.value = n;
   }
 
-  // Add to cart
+  // Add to cart / reserve
   function addToCart(){
     drawer.classList.add('open');
     drawerOverlay.classList.add('open');
@@ -4679,85 +5182,164 @@
     c.textContent = parseInt(c.textContent)+1;
   }
 
-  // Make functions globally accessible
   window.changeQty = changeQty;
   window.addToCart = addToCart;
 
-  /* ===== Mobile filter toggle ===== */
-  const filterToggleBtn = document.getElementById('filterToggleBtn');
-  const filtersSide = document.querySelector('#view-shop .filters-side');
-  const filterBtnText = filterToggleBtn ? filterToggleBtn.querySelector('.filter-btn-text') : null;
+  /* ============= CART COUNT INIT ============= */
+  document.getElementById('cartCount').textContent = cartItems.length;
 
-  if(filterToggleBtn && filtersSide){
-    filterToggleBtn.addEventListener('click', ()=>{
-      const isOpen = filtersSide.classList.toggle('mobile-open');
-      filterToggleBtn.setAttribute('aria-expanded', isOpen);
-      if(filterBtnText) filterBtnText.textContent = isOpen ? 'Close' : 'Filter';
-    });
-    // Close filter panel when navigating away from shop view
-    document.body.addEventListener('click', e=>{
-      const t = e.target.closest('[data-view]');
-      if(t && t.dataset.view !== 'shop'){
-        filtersSide.classList.remove('mobile-open');
-        filterToggleBtn.setAttribute('aria-expanded','false');
-        if(filterBtnText) filterBtnText.textContent = 'Filter';
+  /* ============= BOOKING CALENDAR ============= */
+  (function(){
+    const TODAY = new Date(2026, 6, 11); // July 11, 2026
+    let viewYear = 2026, viewMonth = 6;
+
+    // Availability config — day numbers per month key
+    const DAY_CONFIG = {
+      '2026-6': { full:[12,13,19,20,26,27], few:[14,17,21,24,28,31] },
+      '2026-7': { full:[2,9,16,23,30],      few:[3,5,10,12,17,19,24,26] },
+      '2026-8': { full:[6,13,20,27],         few:[7,10,14,18,21,25,28] }
+    };
+
+    // Which specific slots are taken on "few/full" days
+    const BOOKED_SLOTS = {
+      12:['9:00','10:00','11:00','14:00','15:00'],
+      13:['9:00','10:00','11:00','12:00','13:00','14:00'],
+      14:['9:00','10:00','15:00'],
+      17:['11:00','14:00'],
+      19:['9:00','10:00','13:00','14:00','15:00'],
+      20:['9:00','10:00','11:00','12:00','13:00'],
+      21:['10:00','11:00'],
+      24:['9:00','14:00','15:00'],
+      26:['10:00','11:00','14:00','15:00','16:00'],
+      27:['9:00','10:00','11:00','12:00','13:00','14:00'],
+      28:['9:00','10:00'],
+      31:['11:00','12:00']
+    };
+
+    const ALL_SLOTS = ['9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const DAYS  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    let selectedDate = null;
+    let selectedSlot = null;
+
+    function dayStatus(y, m, d) {
+      const date = new Date(y, m, d);
+      const todayMidnight = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+      if (date < todayMidnight) return 'past';
+      const cfg = DAY_CONFIG[`${y}-${m}`] || {};
+      if ((cfg.full||[]).includes(d)) return 'full';
+      if ((cfg.few||[]).includes(d))  return 'few';
+      return 'avail';
+    }
+
+    function renderCal() {
+      const grid  = document.getElementById('calGrid');
+      const label = document.getElementById('calMonthLabel');
+      if (!grid) return;
+      label.textContent = `${MONTHS[viewMonth]} ${viewYear}`;
+
+      const firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      let html = '';
+
+      for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const st = dayStatus(viewYear, viewMonth, d);
+        const sel = selectedDate &&
+                    selectedDate.y === viewYear &&
+                    selectedDate.m === viewMonth &&
+                    selectedDate.d === d;
+        const cls = [
+          'cal-day', st,
+          st === 'full' ? 'full-day' : '',
+          sel ? 'selected' : ''
+        ].filter(Boolean).join(' ');
+        html += `<div class="${cls}" data-d="${d}" data-st="${st}">
+          <span class="cal-day-num">${d}</span>
+          ${st !== 'past' ? '<span class="cal-day-dot"></span>' : ''}
+        </div>`;
       }
+      grid.innerHTML = html;
+
+      grid.querySelectorAll('.cal-day:not(.past):not(.full-day):not(.empty)').forEach(el => {
+        el.addEventListener('click', () => {
+          const d = +el.dataset.d;
+          selectedDate = { y: viewYear, m: viewMonth, d };
+          selectedSlot = null;
+          renderCal();
+          showSlots(viewYear, viewMonth, d);
+        });
+      });
+    }
+
+    function showSlots(y, m, d) {
+      document.getElementById('bookingPrompt').style.display = 'none';
+      const panel = document.getElementById('slotsPanel');
+      panel.style.display = 'flex';
+
+      const date = new Date(y, m, d);
+      document.getElementById('slotsDateLabel').innerHTML =
+        `<strong>${DAYS[date.getDay()]}, ${MONTHS[m]} ${d}</strong>`;
+
+      const booked = BOOKED_SLOTS[d] || [];
+      document.getElementById('slotsGrid').innerHTML = ALL_SLOTS.map(t => {
+        const full = booked.includes(t);
+        return `<button class="slot-btn${full?' slot-full':''}" data-t="${t}" ${full?'disabled':''}>
+          ${t}<small>${full ? 'FULL' : '≤ 6 guests'}</small>
+        </button>`;
+      }).join('');
+
+      document.getElementById('miniForm').style.display = 'none';
+      selectedSlot = null;
+
+      document.getElementById('slotsGrid').querySelectorAll('.slot-btn:not(.slot-full)').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedSlot = btn.dataset.t;
+          document.getElementById('miniForm').style.display = 'flex';
+          document.getElementById('miniForm').scrollIntoView({ behavior:'smooth', block:'nearest' });
+        });
+      });
+    }
+
+    function resetPanel() {
+      document.getElementById('bookingPrompt').style.display = 'flex';
+      document.getElementById('slotsPanel').style.display   = 'none';
+    }
+
+    document.getElementById('calPrev')?.addEventListener('click', () => {
+      viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      selectedDate = selectedSlot = null; renderCal(); resetPanel();
     });
-    // Count active filters (checkboxes) and update badge
-    function updateFilterBadge(){
-      const badge = document.getElementById('filterCountBadge');
-      if(!badge) return;
-      const active = filtersSide.querySelectorAll('input[type=checkbox]:checked').length;
-      if(active > 0){
-        badge.textContent = active;
-        badge.classList.add('visible');
-      } else {
-        badge.classList.remove('visible');
-      }
-    }
-    filtersSide.querySelectorAll('input[type=checkbox]').forEach(cb=>{
-      cb.addEventListener('change', updateFilterBadge);
+    document.getElementById('calNext')?.addEventListener('click', () => {
+      viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      selectedDate = selectedSlot = null; renderCal(); resetPanel();
     });
-    updateFilterBadge();
-  }
 
-  /* ============= TESTIMONIALS CAROUSEL ============= */
-  (function initTestCarousel(){
-    const track = document.getElementById('testTrack');
-    const prev = document.getElementById('testPrev');
-    const next = document.getElementById('testNext');
-    if(!track || !prev || !next) return;
+    document.getElementById('bookingConfirmBtn')?.addEventListener('click', () => {
+      if (!selectedDate || !selectedSlot) return;
+      const name   = (document.getElementById('bfName')?.value.trim()) || 'Guest';
+      const guests = document.getElementById('bfGuests')?.value || '1';
+      const via    = document.getElementById('bfContact')?.value || 'WhatsApp';
+      const { y, m, d } = selectedDate;
+      const dateStr = `${DAYS[new Date(y,m,d).getDay()]}, ${MONTHS[m]} ${d}, ${y}`;
+      const msg = `Hello Kimono Rental ANN! 🌸\n\nI'd like to book:\n📅 ${dateStr}\n⏰ ${selectedSlot}\n👥 ${guests} guest(s)\n👤 Name: ${name}\n📲 Preferred contact: ${via}\n\nPlease confirm my reservation. Thank you!`;
+      window.open(`https://wa.me/818023829516?text=${encodeURIComponent(msg)}`, '_blank');
+    });
 
-    function getStep(){
-      const card = track.querySelector('.test-card');
-      if(!card) return track.clientWidth * 0.9;
-      const style = getComputedStyle(track);
-      const gap = parseFloat(style.columnGap || style.gap || 0);
-      return card.getBoundingClientRect().width + gap;
-    }
+    // Expose for i18n engine
+    window.CAL_MONTHS = MONTHS;
+    window.CAL_DAYS = DAYS;
+    window.calRender = renderCal;
 
-    function updateBtns(){
-      const max = track.scrollWidth - track.clientWidth - 1;
-      prev.disabled = track.scrollLeft <= 0;
-      next.disabled = track.scrollLeft >= max;
-    }
-
-    prev.addEventListener('click', ()=> track.scrollBy({left: -getStep(), behavior:'smooth'}));
-    next.addEventListener('click', ()=> track.scrollBy({left:  getStep(), behavior:'smooth'}));
-    track.addEventListener('scroll', updateBtns, {passive:true});
-    window.addEventListener('resize', updateBtns);
-    updateBtns();
+    // Init immediately (views are always in DOM)
+    renderCal();
   })();
 
-  /* ============= PRODUCT REVIEWS — show more ============= */
-  (function initProductReviews(){
-    const btn = document.getElementById('reviewsLoadMore');
-    if(!btn) return;
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.review-item.hidden').forEach(el=>el.classList.remove('hidden'));
-      btn.remove();
-    });
-  })();
-</script>
+  
+  </script>
 </body>
 </html>

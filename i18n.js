@@ -727,10 +727,12 @@ function applyLang(lang) {
   // Calendar slot labels & legend
   document.querySelectorAll('.slot-btn:not(.slot-full) small')
     .forEach(s => s.textContent = t('cal.guests'));
-  const legend = document.querySelectorAll('.cal-legend span');
-  if (legend[0]) legend[0].childNodes[1].textContent = ' ' + t('cal.available');
-  if (legend[1]) legend[1].childNodes[1].textContent = ' ' + t('cal.few');
-  if (legend[2]) legend[2].childNodes[1].textContent = ' ' + t('cal.full');
+  const legendKeys = ['cal.available', 'cal.few', 'cal.full'];
+  document.querySelectorAll('.cal-legend > span').forEach((span, i) => {
+    if (!legendKeys[i]) return;
+    const txt = span.lastChild;
+    if (txt && txt.nodeType === 3) txt.textContent = ' ' + t(legendKeys[i]);
+  });
 }
 
 /* ── Wire buttons & init ─────────────────────────────────── */

@@ -3311,17 +3311,17 @@
   }
 
   /* ============ AUTH MODAL ============ */
-  #authModal{position:fixed;inset:0;z-index:9000;display:none;align-items:stretch}
-  #authModal.open{display:flex}
+  #view-auth{display:none;align-items:stretch;min-height:calc(100vh - 102px)}
+  #view-auth.active{display:flex}
   .auth-left{
-    width:420px;min-width:300px;max-width:46%;
-    background:#fff;display:flex;flex-direction:column;
-    padding:52px 56px 40px;overflow-y:auto;
+    width:50%;min-width:300px;
+    background:var(--kinari);display:flex;flex-direction:column;
+    padding:52px 64px 48px;overflow-y:auto;
   }
   .auth-right{
-    flex:1;
+    width:50%;
     background:url('https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4.jpg') center 15%/cover no-repeat;
-    position:relative;
+    position:relative;min-height:500px;
   }
   .auth-logo{height:38px;width:auto;object-fit:contain;object-position:left;margin-bottom:44px}
   .auth-heading{
@@ -3391,7 +3391,7 @@
   }
   .auth-close-btn:hover{background:rgba(0,0,0,0.55)}
   .auth-book-guest{
-    position:absolute;bottom:28px;right:28px;
+    position:absolute;bottom:28px;left:28px;
     background:rgba(15,5,5,0.42);border:1px solid rgba(255,255,255,0.38);color:#fff;
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
@@ -3409,9 +3409,9 @@
   #authRegFields.show{display:block}
   #authSignFields.hide{display:none}
   @media(max-width:680px){
-    .auth-left{max-width:100%;width:100%}
+    #view-auth.active{display:block}
+    .auth-left{width:100%}
     .auth-right{display:none}
-    #authModal.open{display:block;overflow-y:auto}
   }
 </style>
 </head>
@@ -4776,8 +4776,8 @@
   </div>
 </footer>
 
-<!-- ===================== AUTH MODAL ===================== -->
-<div id="authModal">
+<!-- ===================== AUTH VIEW ===================== -->
+<div class="view" id="view-auth">
   <div class="auth-left">
     <img src="./ANN/Logo/Logo Ann - Hong Trong Suot.png" alt="KIMONO RENTAL ANN" class="auth-logo">
     <h2 class="auth-heading">Sign in or register</h2>
@@ -4843,7 +4843,6 @@
   </div>
 
   <div class="auth-right">
-    <button class="auth-close-btn" id="authCloseBtn" aria-label="Close">&times;</button>
     <button class="auth-book-guest" id="authBookGuest">Book as guest &#8599;</button>
   </div>
 </div>
@@ -6273,7 +6272,6 @@ if (document.readyState === 'loading') {
    AUTH MODAL
    ============================================================ */
 (function(){
-  var modal   = document.getElementById('authModal');
   var userBtn = document.getElementById('userAuthBtn');
   var pendingView = null;
 
@@ -6308,23 +6306,17 @@ if (document.readyState === 'loading') {
     }
   }
 
-  /* ── open / close ── */
+  /* ── open (auth is now a view, not overlay) ── */
   window.openAuth = function(target){
     pendingView = target || null;
     showSignin();
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    if(typeof window.showViewGlobal === 'function') window.showViewGlobal('auth');
   };
-  function closeModal(){
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+
   function proceed(){
-    closeModal();
-    if(pendingView && typeof window.showViewGlobal === 'function'){
-      window.showViewGlobal(pendingView);
-      pendingView = null;
-    }
+    var dest = pendingView || 'home';
+    pendingView = null;
+    if(typeof window.showViewGlobal === 'function') window.showViewGlobal(dest);
   }
 
   /* ── mode switch ── */
@@ -6343,7 +6335,6 @@ if (document.readyState === 'loading') {
 
   document.getElementById('authToRegister').addEventListener('click', showRegister);
   document.getElementById('authToSignin').addEventListener('click', showSignin);
-  document.getElementById('authCloseBtn').addEventListener('click', closeModal);
 
   /* ── sign in ── */
   document.getElementById('authSigninBtn').addEventListener('click', function(){

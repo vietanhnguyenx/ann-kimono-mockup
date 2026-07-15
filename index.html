@@ -3317,12 +3317,17 @@
   }
   #view-auth.active{display:flex}
   .auth-left{
-    width:34%;min-width:280px;
+    width:50%;
     background:var(--kinari);display:flex;flex-direction:column;
-    padding:52px 52px 48px;overflow-y:auto;
+    align-items:center;justify-content:center;
+    padding:52px 24px 48px;overflow-y:auto;
+  }
+  .auth-left-inner{
+    width:100%;max-width:380px;
+    display:flex;flex-direction:column;
   }
   .auth-right{
-    flex:1;
+    width:50%;
     background:url('https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4.jpg') center 15%/cover no-repeat;
     position:relative;min-height:500px;
   }
@@ -4690,6 +4695,7 @@
 <!-- ===================== AUTH VIEW ===================== -->
 <div class="view" id="view-auth">
   <div class="auth-left">
+   <div class="auth-left-inner">
     <img src="./ANN/Logo/Logo Ann - Hong Trong Suot.png" alt="KIMONO RENTAL ANN" class="auth-logo">
     <h2 class="auth-heading">Sign in or register</h2>
     <p class="auth-sub">Access your bookings and manage your kimono experience.</p>
@@ -4751,6 +4757,7 @@
     <div class="auth-mode-switch" id="authModeBack" style="display:none">
       <a id="authToSignin">&#8592; Back to sign in</a>
     </div>
+   </div>
   </div>
 
   <div class="auth-right">

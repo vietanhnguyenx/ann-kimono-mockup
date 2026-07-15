@@ -3311,9 +3311,11 @@
   }
 
   /* ============ AUTH MODAL ============ */
-  #view-auth{display:none;align-items:stretch;min-height:calc(100vh - 102px)}
+  #view-auth{
+    position:fixed;left:0;right:0;bottom:0;top:102px;
+    z-index:30;display:none;align-items:stretch;overflow-y:auto;
+  }
   #view-auth.active{display:flex}
-  body.auth-open footer{display:none}
   .auth-left{
     width:34%;min-width:280px;
     background:var(--kinari);display:flex;flex-direction:column;
@@ -3410,6 +3412,7 @@
   #authRegFields.show{display:block}
   #authSignFields.hide{display:none}
   @media(max-width:680px){
+    #view-auth{top:80px}
     #view-auth.active{display:block}
     .auth-left{width:100%}
     .auth-right{display:none}
@@ -4863,7 +4866,6 @@
     navLinks.forEach(a=>{
       a.classList.toggle('active', a.dataset.view === name);
     });
-    if(name !== 'auth') document.body.classList.remove('auth-open');
   }
   window.showViewGlobal = showView;
 
@@ -6308,18 +6310,16 @@ if (document.readyState === 'loading') {
     }
   }
 
-  /* ── open (auth is a view, footer hidden while active) ── */
+  /* ── open / close ── */
   window.openAuth = function(target){
     pendingView = target || null;
     showSignin();
-    document.body.classList.add('auth-open');
     if(typeof window.showViewGlobal === 'function') window.showViewGlobal('auth');
   };
 
   function proceed(){
     var dest = pendingView || 'home';
     pendingView = null;
-    document.body.classList.remove('auth-open');
     if(typeof window.showViewGlobal === 'function') window.showViewGlobal(dest);
   }
 

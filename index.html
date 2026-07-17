@@ -3422,6 +3422,167 @@
     .auth-left{width:100%}
     .auth-right{display:none}
   }
+
+  /* ============ RESERVATION VIEW ============ */
+  #view-reservation .page-intro{padding:56px 0 32px;text-align:center}
+  #view-reservation .page-eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--shu);font-size:11px;letter-spacing:0.36em;text-transform:uppercase;font-weight:500;margin-bottom:18px}
+  #view-reservation .page-eyebrow::before,#view-reservation .page-eyebrow::after{content:'';width:30px;height:1px;background:var(--shu)}
+  #view-reservation .page-title{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;line-height:1.05;letter-spacing:-0.01em;color:var(--sumi);margin:0}
+  #view-reservation .page-title em{font-style:italic;color:var(--shu)}
+  #view-reservation .page-title-jp{font-family:'Shippori Mincho',serif;font-size:16px;letter-spacing:0.4em;color:var(--sumi-mid);font-weight:400;margin-top:14px;display:block}
+
+  #view-reservation .booking-shell{display:grid;grid-template-columns:1fr 380px;gap:48px;padding:24px 0 96px;align-items:flex-start}
+  #view-reservation .section-card{background:rgba(255,255,255,0.55);border:1px solid var(--line-strong);padding:28px 32px;margin-bottom:20px;position:relative}
+  #view-reservation .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  #view-reservation .section-num{display:inline-flex;align-items:center;gap:14px}
+  #view-reservation .section-num-badge{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--sumi);color:var(--kinari);font-size:11px;font-weight:600;font-family:'Cormorant Garamond',serif}
+  #view-reservation .section-num-badge.done{background:var(--koke)}
+  #view-reservation .section-h{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--sumi);letter-spacing:0.01em;line-height:1;margin:0}
+  #view-reservation .section-h em{color:var(--shu);font-style:italic}
+  #view-reservation .section-h-jp{font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:0.32em;color:var(--sumi-mid);font-weight:400;text-transform:uppercase}
+  #view-reservation .section-hint{font-size:12px;color:var(--sumi-mid);font-weight:300}
+
+  #view-reservation .form-row.triple{grid-template-columns:1fr 1fr 1fr}
+  #view-reservation .field label .req{color:var(--shu);margin-left:2px}
+  #view-reservation .field select{cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1 L5 5 L9 1' stroke='%235C2828' stroke-width='1.4' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;appearance:none}
+
+  #view-reservation .account-swap{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--sumi-soft);margin-bottom:14px;flex-wrap:wrap}
+  #view-reservation .account-swap.signed-in{background:rgba(92,128,80,0.08);border:1px solid rgba(92,128,80,0.25);padding:10px 14px}
+  #view-reservation .link-inline{color:var(--shu);text-decoration:none;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:11px;border:none;background:none;cursor:pointer;font-family:inherit;padding:0;border-bottom:1px solid transparent;transition:border-color .2s}
+  #view-reservation .link-inline:hover{border-bottom-color:var(--shu)}
+
+  #view-reservation .datetime-row{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start}
+  #view-reservation .time-chips{display:flex;flex-wrap:wrap;gap:8px}
+  #view-reservation .chip{padding:8px 14px;border:1px solid var(--line-strong);background:var(--kinari);cursor:pointer;font-size:13px;font-weight:500;color:var(--sumi-soft);transition:all .15s;font-family:inherit;letter-spacing:0.03em}
+  #view-reservation .chip:hover{border-color:var(--sumi-light);color:var(--sumi)}
+  #view-reservation .chip.active{background:var(--shu);color:var(--kinari);border-color:var(--shu)}
+
+  #view-reservation .guests-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  #view-reservation .guest-cell{border:1px solid var(--line-strong);padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--kinari);transition:border-color .2s}
+  #view-reservation .guest-cell.has-count{border-color:var(--shu);background:var(--sakura-soft)}
+  #view-reservation .guest-cell .g-icon{width:32px;height:32px;color:var(--sumi-mid)}
+  #view-reservation .guest-cell .g-title{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sumi);font-weight:600;text-align:center;line-height:1.2}
+  #view-reservation .guest-cell .g-age{font-size:10px;color:var(--sumi-mid);letter-spacing:0.08em}
+  #view-reservation .stepper{display:flex;align-items:center;gap:10px}
+  #view-reservation .step-btn{width:28px;height:28px;border:1px solid var(--sumi-light);background:var(--kinari);color:var(--sumi);cursor:pointer;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:inherit}
+  #view-reservation .step-btn:hover:not(:disabled){border-color:var(--shu);color:var(--shu)}
+  #view-reservation .step-btn:disabled{opacity:0.3;cursor:not-allowed}
+  #view-reservation .step-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--sumi);min-width:22px;text-align:center;line-height:1}
+
+  #view-reservation .outfit-group{margin-top:10px}
+  #view-reservation .outfit-group + .outfit-group{margin-top:22px;padding-top:22px;border-top:1px dashed var(--line-strong)}
+  #view-reservation .outfit-group-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  #view-reservation .outfit-group-h .g-name{font-family:'Shippori Mincho',serif;font-size:14px;color:var(--sumi);letter-spacing:0.12em}
+  #view-reservation .outfit-group-h .g-name em{color:var(--shu);font-style:normal;margin-left:8px;font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0.02em;font-weight:500}
+  #view-reservation .outfit-row{display:grid;grid-template-columns:22px 1fr 130px auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line-strong);margin-bottom:8px;background:var(--kinari);transition:border-color .15s}
+  #view-reservation .outfit-row:hover{border-color:var(--sumi-light)}
+  #view-reservation .outfit-row.at-shop{border-style:dashed;background:var(--sakura-soft)}
+  #view-reservation .outfit-row .idx{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--sumi-mid);text-align:center}
+  #view-reservation .outfit-row select{padding:8px 32px 8px 12px;border:1px solid var(--line-strong);background:var(--kinari);font-family:inherit;font-size:13px;color:var(--sumi);outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1 L5 5 L9 1' stroke='%235C2828' stroke-width='1.4' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 10px center}
+  #view-reservation .outfit-row .price{text-align:right;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--sumi);font-weight:500}
+  #view-reservation .outfit-row .price.pending{color:var(--sumi-mid);font-style:italic;font-size:12px;font-family:inherit;letter-spacing:0.08em;text-transform:uppercase}
+  #view-reservation .at-shop-toggle{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sumi-mid);cursor:pointer;font-weight:600;white-space:nowrap}
+  #view-reservation .at-shop-toggle input{accent-color:var(--shu);cursor:pointer}
+  #view-reservation .empty-hint{text-align:center;padding:32px 20px;color:var(--sumi-mid);font-size:13px;font-style:italic;border:1px dashed var(--line-strong)}
+
+  #view-reservation .addon-block + .addon-block{margin-top:26px;padding-top:22px;border-top:1px dashed var(--line-strong)}
+  #view-reservation .addon-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:12px;flex-wrap:wrap}
+  #view-reservation .addon-h .a-name{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--sumi);letter-spacing:0.1em}
+  #view-reservation .addon-h .a-name em{color:var(--shu);font-style:normal;margin-left:8px;font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:0.02em;font-weight:500}
+  #view-reservation .addon-h .a-note{font-size:11px;color:var(--sumi-mid);letter-spacing:0.06em}
+  #view-reservation .addon-tiers{display:grid;grid-template-columns:repeat(3,1fr) 100px;gap:8px}
+  #view-reservation .tier{border:1px solid var(--line-strong);padding:14px 14px;cursor:pointer;background:var(--kinari);transition:all .18s;display:flex;flex-direction:column;gap:6px;position:relative;text-align:left;font-family:inherit}
+  #view-reservation .tier:hover{border-color:var(--sumi-light)}
+  #view-reservation .tier.active{border-color:var(--shu);background:var(--sakura-soft)}
+  #view-reservation .tier.active::after{content:'';position:absolute;top:8px;right:8px;width:14px;height:14px;border-radius:50%;background:var(--shu);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2 6 L5 9 L10 3' stroke='%23FFF8F8' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-size:10px;background-position:center;background-repeat:no-repeat}
+  #view-reservation .tier .t-name{font-size:12px;font-weight:600;color:var(--sumi);letter-spacing:0.06em;line-height:1.2}
+  #view-reservation .tier .t-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--sumi);font-weight:500;line-height:1}
+  #view-reservation .tier .t-price small{font-size:11px;color:var(--sumi-mid);font-family:inherit;letter-spacing:0.08em;text-transform:uppercase;margin-left:4px;font-weight:500}
+  #view-reservation .tier .t-desc{font-size:11px;color:var(--sumi-mid);line-height:1.4;font-weight:300}
+  #view-reservation .tier-none .t-price{color:var(--sumi-mid);font-size:14px;font-family:inherit;letter-spacing:0.1em;text-transform:uppercase}
+
+  #view-reservation .return-list{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  #view-reservation .return-opt{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--line-strong);background:var(--kinari);cursor:pointer;transition:all .18s;font-family:inherit;text-align:left}
+  #view-reservation .return-opt.active{border-color:var(--shu);background:var(--sakura-soft)}
+  #view-reservation .return-opt .r-name{font-size:12px;font-weight:600;color:var(--sumi);letter-spacing:0.06em}
+  #view-reservation .return-opt .r-note{display:block;font-size:10px;color:var(--sumi-mid);font-weight:400;margin-top:2px;letter-spacing:0.04em}
+  #view-reservation .return-opt .r-fee{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--sumi);font-weight:500}
+  #view-reservation .return-opt .r-fee.free{color:var(--koke)}
+
+  #view-reservation .r-accordion{border-top:1px solid var(--line-strong)}
+  #view-reservation .r-accordion-item{border-bottom:1px solid var(--line-strong)}
+  #view-reservation .r-accordion-head{width:100%;background:none;border:none;text-align:left;padding:14px 4px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--sumi);font-family:inherit;font-size:13px;font-weight:600;letter-spacing:0.06em}
+  #view-reservation .r-accordion-head .plus{color:var(--shu);font-size:18px;transition:transform .2s}
+  #view-reservation .r-accordion-item.open .plus{transform:rotate(45deg)}
+  #view-reservation .r-accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  #view-reservation .r-accordion-item.open .r-accordion-body{max-height:500px}
+  #view-reservation .r-accordion-body-inner{padding:2px 4px 18px;font-size:13px;line-height:1.7;color:var(--sumi-soft);font-weight:300}
+  #view-reservation .r-accordion-body-inner ul{margin:8px 0 0 18px;display:flex;flex-direction:column;gap:4px}
+  #view-reservation .r-accordion-body-inner strong{color:var(--sumi);font-weight:600}
+  #view-reservation .agree{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:14px;background:var(--sakura-soft);border:1px solid var(--line-strong);cursor:pointer}
+  #view-reservation .agree input{margin-top:3px;accent-color:var(--shu);cursor:pointer;flex-shrink:0}
+  #view-reservation .agree span{font-size:12px;color:var(--sumi);line-height:1.5}
+
+  #view-reservation .r-summary{position:sticky;top:118px;background:var(--kinari);border:1px solid var(--line-strong);padding:24px 24px 20px;box-shadow:0 20px 60px -30px rgba(61,21,21,0.2)}
+  #view-reservation .r-summary::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--shu),var(--sakura),var(--shu))}
+  #view-reservation .r-summary-h{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--sumi);margin-bottom:4px;line-height:1}
+  #view-reservation .r-summary-jp{font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:0.32em;color:var(--sumi-mid);text-transform:uppercase;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line-strong)}
+  #view-reservation .sum-block{margin-bottom:16px}
+  #view-reservation .sum-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sumi-mid);font-weight:600;margin-bottom:6px}
+  #view-reservation .sum-value{font-size:14px;color:var(--sumi);font-weight:500;line-height:1.5}
+  #view-reservation .sum-value.muted{color:var(--sumi-mid);font-style:italic;font-weight:400;font-size:13px}
+  #view-reservation .sum-lines{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+  #view-reservation .sum-line{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--sumi-soft);line-height:1.4}
+  #view-reservation .sum-line .l-txt{flex:1}
+  #view-reservation .sum-line .l-price{font-family:'Cormorant Garamond',serif;color:var(--sumi);font-weight:500;font-size:14px;white-space:nowrap}
+  #view-reservation .sum-line .l-price.pending{color:var(--kincha);font-style:italic}
+  #view-reservation .sum-divider{height:1px;background:var(--line-strong);margin:16px 0}
+  #view-reservation .sum-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:4px}
+  #view-reservation .sum-total .t-label{font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sumi);font-weight:600}
+  #view-reservation .sum-total .t-price{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--sumi);font-weight:500;line-height:1}
+  #view-reservation .sum-deposit{margin-top:12px;padding:12px 14px;background:var(--kinari-warm);border:1px dashed var(--shu);display:flex;justify-content:space-between;align-items:center}
+  #view-reservation .sum-deposit.hidden{display:none}
+  #view-reservation .sum-deposit .d-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sumi);font-weight:600;line-height:1.3}
+  #view-reservation .sum-deposit .d-label small{display:block;font-size:10px;color:var(--sumi-mid);font-weight:400;letter-spacing:0.06em;text-transform:none;margin-top:2px}
+  #view-reservation .sum-deposit .d-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--shu);font-weight:600;white-space:nowrap}
+  #view-reservation .cta-book{width:100%;margin-top:20px;padding:16px;background:var(--sumi);color:var(--kinari);border:none;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:10px}
+  #view-reservation .cta-book:hover:not(:disabled){background:var(--shu)}
+  #view-reservation .cta-book:disabled{opacity:0.4;cursor:not-allowed}
+  #view-reservation .cta-book svg{width:14px;height:14px}
+  #view-reservation .cta-sub{text-align:center;font-size:11px;color:var(--sumi-mid);margin-top:10px;letter-spacing:0.06em}
+
+  #view-reservation .r-mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--kinari);border-top:1px solid var(--line-strong);padding:12px 16px;z-index:30;box-shadow:0 -6px 24px -12px rgba(61,21,21,0.25);align-items:center;justify-content:space-between;gap:12px}
+  #view-reservation .r-mobile-bar .m-total{display:flex;flex-direction:column;line-height:1}
+  #view-reservation .r-mobile-bar .m-label{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sumi-mid);font-weight:600;margin-bottom:3px}
+  #view-reservation .r-mobile-bar .m-price{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--sumi);font-weight:600}
+  #view-reservation .r-mobile-bar .m-cta{padding:12px 22px;background:var(--sumi);color:var(--kinari);border:none;font-family:inherit;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;cursor:pointer}
+
+  @media(max-width:1100px){
+    #view-reservation .booking-shell{grid-template-columns:1fr;gap:0}
+    #view-reservation .r-summary{position:static;margin-top:24px}
+    #view-reservation .page-title{font-size:48px}
+  }
+  @media(max-width:900px){
+    #view-reservation .guests-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:720px){
+    #view-reservation .page-title{font-size:36px}
+    #view-reservation .section-card{padding:22px 20px}
+    #view-reservation .form-row.triple{grid-template-columns:1fr;gap:12px}
+    #view-reservation .datetime-row{grid-template-columns:1fr}
+    #view-reservation .outfit-row{grid-template-columns:22px 1fr;grid-template-rows:auto auto;gap:8px 12px}
+    #view-reservation .outfit-row select{grid-column:2}
+    #view-reservation .outfit-row .price{grid-column:2;text-align:left;font-size:14px}
+    #view-reservation .outfit-row .at-shop-toggle{grid-column:2}
+    #view-reservation .r-summary{display:none}
+    #view-reservation .r-mobile-bar{display:flex}
+    #view-reservation .booking-shell{padding-bottom:96px}
+  }
+  @media(max-width:640px){
+    #view-reservation .addon-tiers{grid-template-columns:1fr 1fr}
+    #view-reservation .addon-tiers .tier-none{grid-column:span 2}
+    #view-reservation .return-list{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -3472,7 +3633,7 @@
       <img src="./ANN/Logo/Logo Ann - Hong Trong Suot.png" alt="KIMONO RENTAL ANN" class="header-logo-img">
     </a>
     <div class="header-actions">
-      <button class="header-reservation-btn" data-view="checkout">
+      <button class="header-reservation-btn" data-view="reservation">
         <span data-i18n="nav.reservation">Reservation</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
@@ -4074,243 +4235,293 @@
   </section>
 </div>
 
-<!-- ===================== CHECKOUT VIEW ===================== -->
-<div class="view" id="view-checkout">
-  <section class="checkout-view">
+<!-- ===================== RESERVATION VIEW ===================== -->
+<div class="view" id="view-reservation">
+  <section class="page-intro">
     <div class="container">
-      <div class="breadcrumb">
-        <a href="#" data-view="home">Home</a>
-        <span class="sep">/</span>
-        <span class="current" data-i18n="checkout.breadcrumb">Checkout · ご注文</span>
-      </div>
-
-      <div class="checkout-steps">
-        <div class="checkout-step done">
-          <div class="num"><i data-lucide="check" style="width:14px;height:14px"></i></div>
-          <span>Selection</span>
-          <div class="sep"></div>
-        </div>
-        <div class="checkout-step active">
-          <div class="num">2</div>
-          <span>Your Details</span>
-          <div class="sep"></div>
-        </div>
-        <div class="checkout-step">
-          <div class="num">3</div>
-          <span>Payment</span>
-          <div class="sep"></div>
-        </div>
-        <div class="checkout-step">
-          <div class="num">4</div>
-          <span>Confirmed</span>
-        </div>
-      </div>
-
-      <div class="checkout-layout">
-        <div>
-          <div class="checkout-section">
-            <h3 data-i18n="checkout.details.title">Your Details <small>— ご予約情報</small></h3>
-            <p class="desc">No account needed. We'll send your booking confirmation to this email. Just bring it (or show on your phone) when you visit.</p>
-            <div class="form-row">
-              <div class="field">
-                <label>First name · 名</label>
-                <input type="text" placeholder="Sumire">
-              </div>
-              <div class="field">
-                <label>Last name · 姓</label>
-                <input type="text" placeholder="Tanaka">
-              </div>
-            </div>
-            <div class="form-row single">
-              <div class="field">
-                <label>Email address · メールアドレス</label>
-                <input type="email" placeholder="sumire@example.com">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label>Phone (optional) · 電話番号</label>
-                <input type="tel" placeholder="+81 / +84 / +1 ...">
-              </div>
-              <div class="field">
-                <label>Country / Region · 国</label>
-                <select>
-                  <option>Japan · 日本</option>
-                  <option>Vietnam · ベトナム</option>
-                  <option>South Korea · 韓国</option>
-                  <option>China · 中国</option>
-                  <option>Singapore · シンガポール</option>
-                  <option>United States</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="checkout-section">
-            <h3 data-i18n="checkout.date.title">Visit Date <small>— ご来店予定日</small></h3>
-            <p class="desc">Pick a date from the calendar — walk-ins always welcome, but reserving ahead guarantees your slot.</p>
-
-            <div class="booking-cal-wrap" style="margin-top:24px">
-              <!-- LEFT: Calendar -->
-              <div class="booking-cal-left">
-                <div class="cal-nav">
-                  <button class="cal-nav-btn" id="calPrev">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
-                  </button>
-                  <span class="cal-month-label" id="calMonthLabel">July 2026</span>
-                  <button class="cal-nav-btn" id="calNext">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><polyline points="9 18 15 12 9 6"/></svg>
-                  </button>
-                </div>
-                <div class="cal-weekdays">
-                  <span>Sun</span><span>Mon</span><span>Tue</span>
-                  <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-                </div>
-                <div class="cal-grid" id="calGrid"></div>
-                <div class="cal-legend">
-                  <span><span class="cal-dot avail"></span>Available</span>
-                  <span><span class="cal-dot few"></span>Few spots</span>
-                  <span><span class="cal-dot full"></span>Fully booked</span>
-                </div>
-              </div>
-
-              <!-- RIGHT: Slots + confirm -->
-              <div class="booking-cal-right">
-                <div class="booking-prompt" id="bookingPrompt">
-                  <div class="booking-prompt-jp">選<br>日<br>付</div>
-                  <p>Select a date to see<br>available time slots</p>
-                </div>
-                <div class="booking-slots-panel" id="slotsPanel" style="display:none">
-                  <div class="slots-date-label" id="slotsDateLabel"></div>
-                  <div class="slots-grid" id="slotsGrid"></div>
-                  <div class="booking-mini-form" id="miniForm" style="display:none;flex-direction:column;gap:14px">
-                    <div class="booking-form-row">
-                      <div class="field">
-                        <label>Your Name · お名前</label>
-                        <input type="text" id="bfName" placeholder="e.g. Sarah">
-                      </div>
-                      <div class="field">
-                        <label>Guests · 人数</label>
-                        <input type="number" id="bfGuests" min="1" max="6" value="1">
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label>Contact via · 連絡方法</label>
-                      <select id="bfContact">
-                        <option value="WhatsApp">WhatsApp</option>
-                        <option value="LINE">LINE</option>
-                        <option value="Email">Email</option>
-                      </select>
-                    </div>
-                    <button class="booking-confirm-btn" id="bookingConfirmBtn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.55 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.46 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                      Confirm via WhatsApp
-                    </button>
-                    <p style="text-align:center;font-size:10px;color:var(--sumi-mid);letter-spacing:0.1em;margin-top:2px">
-                      Opens WhatsApp with booking details pre-filled
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-row single" style="margin-top:20px">
-              <div class="field">
-                <label>Special requests <small style="text-transform:none;letter-spacing:0;color:var(--sumi-light)">— optional</small></label>
-                <textarea placeholder="E.g. add hair &amp; makeup, group of 3, children's size, any requests..."></textarea>
-              </div>
-            </div>
-          </div>
-
-          <div class="checkout-section">
-            <h3 data-i18n="checkout.payment.title">Payment <small>— お支払い</small></h3>
-            <p class="desc">All transactions are encrypted and processed via Stripe.</p>
-            <div class="pay-tabs">
-              <div class="pay-tab active">
-                <i data-lucide="credit-card"></i>
-                <span>Card</span>
-              </div>
-              <div class="pay-tab">
-                <i data-lucide="building"></i>
-                <span>Bank Transfer</span>
-              </div>
-              <div class="pay-tab">
-                <i data-lucide="smartphone"></i>
-                <span>PayPay · LINE Pay</span>
-              </div>
-            </div>
-            <div class="form-row single">
-              <div class="field">
-                <label>Card number</label>
-                <input type="text" placeholder="•••• •••• •••• ••••">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label>Expiry</label>
-                <input type="text" placeholder="MM / YY">
-              </div>
-              <div class="field">
-                <label>CVC</label>
-                <input type="text" placeholder="•••">
-              </div>
-            </div>
-          </div>
-
-          <button class="btn" style="width:100%;justify-content:center;padding:22px" onclick="alert('ご予約を受け付けました · Booking confirmed! We will contact you within 24 hours.')">
-            Confirm Booking · ご予約確定 — ¥23,000 <i data-lucide="arrow-right"></i>
-          </button>
-          <p style="text-align:center;font-size:11px;color:var(--sumi-light);margin-top:14px;letter-spacing:0.1em;line-height:1.8">No payment required now · Visit us and pay on the day</p>
-        </div>
-
-        <aside class="order-summary">
-          <h3 data-i18n="checkout.summary.title">Booking Summary <small>ご予約内容</small></h3>
-          <div class="order-line">
-            <div class="order-line-img" style="background:linear-gradient(135deg,#C1404A,#5C2828);position:relative;overflow:hidden">
-              <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
-              <div class="order-line-qty">1</div>
-            </div>
-            <div class="order-line-info">
-              <strong>鶴の舞</strong>
-              <span>Furisode Premium · 1-day rental</span>
-            </div>
-            <div class="order-line-price">¥18,000</div>
-          </div>
-          <div class="order-line">
-            <div class="order-line-img" style="background:linear-gradient(135deg,#F5C0C8,#CCA8B0);position:relative;overflow:hidden">
-              <img src="https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_9181-681x1024.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
-              <div class="order-line-qty">1</div>
-            </div>
-            <div class="order-line-info">
-              <strong>Hair &amp; Makeup</strong>
-              <span>Add-on service · ヘアセット</span>
-            </div>
-            <div class="order-line-price">+¥5,000</div>
-          </div>
-
-          <div class="promo-box">
-            <input type="text" placeholder="Promo code · クーポン">
-            <button>Apply</button>
-          </div>
-
-          <div class="cart-totals">
-            <div class="row"><span>Furisode rental · 1 day</span><span>¥18,000</span></div>
-            <div class="row"><span>Hair &amp; Makeup add-on</span><span>¥5,000</span></div>
-            <div class="row total">
-              <span>Total</span>
-              <span>¥23,000</span>
-            </div>
-          </div>
-
-          <div style="text-align:center;font-size:11px;color:var(--sumi-mid);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid var(--line);line-height:1.8">
-            <i data-lucide="lock" style="width:12px;height:12px;display:inline;vertical-align:middle"></i>
-            Secure payment · Pay on arrival also available
-          </div>
-        </aside>
-      </div>
+      <div class="page-eyebrow">Reserve your visit</div>
+      <h1 class="page-title">Book your <em>kimono</em> experience</h1>
+      <span class="page-title-jp">ご予約</span>
     </div>
   </section>
+
+  <div class="container">
+    <div class="booking-shell">
+
+      <!-- LEFT: FORM -->
+      <div class="booking-form">
+
+        <!-- SECTION 1 — CONTACT -->
+        <section class="section-card" id="rs-contact">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="1">1</span>
+              <div>
+                <div class="section-h">Your <em>details</em></div>
+                <div class="section-h-jp">お客様情報</div>
+              </div>
+            </div>
+            <span class="section-hint">Required for booking confirmation</span>
+          </div>
+
+          <div class="account-swap" id="rs-account-swap">
+            <span id="rs-account-msg">Already have an ANN account?</span>
+            <button class="link-inline" id="rs-signin-btn" type="button">Sign in</button>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label>Full name <span class="req">*</span></label>
+              <input type="text" id="rs-name" placeholder="e.g. Yuki Tanaka">
+            </div>
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" id="rs-phone" placeholder="+81 90 1234 5678">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="rs-email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label>Preferred language</label>
+              <select id="rs-lang">
+                <option value="en">English</option>
+                <option value="ja">日本語 Japanese</option>
+                <option value="vi">Tiếng Việt Vietnamese</option>
+                <option value="zh">中文 Chinese</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field">
+              <label>Special requests <span style="opacity:.6;font-weight:400;letter-spacing:0.06em">(optional)</span></label>
+              <textarea id="rs-notes" placeholder="Allergies, plus-size, first-time visitor, photography preferences..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2 — DATE & TIME -->
+        <section class="section-card" id="rs-datetime">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="2">2</span>
+              <div>
+                <div class="section-h">Date &amp; <em>time</em></div>
+                <div class="section-h-jp">日時</div>
+              </div>
+            </div>
+            <span class="section-hint">Full-day rental · return by 17:50</span>
+          </div>
+
+          <div class="datetime-row">
+            <div class="field">
+              <label>Visit date <span class="req">*</span></label>
+              <input type="date" id="rs-date">
+            </div>
+            <div class="field">
+              <label>Dressing time <span class="req">*</span></label>
+              <div class="time-chips" id="rs-time-chips"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 — GUESTS -->
+        <section class="section-card" id="rs-guests">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="3">3</span>
+              <div>
+                <div class="section-h">Party <em>size</em></div>
+                <div class="section-h-jp">ご人数</div>
+              </div>
+            </div>
+            <span class="section-hint">Max 12 guests per booking</span>
+          </div>
+          <div class="guests-grid" id="rs-guests-grid"></div>
+        </section>
+
+        <!-- SECTION 4 — OUTFITS -->
+        <section class="section-card" id="rs-outfits">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="4">4</span>
+              <div>
+                <div class="section-h">Outfit <em>selection</em></div>
+                <div class="section-h-jp">お着物の選択</div>
+              </div>
+            </div>
+            <span class="section-hint">Choose per guest or decide at shop</span>
+          </div>
+          <div id="rs-outfits-body">
+            <div class="empty-hint">Set party size above to select outfits.</div>
+          </div>
+        </section>
+
+        <!-- SECTION 5 — ADD-ONS -->
+        <section class="section-card" id="rs-addons">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="5">5</span>
+              <div>
+                <div class="section-h">Add-on <em>services</em></div>
+                <div class="section-h-jp">オプション</div>
+              </div>
+            </div>
+            <span class="section-hint">Optional · applied to your booking</span>
+          </div>
+
+          <div class="addon-block">
+            <div class="addon-h">
+              <span class="a-name">写真撮影 <em>Photo shoot</em></span>
+              <span class="a-note">One package per booking</span>
+            </div>
+            <div class="addon-tiers" id="rs-photo-tiers"></div>
+          </div>
+
+          <div class="addon-block">
+            <div class="addon-h">
+              <span class="a-name">ヘア＆メイク <em>Hair &amp; Makeup</em></span>
+              <span class="a-note">Per female guest · <span id="rs-makeup-count">0</span> eligible</span>
+            </div>
+            <div class="addon-tiers" id="rs-makeup-tiers"></div>
+          </div>
+
+          <div class="addon-block">
+            <div class="addon-h">
+              <span class="a-name">返却方法 <em>Return method</em></span>
+              <span class="a-note">Choose one</span>
+            </div>
+            <div class="return-list" id="rs-return-list"></div>
+          </div>
+        </section>
+
+        <!-- SECTION 6 — TERMS -->
+        <section class="section-card" id="rs-terms">
+          <div class="section-head">
+            <div class="section-num">
+              <span class="section-num-badge" data-badge="6">6</span>
+              <div>
+                <div class="section-h">Policy &amp; <em>terms</em></div>
+                <div class="section-h-jp">キャンセルポリシー</div>
+              </div>
+            </div>
+            <span class="section-hint">Please read before booking</span>
+          </div>
+
+          <div class="r-accordion">
+            <div class="r-accordion-item open">
+              <button class="r-accordion-head" type="button">
+                <span>Cancellation &amp; refund policy</span>
+                <span class="plus">+</span>
+              </button>
+              <div class="r-accordion-body">
+                <div class="r-accordion-body-inner">
+                  Cancellations are accepted up to the visit date with the following schedule:
+                  <ul>
+                    <li><strong>7+ days before:</strong> Full refund of deposit</li>
+                    <li><strong>3–6 days before:</strong> 50% refund of deposit</li>
+                    <li><strong>Within 48 hours:</strong> Deposit is non-refundable</li>
+                    <li><strong>No-show:</strong> Full charge applies</li>
+                  </ul>
+                  Rescheduling once is complimentary if requested 24 hours in advance.
+                </div>
+              </div>
+            </div>
+            <div class="r-accordion-item">
+              <button class="r-accordion-head" type="button">
+                <span>Rental terms &amp; conditions</span>
+                <span class="plus">+</span>
+              </button>
+              <div class="r-accordion-body">
+                <div class="r-accordion-body-inner">
+                  All rented items must be returned in their original condition. Damage from stains, tears, or misuse will incur a repair fee. Late returns after 17:50 on the same day will be charged an overnight fee of ¥3,000 unless a next-day or hotel return option was selected. Personal belongings can be safely stored at the shop free of charge during your visit.
+                </div>
+              </div>
+            </div>
+            <div class="r-accordion-item">
+              <button class="r-accordion-head" type="button">
+                <span>Deposit &amp; payment</span>
+                <span class="plus">+</span>
+              </button>
+              <div class="r-accordion-body">
+                <div class="r-accordion-body-inner">
+                  A <strong>30% deposit</strong> is required at the time of booking if any guest chose "Decide at shop". The remaining balance is settled on the visit day. We accept all major credit cards, PayPay, LINE Pay, and cash in JPY.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <label class="agree">
+            <input type="checkbox" id="rs-agree">
+            <span>I have read and agree to the cancellation policy, rental terms, and deposit conditions.</span>
+          </label>
+        </section>
+
+      </div>
+
+      <!-- RIGHT: STICKY SUMMARY -->
+      <aside>
+        <div class="r-summary">
+          <div class="r-summary-h">Booking summary</div>
+          <div class="r-summary-jp">ご予約内容</div>
+
+          <div class="sum-block">
+            <div class="sum-label">Date &amp; time</div>
+            <div class="sum-value muted" id="rs-sum-datetime">Not selected</div>
+          </div>
+
+          <div class="sum-block">
+            <div class="sum-label">Guests</div>
+            <div class="sum-value muted" id="rs-sum-guests">No guests yet</div>
+          </div>
+
+          <div class="sum-block">
+            <div class="sum-label">Outfits</div>
+            <div class="sum-lines" id="rs-sum-outfits">
+              <div class="sum-line"><span class="l-txt sum-value muted">—</span></div>
+            </div>
+          </div>
+
+          <div class="sum-block">
+            <div class="sum-label">Services</div>
+            <div class="sum-lines" id="rs-sum-services">
+              <div class="sum-line"><span class="l-txt sum-value muted">—</span></div>
+            </div>
+          </div>
+
+          <div class="sum-divider"></div>
+
+          <div class="sum-total">
+            <span class="t-label">Total</span>
+            <span class="t-price" id="rs-sum-total">¥0</span>
+          </div>
+
+          <div class="sum-deposit hidden" id="rs-sum-deposit-wrap">
+            <div class="d-label">Deposit due today<small>30% of estimate · balance on visit</small></div>
+            <div class="d-price" id="rs-sum-deposit">¥0</div>
+          </div>
+
+          <button class="cta-book" id="rs-cta-book" disabled>
+            Confirm reservation
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <div class="cta-sub">Instant email confirmation · No card charged yet</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Mobile bottom bar -->
+  <div class="r-mobile-bar">
+    <div class="m-total">
+      <span class="m-label">Total</span>
+      <span class="m-price" id="rs-mobile-total">¥0</span>
+    </div>
+    <button class="m-cta" id="rs-mobile-cta" disabled>Confirm</button>
+  </div>
 </div>
 
 <!-- ===================== STORY VIEW ===================== -->
@@ -4684,7 +4895,7 @@
       <div class="row total"><span>Total</span><span>¥23,000</span></div>
     </div>
     <div class="drawer-cta">
-      <button class="btn" style="justify-content:center" data-view="checkout">
+      <button class="btn" style="justify-content:center" data-view="reservation">
         Confirm Booking · ご予約へ <i data-lucide="arrow-right"></i>
       </button>
       <button class="btn-link" style="text-align:center" id="closeDrawer2">Continue browsing</button>
@@ -4886,8 +5097,6 @@
         const vidx   = parseInt(t.dataset.vidx) || 0;
         showView('product');
         loadProductDetail(lineId, vidx);
-      } else if(view === 'checkout' && typeof window.openAuth === 'function'){
-        window.openAuth('checkout');
       } else {
         showView(view);
       }
@@ -6391,5 +6600,297 @@ if (document.readyState === 'loading') {
 })();
 
 </script>
+
+<!-- ============ RESERVATION FLOW ============ -->
+<script>
+(function(){
+  const GROUPS = [
+    { id:'women', name:'Women',      jp:'女性', ageLabel:'Age 13+',  icon:'flower' },
+    { id:'men',   name:'Men',        jp:'男性', ageLabel:'Age 13+',  icon:'user' },
+    { id:'kidsS', name:"Children S", jp:'幼児', ageLabel:'Age ≤ 3',  icon:'baby' },
+    { id:'kidsM', name:"Children M", jp:'子供', ageLabel:'Age 4–6',  icon:'baby' },
+    { id:'kidsL', name:"Children L", jp:'子供', ageLabel:'Age 7–12', icon:'smile' },
+  ];
+  const OUTFITS = {
+    women: [
+      { id:'w-yukata',   name:'Yukata',                 price:3500 },
+      { id:'w-set',      name:'Set Plan',               price:4500 },
+      { id:'w-full',     name:'Full Outfit',            price:6000 },
+      { id:'w-nagoya',   name:'Nagoya Obi Belt',        price:8000 },
+      { id:'w-furisode', name:'Furisode (Premium)',     price:12000 },
+    ],
+    men: [
+      { id:'m-yukata',   name:'Men Yukata',             price:3500 },
+      { id:'m-kimono',   name:'Men Kimono',             price:5000 },
+      { id:'m-hakama',   name:'Hakama Set',             price:7500 },
+    ],
+    kidsS: [ { id:'ks-set', name:'Children Set (≤3)',   price:3000 } ],
+    kidsM: [ { id:'km-set', name:'Children Set (4–6)',  price:3500 } ],
+    kidsL: [ { id:'kl-set', name:'Children Set (7–12)', price:4500 } ],
+  };
+  const AT_SHOP_ESTIMATE = 5000;
+  const PHOTO_TIERS = [
+    { id:'basic',    name:'Basic',    price:5000,  desc:'10 retouched photos · 30 min · 1 location' },
+    { id:'standard', name:'Standard', price:15000, desc:'30 photos · 60 min · 2 locations · online gallery' },
+    { id:'premium',  name:'Premium',  price:30000, desc:'60 photos · 90 min · pro editing · printed album' },
+  ];
+  const MAKEUP_TIERS = [
+    { id:'basic',    name:'Basic',    price:500,  desc:'8 classic styles · quick styling' },
+    { id:'original', name:'Original', price:1000, desc:'8 signature styles · fuller coverage' },
+    { id:'custom',   name:'Custom',   price:1500, desc:'Fully personalised look' },
+  ];
+  const RETURN_OPTS = [
+    { id:'same',  name:'Same-day',       note:'Return by 17:50',           fee:0 },
+    { id:'next',  name:'Next-day',       note:'Return by 11:00 next day',  fee:1000 },
+    { id:'hotel', name:'Hotel delivery', note:'Concierge pickup',          fee:1500 },
+  ];
+
+  const state = {
+    date:'', time:'',
+    counts:{ women:0, men:0, kidsS:0, kidsM:0, kidsL:0 },
+    outfitPicks:{ women:[], men:[], kidsS:[], kidsM:[], kidsL:[] },
+    photo:null, makeup:null, ret:'same', agree:false,
+  };
+
+  const fmt = n => '¥' + n.toLocaleString('en-US');
+  const $ = id => document.getElementById(id);
+  const rsGetSession = () => { try{ return JSON.parse(localStorage.getItem('ann_session')); }catch(e){ return null; } };
+
+  /* ============ BUILD: TIME CHIPS ============ */
+  const chipsEl = $('rs-time-chips');
+  for (let h=9; h<=16; h++){
+    ['00','30'].forEach(m=>{
+      const t = String(h).padStart(2,'0')+':'+m;
+      const b = document.createElement('button');
+      b.type='button'; b.className='chip'; b.textContent=t; b.dataset.time=t;
+      b.onclick = ()=>{ state.time=t; document.querySelectorAll('#rs-time-chips .chip').forEach(c=>c.classList.toggle('active',c.dataset.time===t)); render(); };
+      chipsEl.appendChild(b);
+    });
+  }
+
+  /* ============ DATE ============ */
+  const dateInput = $('rs-date');
+  dateInput.min = new Date().toISOString().split('T')[0];
+  dateInput.addEventListener('change', ()=>{ state.date = dateInput.value; render(); });
+
+  /* ============ GUEST STEPPERS ============ */
+  const gridEl = $('rs-guests-grid');
+  GROUPS.forEach(g=>{
+    const cell = document.createElement('div');
+    cell.className = 'guest-cell'; cell.id = 'rs-gc-'+g.id;
+    cell.innerHTML = `
+      <i data-lucide="${g.icon}" class="g-icon"></i>
+      <div class="g-title">${g.name}</div>
+      <div class="g-age">${g.ageLabel}</div>
+      <div class="stepper">
+        <button class="step-btn" data-op="-" data-g="${g.id}" aria-label="Decrease">−</button>
+        <span class="step-val" id="rs-sv-${g.id}">0</span>
+        <button class="step-btn" data-op="+" data-g="${g.id}" aria-label="Increase">+</button>
+      </div>`;
+    gridEl.appendChild(cell);
+  });
+  gridEl.addEventListener('click', e=>{
+    const btn = e.target.closest('.step-btn'); if(!btn) return;
+    const g = btn.dataset.g, op = btn.dataset.op;
+    const totalNow = Object.values(state.counts).reduce((a,b)=>a+b,0);
+    if(op==='+' && state.counts[g]<8 && totalNow<12){
+      state.counts[g]++;
+      state.outfitPicks[g].push({ planId: OUTFITS[g][0].id, atShop:false });
+    } else if(op==='-' && state.counts[g]>0){
+      state.counts[g]--;
+      state.outfitPicks[g].pop();
+    }
+    render();
+  });
+
+  /* ============ ADD-ON TIERS ============ */
+  function buildTiers(containerId, tiers, stateKey, noneLabel){
+    const c = $(containerId); c.innerHTML = '';
+    tiers.forEach(t=>{
+      const el = document.createElement('button');
+      el.type='button'; el.className='tier'; el.dataset.tier = t.id;
+      el.innerHTML = `<div class="t-name">${t.name}</div><div class="t-price">${fmt(t.price)}<small>excl. tax</small></div><div class="t-desc">${t.desc}</div>`;
+      el.onclick = ()=>{ state[stateKey] = state[stateKey]===t.id ? null : t.id; render(); };
+      c.appendChild(el);
+    });
+    const none = document.createElement('button');
+    none.type='button'; none.className='tier tier-none'; none.dataset.tier = 'none';
+    none.innerHTML = `<div class="t-name">${noneLabel}</div><div class="t-price">No add-on</div>`;
+    none.onclick = ()=>{ state[stateKey] = null; render(); };
+    c.appendChild(none);
+  }
+  buildTiers('rs-photo-tiers', PHOTO_TIERS, 'photo', 'None');
+  buildTiers('rs-makeup-tiers', MAKEUP_TIERS, 'makeup', 'None');
+
+  /* ============ RETURN OPTIONS ============ */
+  const retList = $('rs-return-list');
+  RETURN_OPTS.forEach(r=>{
+    const el = document.createElement('button');
+    el.type='button'; el.className='return-opt'; el.dataset.ret=r.id;
+    el.innerHTML = `<div><span class="r-name">${r.name}</span><span class="r-note">${r.note}</span></div><span class="r-fee ${r.fee===0?'free':''}">${r.fee===0?'Free':'+'+fmt(r.fee)}</span>`;
+    el.onclick = ()=>{ state.ret=r.id; render(); };
+    retList.appendChild(el);
+  });
+
+  /* ============ ACCORDION ============ */
+  document.querySelectorAll('#view-reservation .r-accordion-head').forEach(h=>{
+    h.onclick = ()=> h.parentElement.classList.toggle('open');
+  });
+
+  /* ============ AGREE ============ */
+  $('rs-agree').addEventListener('change', e=>{ state.agree = e.target.checked; render(); });
+
+  /* ============ SIGN-IN LINK ============ */
+  $('rs-signin-btn').addEventListener('click', ()=>{
+    if(typeof window.openAuth === 'function') window.openAuth('reservation');
+  });
+
+  /* ============ PREFILL FROM SESSION ============ */
+  function applySession(){
+    const s = rsGetSession();
+    const swap = $('rs-account-swap'), msg = $('rs-account-msg'), btn = $('rs-signin-btn');
+    if (s && s.name){
+      if (!$('rs-name').value) $('rs-name').value = s.name;
+      if (!$('rs-email').value && s.email) $('rs-email').value = s.email;
+      swap.classList.add('signed-in');
+      msg.textContent = `Signed in as ${s.name}${s.email ? ' · '+s.email : ''}`;
+      btn.style.display = 'none';
+    } else {
+      swap.classList.remove('signed-in');
+      msg.textContent = 'Already have an ANN account?';
+      btn.style.display = '';
+    }
+  }
+  // React when reservation view becomes active (from auth flow or nav)
+  const viewObserver = new MutationObserver(()=>{
+    if ($('view-reservation').classList.contains('active')) applySession();
+  });
+  viewObserver.observe($('view-reservation'), { attributes:true, attributeFilter:['class'] });
+
+  /* ============ RENDER OUTFITS ============ */
+  function renderOutfits(){
+    const body = $('rs-outfits-body');
+    const total = Object.values(state.counts).reduce((a,b)=>a+b,0);
+    if (total===0){ body.innerHTML = '<div class="empty-hint">Set party size above to select outfits.</div>'; return; }
+    body.innerHTML = '';
+    GROUPS.forEach(g=>{
+      if (state.counts[g.id]===0) return;
+      const grp = document.createElement('div');
+      grp.className = 'outfit-group';
+      grp.innerHTML = `<div class="outfit-group-h"><span class="g-name">${g.jp} <em>${g.name}</em> × ${state.counts[g.id]}</span></div>`;
+      state.outfitPicks[g.id].forEach((pick,i)=>{
+        const options = OUTFITS[g.id].map(o=>`<option value="${o.id}" ${o.id===pick.planId && !pick.atShop?'selected':''}>${o.name} — ${fmt(o.price)}</option>`).join('');
+        const row = document.createElement('div');
+        row.className = 'outfit-row' + (pick.atShop?' at-shop':'');
+        const plan = OUTFITS[g.id].find(o=>o.id===pick.planId);
+        row.innerHTML = `
+          <span class="idx">${i+1}</span>
+          <select ${pick.atShop?'disabled':''} data-g="${g.id}" data-i="${i}">${options}</select>
+          <span class="price ${pick.atShop?'pending':''}">${pick.atShop?'Decide at shop':fmt(plan.price)}</span>
+          <label class="at-shop-toggle"><input type="checkbox" data-shop data-g="${g.id}" data-i="${i}" ${pick.atShop?'checked':''}> Choose at shop</label>`;
+        grp.appendChild(row);
+      });
+      body.appendChild(grp);
+    });
+    body.querySelectorAll('select').forEach(sel=>{
+      sel.onchange = ()=>{ state.outfitPicks[sel.dataset.g][+sel.dataset.i].planId = sel.value; render(); };
+    });
+    body.querySelectorAll('input[data-shop]').forEach(cb=>{
+      cb.onchange = ()=>{ state.outfitPicks[cb.dataset.g][+cb.dataset.i].atShop = cb.checked; render(); };
+    });
+  }
+
+  /* ============ RENDER ============ */
+  function render(){
+    GROUPS.forEach(g=>{
+      $('rs-sv-'+g.id).textContent = state.counts[g.id];
+      $('rs-gc-'+g.id).classList.toggle('has-count', state.counts[g.id]>0);
+    });
+
+    document.querySelectorAll('#view-reservation .section-num-badge').forEach(b=>{
+      const n = b.dataset.badge; let done = false;
+      if (n==='1') done = $('rs-name').value && $('rs-phone').value && $('rs-email').value;
+      if (n==='2') done = state.date && state.time;
+      if (n==='3') done = Object.values(state.counts).some(v=>v>0);
+      if (n==='4') done = Object.values(state.outfitPicks).some(arr=>arr.length>0);
+      if (n==='6') done = state.agree;
+      b.classList.toggle('done', done);
+    });
+
+    renderOutfits();
+
+    document.querySelectorAll('#rs-photo-tiers .tier').forEach(t=>t.classList.toggle('active', t.dataset.tier === (state.photo ?? 'none')));
+    document.querySelectorAll('#rs-makeup-tiers .tier').forEach(t=>t.classList.toggle('active', t.dataset.tier === (state.makeup ?? 'none')));
+    $('rs-makeup-count').textContent = state.counts.women;
+    document.querySelectorAll('#view-reservation .return-opt').forEach(r=>r.classList.toggle('active', r.dataset.ret === state.ret));
+
+    const sumDt = $('rs-sum-datetime');
+    if (state.date && state.time){
+      const d = new Date(state.date+'T00:00:00');
+      const dstr = d.toLocaleDateString('en-US',{ weekday:'short', month:'short', day:'numeric', year:'numeric' });
+      sumDt.textContent = `${dstr} · ${state.time}`; sumDt.classList.remove('muted');
+    } else { sumDt.textContent = 'Not selected'; sumDt.classList.add('muted'); }
+
+    const sumG = $('rs-sum-guests');
+    const total = Object.values(state.counts).reduce((a,b)=>a+b,0);
+    if (total===0){ sumG.textContent='No guests yet'; sumG.classList.add('muted'); }
+    else {
+      const parts = GROUPS.filter(g=>state.counts[g.id]>0).map(g=>`${state.counts[g.id]} ${g.name.toLowerCase()}`).join(' · ');
+      sumG.textContent = `${total} guest${total>1?'s':''} · ${parts}`;
+      sumG.classList.remove('muted');
+    }
+
+    const outfitsEl = $('rs-sum-outfits');
+    let outfitTotal = 0, atShopCount = 0, outfitLines = [];
+    GROUPS.forEach(g=>{
+      state.outfitPicks[g.id].forEach(p=>{
+        if (p.atShop){ atShopCount++; outfitLines.push({ txt:`${g.name} — decide at shop`, price:'—', pending:true }); }
+        else { const plan = OUTFITS[g.id].find(o=>o.id===p.planId); outfitTotal += plan.price; outfitLines.push({ txt:`${g.name} — ${plan.name}`, price:fmt(plan.price) }); }
+      });
+    });
+    outfitsEl.innerHTML = outfitLines.length===0
+      ? '<div class="sum-line"><span class="l-txt sum-value muted">—</span></div>'
+      : outfitLines.map(l=>`<div class="sum-line"><span class="l-txt">${l.txt}</span><span class="l-price ${l.pending?'pending':''}">${l.price}</span></div>`).join('');
+
+    const svcEl = $('rs-sum-services');
+    let svcTotal = 0, svcLines = [];
+    if (state.photo){ const p = PHOTO_TIERS.find(t=>t.id===state.photo); svcTotal += p.price; svcLines.push({ txt:`Photo · ${p.name}`, price:fmt(p.price) }); }
+    if (state.makeup && state.counts.women>0){ const m = MAKEUP_TIERS.find(t=>t.id===state.makeup); const sub = m.price*state.counts.women; svcTotal += sub; svcLines.push({ txt:`Hair &amp; Makeup · ${m.name} × ${state.counts.women}`, price:fmt(sub) }); }
+    const ret = RETURN_OPTS.find(r=>r.id===state.ret);
+    if (ret && ret.fee>0){ svcTotal += ret.fee; svcLines.push({ txt:`Return · ${ret.name}`, price:fmt(ret.fee) }); }
+    svcEl.innerHTML = svcLines.length===0
+      ? '<div class="sum-line"><span class="l-txt sum-value muted">—</span></div>'
+      : svcLines.map(l=>`<div class="sum-line"><span class="l-txt">${l.txt}</span><span class="l-price">${l.price}</span></div>`).join('');
+
+    const grandVisible = outfitTotal + svcTotal;
+    const grandEstimate = grandVisible + atShopCount * AT_SHOP_ESTIMATE;
+    $('rs-sum-total').textContent = fmt(grandVisible);
+    $('rs-mobile-total').textContent = fmt(grandVisible);
+
+    const depWrap = $('rs-sum-deposit-wrap');
+    if (atShopCount>0 && grandEstimate>0){
+      const dep = Math.round(grandEstimate * 0.3 / 100) * 100;
+      $('rs-sum-deposit').textContent = fmt(dep);
+      depWrap.classList.remove('hidden');
+    } else depWrap.classList.add('hidden');
+
+    const canBook = $('rs-name').value.trim() && $('rs-email').value.trim() && $('rs-phone').value.trim() && state.date && state.time && total>0 && state.agree;
+    $('rs-cta-book').disabled = !canBook;
+    $('rs-mobile-cta').disabled = !canBook;
+  }
+
+  ['rs-name','rs-email','rs-phone'].forEach(id=>$(id).addEventListener('input', render));
+
+  $('rs-cta-book').addEventListener('click', ()=>{
+    alert('✿ Reservation received!\n\nA confirmation email will be sent shortly. See you soon at ANN.');
+  });
+  $('rs-mobile-cta').addEventListener('click', ()=>$('rs-cta-book').click());
+
+  applySession();
+  render();
+  if (window.lucide) lucide.createIcons();
+})();
+</script>
+
 </body>
 </html>

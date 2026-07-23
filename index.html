@@ -5193,16 +5193,10 @@
         const vidx   = parseInt(t.dataset.vidx) || 0;
         showView('product');
         loadProductDetail(lineId, vidx);
-      } else if(view === 'reservation'){
-        // Gate reservation behind the sign-in / register screen (with a
-        // "book as guest" escape). Skip the gate if already signed in.
-        let signedIn = false;
-        try { signedIn = !!JSON.parse(localStorage.getItem('ann_session')); } catch(err){}
-        if(!signedIn && typeof window.openAuth === 'function'){
-          window.openAuth('reservation');
-        } else {
-          showView('reservation');
-        }
+      } else if(view === 'reservation' && typeof window.openAuth === 'function'){
+        // Always gate reservation behind the sign-in / register screen first
+        // (lead capture) — a "book as guest" escape lets them proceed anyway.
+        window.openAuth('reservation');
       } else {
         showView(view);
       }

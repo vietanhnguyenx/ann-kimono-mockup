@@ -258,11 +258,11 @@
   }
   .hero-jp::after{content:'';height:1px;width:80px;background:var(--shu);opacity:0.5}
   .hero-title{
-    font-family:'Instrument Serif',serif;
-    font-size:100px;
-    font-weight:400;
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px;
+    font-weight:300;
     line-height:0.95;
-    letter-spacing:-0.01em;
+    letter-spacing:-0.02em;
     color:var(--sumi);
     margin-bottom:8px;
   }
@@ -2904,14 +2904,11 @@
   }
 
   /* ============ HERO CAROUSEL ============ */
-  /* Asymmetric split layout — reuses the site's .hero/.hero-text/.hero-image
-     system (proven, fully responsive) nested inside each crossfading slide,
-     instead of text floating over a darkened full-bleed photo. */
   .hero-carousel{
     position:relative;
-    min-height:100dvh;
+    height:100vh;min-height:600px;
     overflow:hidden;
-    background:var(--kinari);
+    background:var(--sumi);
   }
   .carousel-slide{
     position:absolute;inset:0;
@@ -2923,7 +2920,6 @@
     opacity:1;
     pointer-events:auto;
   }
-  .carousel-slide .hero{min-height:100%}
   .carousel-slide-bg{
     position:absolute;inset:0;
     background-size:cover;
@@ -2935,37 +2931,119 @@
     transform:scale(1.06);
   }
   .carousel-slide-overlay{
-    position:absolute;inset:0;z-index:1;
-    background:
-      linear-gradient(180deg, transparent 55%, rgba(61,21,21,0.55) 100%),
-      linear-gradient(135deg, rgba(61,21,21,0.26) 0%, transparent 32%);
+    position:absolute;inset:0;
+    background:linear-gradient(
+      135deg,
+      rgba(61,21,21,0.72) 0%,
+      rgba(61,21,21,0.45) 50%,
+      rgba(61,21,21,0.25) 100%
+    );
   }
-
-  /* Staggered entrance, scoped to slides so the standalone .hero classes
-     stay usable elsewhere without inheriting carousel-only motion */
-  .carousel-slide .hero-jp,
-  .carousel-slide .hero-title,
-  .carousel-slide .hero-sub,
-  .carousel-slide .hero-cta{
+  .carousel-content{
+    position:absolute;
+    top:50%;left:10%;
+    transform:translateY(-50%);
+    max-width:560px;
+    z-index:4;
+    color:var(--kinari);
+  }
+  .carousel-eyebrow{
+    font-family:'Shippori Mincho',serif;
+    font-size:13px;
+    letter-spacing:0.5em;
+    color:var(--kincha-soft);
+    margin-bottom:28px;
+    display:flex;align-items:center;gap:14px;
     opacity:0;
-    transition:opacity .7s, transform .7s;
+    transform:translateY(16px);
+    transition:opacity .7s .3s, transform .7s .3s;
   }
-  .carousel-slide .hero-jp{transform:translateY(16px);transition-delay:.3s}
-  .carousel-slide .hero-title{transform:translateY(20px);transition-delay:.5s}
-  .carousel-slide .hero-sub{transform:translateY(16px);transition-delay:.7s}
-  .carousel-slide .hero-cta{transform:translateY(12px);transition-delay:.9s}
-  .carousel-slide.active .hero-jp,
-  .carousel-slide.active .hero-title,
-  .carousel-slide.active .hero-sub,
-  .carousel-slide.active .hero-cta{opacity:1;transform:none}
+  .carousel-slide.active .carousel-eyebrow{opacity:1;transform:none}
+  .carousel-eyebrow::after{content:'';height:1px;width:60px;background:var(--kincha-soft);opacity:0.7}
+  .carousel-title{
+    font-family:'Instrument Serif',serif;
+    font-size:96px;
+    font-weight:400;
+    line-height:0.95;
+    letter-spacing:-0.01em;
+    color:var(--kinari);
+    margin-bottom:28px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .7s .5s, transform .7s .5s;
+  }
+  .carousel-slide.active .carousel-title{opacity:1;transform:none}
+  .carousel-title em{font-style:italic;color:var(--kincha-soft)}
+  .carousel-sub{
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(255,248,248,0.85);
+    font-weight:300;
+    margin-bottom:40px;
+    max-width:420px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s .7s, transform .7s .7s;
+  }
+  .carousel-slide.active .carousel-sub{opacity:1;transform:none}
+  .carousel-cta-row{
+    display:flex;gap:20px;align-items:center;
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .7s .9s, transform .7s .9s;
+  }
+  .carousel-slide.active .carousel-cta-row{opacity:1;transform:none}
+  .carousel-btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 32px;
+    background:var(--shu);color:var(--kinari);
+    border:none;cursor:pointer;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;font-family:inherit;
+    transition:all .3s;
+    text-decoration:none;
+  }
+  .carousel-btn:hover{background:var(--kinari);color:var(--sumi);transform:translateY(-1px)}
+  .carousel-btn svg{width:14px;height:14px}
+  .carousel-link{
+    color:var(--kinari);
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    font-weight:500;font-family:inherit;
+    padding:8px 0;border-bottom:1px solid rgba(255,248,248,0.5);
+    cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;
+    transition:all .25s;
+  }
+  .carousel-link:hover{color:var(--kincha-soft);border-color:var(--kincha-soft)}
 
-  /* Carousel controls — right-anchored so they always land over the
-     image panel regardless of split ratio (right:Npx == right:Npx of .hero-image,
-     since the image panel's right edge is the viewport's right edge) */
+  /* Walk-in stamp on carousel */
+  .carousel-stamp{
+    position:absolute;
+    top:80px;right:10%;
+    width:100px;height:100px;
+    border:2px solid var(--shu);
+    background:var(--shu);
+    color:var(--kinari);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(-8deg);
+    z-index:4;
+    animation:stampPulse 3s ease-in-out infinite;
+  }
+  .carousel-stamp::before{
+    content:'';position:absolute;inset:7px;
+    border:1px solid rgba(255,248,248,0.5);
+  }
+  .carousel-stamp span{
+    font-family:'Shippori Mincho',serif;
+    font-size:15px;letter-spacing:0.1em;
+    line-height:1.4;text-align:center;font-weight:600;z-index:1;
+  }
+
+  /* Carousel controls */
   .carousel-arrow{
-    position:absolute;top:40px;
+    position:absolute;top:50%;
+    transform:translateY(-50%);
     z-index:5;
-    width:44px;height:44px;
+    width:52px;height:52px;
     background:rgba(250,247,242,0.12);
     border:1px solid rgba(250,247,242,0.3);
     color:var(--kinari);
@@ -2975,13 +3053,14 @@
     backdrop-filter:blur(4px);
   }
   .carousel-arrow:hover{background:rgba(193,64,74,0.5);border-color:transparent}
-  .carousel-arrow svg{width:18px;height:18px;stroke-width:1.5}
-  .carousel-arrow.prev{right:92px}
+  .carousel-arrow svg{width:20px;height:20px;stroke-width:1.5}
+  .carousel-arrow.prev{left:32px}
   .carousel-arrow.next{right:32px}
 
   /* Carousel dots */
   .carousel-nav{
-    position:absolute;bottom:32px;right:10%;
+    position:absolute;bottom:28px;left:50%;
+    transform:translateX(-50%);
     display:flex;gap:12px;z-index:5;
   }
   .carousel-dot{
@@ -3008,6 +3087,19 @@
     background:var(--shu);
     width:0%;
     transition:width 8s linear;
+  }
+
+  /* Slide service indicator */
+  .carousel-service-tag{
+    position:absolute;
+    bottom:60px;right:10%;
+    z-index:4;
+    color:rgba(250,247,242,0.6);
+    font-size:10px;letter-spacing:0.4em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-family:'Plus Jakarta Sans',sans-serif;
   }
 
   /* ============ RENTAL PACKAGES SECTION ============ */
@@ -3256,19 +3348,10 @@
     .package-tile{border-bottom:1px solid var(--line-strong)}
     .package-tile:nth-child(3){border-right:none}
     .package-tile:nth-child(4){border-right:1px solid var(--line-strong)}
+    .carousel-title{font-size:72px}
+    .carousel-content{max-width:480px}
     .addon-card{padding:40px 40px}
     .line-section-grid{grid-template-columns:repeat(2,1fr)}
-
-    /* Carousel: drop the absolute crossfade for the stacked single-column
-       .hero layout — simple show/hide keeps content height natural instead
-       of clipping to a fixed viewport-height slide box. */
-    .hero-carousel{min-height:auto}
-    .carousel-slide{
-      position:relative;inset:auto;
-      opacity:1;transition:none;pointer-events:auto;
-      display:none;
-    }
-    .carousel-slide.active{display:block}
   }
   @media (max-width:768px){
     .package-grid{grid-template-columns:1fr 1fr}
@@ -3277,6 +3360,8 @@
     .addon-grid{grid-template-columns:1fr}
     .addon-card{border-right:none;border-bottom:1px solid rgba(250,247,242,0.1)}
     .line-section-grid{grid-template-columns:1fr 1fr}
+    .carousel-title{font-size:56px}
+    .carousel-stamp{display:none}
     .carousel-arrow{display:none}
     .line-header{grid-template-columns:1fr}
     .line-price-block{text-align:left}
@@ -3285,6 +3370,8 @@
     .package-grid{grid-template-columns:1fr}
     .package-tile{border-right:none}
     .line-section-grid{grid-template-columns:1fr}
+    .carousel-content{left:5%;max-width:90%}
+    .carousel-title{font-size:48px}
   }
 
   /* ============ AUTH MODAL ============ */
@@ -3644,63 +3731,51 @@
 
     <!-- Slide 1: Kimono Rental (8s) -->
     <div class="carousel-slide active" id="carouselSlide0">
-      <div class="hero">
-        <div class="hero-text">
-          <div class="hero-jp" data-i18n="h1.eyebrow">着物レンタル · KIMONO RENTAL ANN</div>
-          <h1 class="hero-title" data-i18n="h1.title">Step into<br><em>your</em><br>kimono<br>story</h1>
-          <p class="hero-sub" data-i18n="h1.sub">Walk in, dress up, and let us handle everything else. Kimono rental, hair set, and photo — all under one roof. No reservation needed.</p>
-          <div class="hero-cta">
-            <button class="btn" data-view="shop"><span data-i18n="h1.cta1">Browse Kimonos</span> <i data-lucide="arrow-right"></i></button>
-            <button class="btn-link" data-view="shop" data-i18n="h1.cta2">View all lines →</button>
-          </div>
-        </div>
-        <div class="hero-image">
-          <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4.jpg');background-position:center 15%"></div>
-          <div class="carousel-slide-overlay"></div>
-          <div class="hero-floating-stamp"><span>WALK<br>IN OK</span></div>
-          <div class="hero-image-overlay"><div class="vertical">着物レンタル</div></div>
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4.jpg');background-position:center 15%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow" data-i18n="h1.eyebrow">着物レンタル · KIMONO RENTAL ANN</div>
+        <h1 class="carousel-title" data-i18n="h1.title">Step into<br><em>your</em><br>kimono<br>story</h1>
+        <p class="carousel-sub" data-i18n="h1.sub">Walk in, dress up, and let us handle everything else. Kimono rental, hair set, and photo — all under one roof. No reservation needed.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="shop"><span data-i18n="h1.cta1">Browse Kimonos</span> <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="shop" data-i18n="h1.cta2">View all lines →</button>
         </div>
       </div>
+      <div class="carousel-stamp"><span>WALK<br>IN OK</span></div>
+      <div class="carousel-service-tag">着物レンタル</div>
     </div>
 
     <!-- Slide 2: Hair & Makeup (5s) -->
     <div class="carousel-slide" id="carouselSlide1">
-      <div class="hero">
-        <div class="hero-text">
-          <div class="hero-jp">ヘアセット · HAIR & MAKEUP</div>
-          <h1 class="hero-title">Traditional<br><em>beauty</em><br>crafted<br>for you</h1>
-          <p class="hero-sub">Hair set, makeup, and kitsuke by certified specialists. A complete traditional transformation in under 30 minutes.</p>
-          <div class="hero-cta">
-            <button class="btn" data-view="contact">Book Hair & Makeup <i data-lucide="arrow-right"></i></button>
-            <button class="btn-link" data-view="story" data-i18n="h2.cta2">About ANN →</button>
-          </div>
-        </div>
-        <div class="hero-image">
-          <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_0717.jpg');background-position:center 20%"></div>
-          <div class="carousel-slide-overlay"></div>
-          <div class="hero-image-overlay"><div class="vertical">ヘアセット</div></div>
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_0717.jpg');background-position:center 20%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow">ヘアセット · HAIR & MAKEUP</div>
+        <h1 class="carousel-title">Traditional<br><em>beauty</em><br>crafted<br>for you</h1>
+        <p class="carousel-sub">Hair set, makeup, and kitsuke by certified specialists. A complete traditional transformation in under 30 minutes.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="contact">Book Hair & Makeup <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="story" data-i18n="h2.cta2">About ANN →</button>
         </div>
       </div>
+      <div class="carousel-service-tag">ヘアセット</div>
     </div>
 
     <!-- Slide 3: Photo Service (5s) -->
     <div class="carousel-slide" id="carouselSlide2">
-      <div class="hero">
-        <div class="hero-text">
-          <div class="hero-jp" data-i18n="h2.eyebrow">写真撮影 · PHOTO SERVICE</div>
-          <h1 class="hero-title" data-i18n="h2.title">Capture<br>your<br><em>moment</em><br>forever</h1>
-          <p class="hero-sub" data-i18n="h2.sub">Professional photo sessions at our studio or nearby scenic spots. 20+ edited digital photos, delivered within 3 days.</p>
-          <div class="hero-cta">
-            <button class="btn" data-view="contact"><span data-i18n="h3.cta1">Book a Photo Session</span> <i data-lucide="arrow-right"></i></button>
-            <button class="btn-link" data-view="shop" data-i18n="h3.cta2">Browse kimonos →</button>
-          </div>
-        </div>
-        <div class="hero-image">
-          <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');background-position:center 15%"></div>
-          <div class="carousel-slide-overlay"></div>
-          <div class="hero-image-overlay"><div class="vertical">写真撮影</div></div>
+      <div class="carousel-slide-bg" style="background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');background-position:center 15%"></div>
+      <div class="carousel-slide-overlay"></div>
+      <div class="carousel-content">
+        <div class="carousel-eyebrow" data-i18n="h2.eyebrow">写真撮影 · PHOTO SERVICE</div>
+        <h1 class="carousel-title" data-i18n="h2.title">Capture<br>your<br><em>moment</em><br>forever</h1>
+        <p class="carousel-sub" data-i18n="h2.sub">Professional photo sessions at our studio or nearby scenic spots. 20+ edited digital photos, delivered within 3 days.</p>
+        <div class="carousel-cta-row">
+          <button class="carousel-btn" data-view="contact"><span data-i18n="h3.cta1">Book a Photo Session</span> <i data-lucide="arrow-right"></i></button>
+          <button class="carousel-link" data-view="shop" data-i18n="h3.cta2">Browse kimonos →</button>
         </div>
       </div>
+      <div class="carousel-service-tag">写真撮影</div>
     </div>
 
     <!-- Controls -->

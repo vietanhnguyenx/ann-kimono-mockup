@@ -6,7 +6,7 @@
 <title>KIMONO RENTAL ANN — 着物レンタル · Walk In OK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <style>
   :root{
@@ -556,6 +556,64 @@
     font-weight:400;
   }
 
+  /* ============ INCLUDED WITH RENTAL ============ */
+  .included-section{
+    background:var(--kinari);
+    padding:140px 0;
+    position:relative;
+  }
+  .included-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1fr;
+    gap:100px;
+  }
+  .included-intro{
+    display:flex;flex-direction:column;align-items:flex-start;
+  }
+  .included-intro .eyebrow{margin-bottom:24px}
+  .included-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:52px;font-weight:300;line-height:1.15;
+    letter-spacing:-0.01em;color:var(--sumi);
+    margin-bottom:24px;
+  }
+  .included-title em{font-style:italic;color:var(--shu)}
+  .included-lead{
+    font-size:15px;line-height:1.8;color:var(--sumi-soft);
+    font-weight:300;margin-bottom:28px;max-width:400px;
+  }
+  .included-combo{
+    font-size:13px;line-height:1.8;color:var(--sumi-mid);
+    font-weight:400;font-style:italic;
+    padding:20px 24px;
+    border-left:2px solid var(--shu);
+    background:var(--kinari-deep);
+    margin-bottom:32px;max-width:420px;
+  }
+  .included-list{display:flex;flex-direction:column}
+  .included-item{
+    display:grid;grid-template-columns:40px 1fr;gap:20px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .included-item:first-child{padding-top:0}
+  .included-item:last-child{border-bottom:none;padding-bottom:0}
+  .included-num{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:20px;color:var(--shu);line-height:1.4;
+  }
+  .included-label{
+    display:block;
+    font-size:15px;font-weight:600;letter-spacing:0.01em;
+    color:var(--sumi);margin-bottom:6px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .included-desc{
+    display:block;
+    font-size:13px;line-height:1.7;color:var(--sumi-soft);
+    font-weight:300;
+  }
+
   /* Kimono illustrated cards */
   .kimono-art{
     width:100%;height:100%;
@@ -731,10 +789,12 @@
   }
   .ritual-step:last-child{border-right:none}
   .ritual-num{
-    font-family:'Shippori Mincho',serif;
-    font-size:48px;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:16px;
+    letter-spacing:0.15em;
     color:var(--shu);
-    margin-bottom:24px;
+    margin-bottom:22px;
     line-height:1;
     font-weight:400;
   }
@@ -743,17 +803,19 @@
     background:var(--kincha-soft);
     margin:16px auto 0;
   }
-  .ritual-step h4{
-    font-family:'Shippori Mincho',serif;
-    font-size:20px;
+  .ritual-step .step-en{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
     font-weight:500;
+    font-style:normal;
     margin-bottom:6px;
     color:var(--kinari);
   }
-  .ritual-step .step-en{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:13px;
+  .ritual-step h4{
+    font-family:'Shippori Mincho',serif;
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:0.1em;
     color:var(--kincha-soft);
     margin-bottom:16px;
   }
@@ -2510,7 +2572,7 @@
     .ritual-steps{grid-template-columns:repeat(2,1fr)}
     .footer-grid{grid-template-columns:1fr 1fr;gap:48px 32px}
     .product-layout{grid-template-columns:1fr;gap:48px}
-    .checkout-layout,.contact-layout,.story-grid,.specs-grid{grid-template-columns:1fr;gap:40px}
+    .checkout-layout,.contact-layout,.story-grid,.specs-grid,.included-grid{grid-template-columns:1fr;gap:40px}
     .craft-grid{grid-template-columns:1fr 1fr;gap:24px}
     .shop-layout{grid-template-columns:1fr}
     .filters-side{position:static}
@@ -2524,6 +2586,8 @@
 
     /* Section padding */
     .section{padding:72px 0}
+    .included-section{padding:72px 0}
+    .included-title{font-size:38px}
     .section-title{font-size:52px}
     .section-title-jp{font-size:18px}
     .section-subtitle{font-size:14px}
@@ -2897,11 +2961,11 @@
   .carousel-slide.active .carousel-eyebrow{opacity:1;transform:none}
   .carousel-eyebrow::after{content:'';height:1px;width:60px;background:var(--kincha-soft);opacity:0.7}
   .carousel-title{
-    font-family:'Cormorant Garamond',serif;
-    font-size:88px;
-    font-weight:300;
+    font-family:'Instrument Serif',serif;
+    font-size:96px;
+    font-weight:400;
     line-height:0.95;
-    letter-spacing:-0.02em;
+    letter-spacing:-0.01em;
     color:var(--kinari);
     margin-bottom:28px;
     opacity:0;
@@ -3073,20 +3137,20 @@
     color:var(--shu);
     letter-spacing:0.1em;margin-bottom:20px;
   }
-  .package-jp{
-    font-family:'Shippori Mincho',serif;
-    font-size:26px;font-weight:500;
-    color:var(--sumi);
-    margin-bottom:4px;
-    letter-spacing:0.06em;
-    line-height:1.2;
-  }
   .package-en{
     font-family:'Cormorant Garamond',serif;
-    font-style:italic;font-size:14px;
+    font-size:27px;font-weight:500;
+    color:var(--sumi);
+    margin-bottom:4px;
+    letter-spacing:0.01em;
+    line-height:1.2;
+  }
+  .package-jp{
+    font-family:'Shippori Mincho',serif;
+    font-size:13px;font-weight:400;
     color:var(--sumi-mid);
-    margin-bottom:24px;
-    font-weight:400;
+    margin-bottom:22px;
+    letter-spacing:0.1em;
   }
   .package-price{
     font-family:'Cormorant Garamond',serif;
@@ -3115,7 +3179,7 @@
     transition:gap .25s, color .25s;
   }
   .package-cta svg{width:12px;height:12px}
-  .package-tile.kids-tile .package-jp{color:var(--shu)}
+  .package-tile.kids-tile .package-en{color:var(--shu)}
   .package-tile.kids-tile .package-price{color:var(--shu)}
 
   /* ============ ADD-ON STRIP ============ */
@@ -3640,7 +3704,7 @@
       <a href="./blog/" class="nav-link">Journal</a>
     </nav>
     <a href="#" class="brand" data-view="home" style="flex-direction:row;gap:0;align-items:center">
-      <img src="./ANN/Logo/Logo Ngang-05.png" alt="KIMONO RENTAL ANN" class="header-logo-img">
+      <img src="./ANN/Logo/Logo Ngang-05-header-rose.png" alt="KIMONO RENTAL ANN" class="header-logo-img">
     </a>
     <div class="header-actions">
       <button class="header-reservation-btn" data-view="reservation">
@@ -3749,46 +3813,46 @@
     <div class="container">
       <div class="package-grid">
         <div class="package-tile" data-view="shop">
-          <div class="package-num">— 一 —</div>
-          <div class="package-jp">振袖</div>
+          <div class="package-num">01</div>
           <div class="package-en">Furisode Premium</div>
+          <div class="package-jp">振袖</div>
           <div class="package-price" data-price-jpy="18000">¥18,000</div>
           <div class="package-price-label">per day · 1日レンタル</div>
           <p class="package-desc">Long-sleeved formal silk furisode for ceremonies, coming-of-age, and wedding guests.</p>
           <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
         <div class="package-tile" data-view="shop">
-          <div class="package-num">— 二 —</div>
-          <div class="package-jp">訪問着</div>
+          <div class="package-num">02</div>
           <div class="package-en">Houmongi</div>
-          <div class="package-price" data-price-jpy="18000">¥12,000</div>
+          <div class="package-jp">訪問着</div>
+          <div class="package-price" data-price-jpy="12000">¥12,000</div>
           <div class="package-price-label">per day · 1日レンタル</div>
           <p class="package-desc">Elegant semi-formal visiting dress with flowing patterns. Perfect for tea ceremony and parties.</p>
           <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
         <div class="package-tile" data-view="shop">
-          <div class="package-num">— 三 —</div>
-          <div class="package-jp">小紋</div>
+          <div class="package-num">03</div>
           <div class="package-en">Komon</div>
-          <div class="package-price" data-price-jpy="18000">¥8,000</div>
+          <div class="package-jp">小紋</div>
+          <div class="package-price" data-price-jpy="8000">¥8,000</div>
           <div class="package-price-label">per day · 1日レンタル</div>
           <p class="package-desc">Casual repeat-patterned kimono. Ideal for sightseeing, outings, and everyday photography.</p>
           <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
         <div class="package-tile" data-view="shop">
-          <div class="package-num">— 四 —</div>
-          <div class="package-jp">浴衣</div>
+          <div class="package-num">04</div>
           <div class="package-en">Yukata</div>
-          <div class="package-price" data-price-jpy="18000">¥4,500</div>
+          <div class="package-jp">浴衣</div>
+          <div class="package-price" data-price-jpy="4500">¥4,500</div>
           <div class="package-price-label">per day · 1日レンタル</div>
           <p class="package-desc">Light cotton summer yukata. Great for festivals, evening walks, and warm-weather outings.</p>
           <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
         <div class="package-tile kids-tile" data-view="shop">
-          <div class="package-num">— 五 —</div>
-          <div class="package-jp">キッズ</div>
+          <div class="package-num">05</div>
           <div class="package-en">Kids Set</div>
-          <div class="package-price" data-price-jpy="18000">¥6,000</div>
+          <div class="package-jp">キッズ</div>
+          <div class="package-price" data-price-jpy="6000">¥6,000</div>
           <div class="package-price-label">per day · 1日レンタル</div>
           <p class="package-desc">Complete kids kimono sets for ages 3–9 (100–130 cm). Includes full accessories and kitsuke.</p>
           <span class="package-cta">View styles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
@@ -3797,21 +3861,54 @@
     </div>
   </section>
 
-  <!-- Popular Pieces -->
-  <section class="section featured">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow" data-i18n="feat.eyebrow">Popular Pieces · 人気着物</div>
-        <h2 class="section-title" data-i18n="feat.title"><em>Guest</em> Favourites</h2>
-        <div class="brush-divider"></div>
-        <div class="section-title-jp">今シーズン おすすめ</div>
-        <p class="section-subtitle">
-          Hand-picked styles across all rental lines. Every piece is professionally cleaned, pressed, and ready to wear the moment you arrive.
-        </p>
-      </div>
-      <div class="product-grid" id="featuredGrid"></div>
-      <div style="text-align:center;margin-top:64px">
-        <button class="btn-link" data-view="shop" data-i18n="feat.link">View Full Collection — 全スタイルを見る</button>
+  <!-- Included With Every Rental -->
+  <section class="included-section">
+    <div class="container-narrow">
+      <div class="included-grid">
+        <div class="included-intro">
+          <div class="eyebrow">What's Included · 含まれるサービス</div>
+          <h2 class="included-title">Included with <em>every</em> rental</h2>
+          <p class="included-lead">No hidden fees, no surprises. Every booking arrives fully equipped — walk in ready, walk out effortlessly.</p>
+          <p class="included-combo">Prefer the full experience? We also offer a complete combo — kimono rental, professional makeup, and a photo shoot — bundled into one seamless package.</p>
+          <button class="btn-link" data-view="shop">Browse rental lines</button>
+        </div>
+        <div class="included-list">
+          <div class="included-item">
+            <div class="included-num">01</div>
+            <div>
+              <span class="included-label">Complimentary hairstyling</span>
+              <span class="included-desc">Free hair styling and hair accessories included for every woman's rental — no add-on required.</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <div class="included-num">02</div>
+            <div>
+              <span class="included-label">Professional dressing</span>
+              <span class="included-desc">Certified kitsuke specialists dress you beautifully in around 20 minutes, start to finish.</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <div class="included-num">03</div>
+            <div>
+              <span class="included-label">Bags, sandals &amp; photo props</span>
+              <span class="included-desc">Matching accessories and photo props are included with every kimono, at no extra cost.</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <div class="included-num">04</div>
+            <div>
+              <span class="included-label">Early-morning &amp; evening slots</span>
+              <span class="included-desc">Book early-morning or evening reservations with no additional charge.</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <div class="included-num">05</div>
+            <div>
+              <span class="included-label">Free next-day return</span>
+              <span class="included-desc">Keep your kimono overnight and return it free of charge before 10:00 AM the next day.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -3822,60 +3919,24 @@
       <div class="section-header" style="margin-bottom:48px">
         <div class="eyebrow" style="color:var(--kincha-soft)" data-i18n="addon.eyebrow">Add-On Services · オプションサービス</div>
         <h2 class="section-title" style="color:var(--kinari)" data-i18n="addon.title">Enhance your <em>experience</em></h2>
-        <p class="section-subtitle" style="color:rgba(255,248,248,0.7)" data-i18n="addon.subtitle">Add hair & makeup or a photo session to any rental. Bundle and save.</p>
+        <p class="section-subtitle" style="color:rgba(255,248,248,0.7)" data-i18n="addon.subtitle">Add makeup or a photo session to any rental. Bundle and save.</p>
       </div>
       <div class="addon-grid">
         <div class="addon-card">
-          <div class="addon-service-num">— 追加 一 —</div>
+          <div class="addon-service-num">01</div>
           <i data-lucide="sparkles" class="addon-icon"></i>
-          <h3 class="addon-jp">ヘアセット・メイク</h3>
-          <p class="addon-en" data-i18n="addon.hair.en">Hair Set & Makeup</p>
-          <p class="addon-desc">Complete traditional hair styling and makeup by our in-house certified specialists. Available as a bundle with rental or as a standalone service. Complimentary with Furisode Premium package.</p>
-          <a href="#" class="addon-link" data-view="contact">Book hair & makeup <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
+          <h3 class="addon-jp">メイク</h3>
+          <p class="addon-en" data-i18n="addon.hair.en">Makeup</p>
+          <p class="addon-desc">Professional makeup application by our in-house certified specialists. Available as a bundle with rental or as a standalone service. Complimentary with Furisode Premium package.</p>
+          <a href="#" class="addon-link" data-view="contact"><span data-i18n="addon.hair.link">Book makeup</span> <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
         </div>
         <div class="addon-card">
-          <div class="addon-service-num">— 追加 二 —</div>
+          <div class="addon-service-num">02</div>
           <i data-lucide="camera" class="addon-icon"></i>
           <h3 class="addon-jp">写真撮影</h3>
           <p class="addon-en" data-i18n="addon.photo.en">Photo Service</p>
           <p class="addon-desc">Professional photo sessions at our in-house studio or at nearby scenic spots. Includes 20+ hand-edited digital photos delivered within 3 days. Indoor and outdoor options available.</p>
           <a href="#" class="addon-link" data-view="contact"><span data-i18n="addon.photo.link">Book a photo session</span> <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Story -->
-  <section class="story-section">
-    <div class="container-narrow">
-      <div class="story-grid">
-        <div class="story-image">
-          <div class="story-image-vertical">
-            着<br>物<br>を<br>纏<br>う<br>美<br>し<br>さ
-          </div>
-          <img src="https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_0717.jpg"
-               alt="Woman dressed in kimono at ANN rental studio"
-               loading="lazy"
-               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0">
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(193,64,74,0.25),rgba(61,21,21,0.75));z-index:1"></div>
-        </div>
-        <div class="story-content">
-          <div class="eyebrow" data-i18n="h2.cta2">About ANN · 私たちについて</div>
-          <h2 data-i18n="story.title">Where every guest feels <em>beautiful</em>.</h2>
-          <p>
-            KIMONO RENTAL ANN was born from a simple belief: that the joy of wearing a kimono
-            should be easy, welcoming, and unforgettable. No prior experience needed.
-            Our team guides you from selection to the final bow.
-          </p>
-          <p>
-            We stock over 200 carefully maintained kimonos, from classic furisode
-            to summer yukata. Walk in any day of the week and leave with memories.
-          </p>
-          <blockquote class="story-quote">
-            "I had never worn a kimono before. The ANN team made me feel like I had been wearing one my whole life."
-            <span class="story-quote-author">- Nguyen Thi Lan, Guest from Hanoi</span>
-          </blockquote>
-          <button class="btn-link" data-view="story" data-i18n="story.link">Our story</button>
         </div>
       </div>
     </div>
@@ -3887,37 +3948,36 @@
       <div class="section-header">
         <div class="eyebrow" data-i18n="ritual.eyebrow">Your Visit · ご来店の流れ</div>
         <h2 class="section-title" data-i18n="ritual.title">Your <em>Five</em> Steps</h2>
-        <div class="section-title-jp" data-i18n="feat.titleJp">五つのステップ</div>
       </div>
       <div class="ritual-steps" style="grid-template-columns:repeat(5,1fr)">
         <div class="ritual-step">
-          <div class="ritual-num">壱</div>
-          <h4>着物選び</h4>
+          <div class="ritual-num">01</div>
           <div class="step-en">Choose Your Kimono</div>
+          <h4>着物選び</h4>
           <p>Browse over 200 styles. Our staff help you find the perfect match for your style, season, and occasion.</p>
         </div>
         <div class="ritual-step">
-          <div class="ritual-num">弐</div>
-          <h4>着付け</h4>
+          <div class="ritual-num">02</div>
           <div class="step-en">Dressing</div>
+          <h4>着付け</h4>
           <p>Our certified kitsuke specialists dress you beautifully in around 20 minutes — obi, accessories, and all finishing touches included.</p>
         </div>
         <div class="ritual-step">
-          <div class="ritual-num">参</div>
-          <h4>メイク＆ヘアセット</h4>
+          <div class="ritual-num">03</div>
           <div class="step-en">Make Up &amp; Hair Design</div>
+          <h4>メイク＆ヘアセット</h4>
           <p>Our makeup artists create a custom look that enhances your features and matches your kimono's palette. <strong>Complimentary hair styling and arrangement included</strong> — your certified stylist ensures every detail complements your overall appearance.</p>
         </div>
         <div class="ritual-step">
-          <div class="ritual-num">肆</div>
-          <h4>撮影</h4>
+          <div class="ritual-num">04</div>
           <div class="step-en">Photo Time</div>
+          <h4>撮影</h4>
           <p>Head out to explore the city or step into our photo studio. Our partner photographers are ready to capture your look.</p>
         </div>
         <div class="ritual-step">
-          <div class="ritual-num">伍</div>
-          <h4>ご返却</h4>
+          <div class="ritual-num">05</div>
           <div class="step-en">Return</div>
+          <h4>ご返却</h4>
           <p>Simply return your kimono before closing time. No cleaning required — we take care of everything after you leave.</p>
         </div>
       </div>
@@ -5395,15 +5455,6 @@
     </a>`;
   }
 
-  // Featured grid: 8 items across all lines
-  const featuredProducts = productLines.flatMap(line =>
-    line.variants.map((v,i) => ({
-      ...v, cat: line.jp + ' · ' + line.en,
-      price: line.price, linePrice: line.priceNum, lineId: line.id, _vidx: i
-    }))
-  ).slice(0,8);
-  document.getElementById('featuredGrid').innerHTML = featuredProducts.map(productCard).join('');
-
   // Shop: line-based sections
   function renderShopLines(){
     const container = document.getElementById('shopLines');
@@ -5836,10 +5887,10 @@ const TR = {
 
     'addon.eyebrow': 'Add-On Services',
     'addon.title': 'Enhance your <em>experience</em>',
-    'addon.subtitle': 'Add hair &amp; makeup or a photo session to any rental. Bundle and save.',
-    'addon.hair.en': 'Hair Set &amp; Makeup',
-    'addon.hair.desc': 'Complete traditional hair styling and makeup by our in-house certified specialists. Complimentary with Furisode Premium package.',
-    'addon.hair.link': 'Book hair &amp; makeup',
+    'addon.subtitle': 'Add makeup or a photo session to any rental. Bundle and save.',
+    'addon.hair.en': 'Makeup',
+    'addon.hair.desc': 'Professional makeup application by our in-house certified specialists. Complimentary with Furisode Premium package.',
+    'addon.hair.link': 'Book makeup',
     'addon.photo.en': 'Photo Service',
     'addon.photo.desc': 'Professional photo sessions at our in-house studio or at nearby scenic spots. Includes 20+ hand-edited digital photos delivered within 3 days.',
     'addon.photo.link': 'Book a photo session',
@@ -5952,10 +6003,10 @@ const TR = {
 
     'addon.eyebrow': 'オプションサービス',
     'addon.title': '体験を<em>さらに</em>充実',
-    'addon.subtitle': 'ヘアセットまたは写真撮影をレンタルに追加。セット割引あり。',
-    'addon.hair.en': 'ヘアセット &amp; メイク',
-    'addon.hair.desc': '認定スタイリストによる本格的なヘアセット・メイクアップ。振袖プレミアムにはコンプリメンタリー。',
-    'addon.hair.link': 'ヘアセット予約',
+    'addon.subtitle': 'メイクまたは写真撮影をレンタルに追加。セット割引あり。',
+    'addon.hair.en': 'メイク',
+    'addon.hair.desc': '認定スタイリストによる本格的なメイクアップ。振袖プレミアムにはコンプリメンタリー。',
+    'addon.hair.link': 'メイク予約',
     'addon.photo.en': '写真撮影サービス',
     'addon.photo.desc': 'スタジオまたは周辺観光地でのプロ撮影。20枚以上の編集済みデジタル写真を3日以内にお届け。',
     'addon.photo.link': '写真撮影予約',
@@ -6068,10 +6119,10 @@ const TR = {
 
     'addon.eyebrow': 'Dịch Vụ Bổ Sung',
     'addon.title': 'Nâng Cao <em>Trải Nghiệm</em>',
-    'addon.subtitle': 'Thêm tóc &amp; trang điểm hoặc chụp ảnh vào gói thuê.',
-    'addon.hair.en': 'Tóc &amp; Trang Điểm',
-    'addon.hair.desc': 'Tạo kiểu tóc và trang điểm truyền thống bởi chuyên gia. Miễn phí khi thuê Furisode.',
-    'addon.hair.link': 'Đặt tóc &amp; trang điểm',
+    'addon.subtitle': 'Thêm trang điểm hoặc chụp ảnh vào gói thuê.',
+    'addon.hair.en': 'Trang Điểm',
+    'addon.hair.desc': 'Trang điểm chuyên nghiệp bởi chuyên gia. Miễn phí khi thuê Furisode.',
+    'addon.hair.link': 'Đặt trang điểm',
     'addon.photo.en': 'Chụp Ảnh Chuyên Nghiệp',
     'addon.photo.desc': 'Chụp ảnh tại studio hoặc điểm đẹp gần đó. Hơn 20 ảnh đã chỉnh sửa, giao trong 3 ngày.',
     'addon.photo.link': 'Đặt chụp ảnh',
@@ -6184,10 +6235,10 @@ const TR = {
 
     'addon.eyebrow': '增值服务',
     'addon.title': '提升体验<em>之旅</em>',
-    'addon.subtitle': '在任何租借套餐上加选发型或摄影服务。',
-    'addon.hair.en': '发型 &amp; 化妆',
-    'addon.hair.desc': '认证专家提供传统发型造型和化妆。振袖套餐时免费提供。',
-    'addon.hair.link': '预约发型',
+    'addon.subtitle': '在任何租借套餐上加选化妆或摄影服务。',
+    'addon.hair.en': '化妆',
+    'addon.hair.desc': '认证专家提供专业化妆服务。振袖套餐时免费提供。',
+    'addon.hair.link': '预约化妆',
     'addon.photo.en': '摄影服务',
     'addon.photo.desc': '在工作室或附近景点进行专业摄影，20张以上精修数码照片，3天内交付。',
     'addon.photo.link': '预约摄影',
@@ -6300,10 +6351,10 @@ const TR = {
 
     'addon.eyebrow': '업그레이드 서비스',
     'addon.title': '더 특별한 <em>경험</em>',
-    'addon.subtitle': '헤어 &amp; 메이크업 또는 사진 서비스를 추가하세요.',
-    'addon.hair.en': '헤어 &amp; 메이크업',
-    'addon.hair.desc': '인증 전문가의 헤어 세트 &amp; 메이크업. 후리소데 패키지에는 무료 제공.',
-    'addon.hair.link': '헤어 예약',
+    'addon.subtitle': '메이크업 또는 사진 서비스를 추가하세요.',
+    'addon.hair.en': '메이크업',
+    'addon.hair.desc': '인증 전문가의 전문 메이크업. 후리소데 패키지에는 무료 제공.',
+    'addon.hair.link': '메이크업 예약',
     'addon.photo.en': '사진 서비스',
     'addon.photo.desc': '스튜디오 또는 인근 관광지에서 전문 사진 촬영. 20장 이상 편집 완료, 3일 이내 전달.',
     'addon.photo.link': '사진 예약',
@@ -6435,10 +6486,6 @@ function applyLang(lang) {
   });
 
   // Re-render JS-built sections
-  const fg = document.getElementById('featuredGrid');
-  if (fg && typeof featuredProducts !== 'undefined')
-    fg.innerHTML = featuredProducts.map(p => productCard(p)).join('');
-
   if (typeof renderShopLines === 'function') renderShopLines();
 
   const rg = document.getElementById('relatedGrid');

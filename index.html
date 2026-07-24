@@ -558,18 +558,36 @@
 
   /* ============ INCLUDED WITH RENTAL ============ */
   .included-section{
-    background:var(--kinari);
-    padding:140px 0;
-    position:relative;
-  }
-  .included-grid{
     display:grid;
-    grid-template-columns:0.85fr 1fr;
-    gap:100px;
+    grid-template-columns:1fr 1fr;
+    min-height:640px;
+  }
+  .included-half{
+    display:flex;
+    padding:100px 56px;
+  }
+  .included-half-dark{
+    background:var(--sumi);
+    color:var(--kinari);
+    justify-content:flex-end;
+    position:relative;
+    overflow:hidden;
+  }
+  .included-half-dark::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse 500px 400px at 20% 30%, rgba(245,192,200,0.08), transparent);
+    pointer-events:none;
+  }
+  .included-half-light{
+    background:var(--kinari);
+    justify-content:flex-start;
   }
   .included-intro{
     display:flex;flex-direction:column;align-items:flex-start;
+    max-width:440px;position:relative;z-index:1;
   }
+  .included-half-dark .eyebrow{color:var(--kincha-soft)}
+  .included-half-dark .eyebrow::before,.included-half-dark .eyebrow::after{background:var(--kincha-soft)}
   .included-intro .eyebrow{margin-bottom:24px}
   .included-title{
     font-family:'Cormorant Garamond',serif;
@@ -577,11 +595,14 @@
     letter-spacing:-0.01em;color:var(--sumi);
     margin-bottom:24px;
   }
+  .included-half-dark .included-title{color:var(--kinari)}
   .included-title em{font-style:italic;color:var(--shu)}
+  .included-half-dark .included-title em{color:var(--sakura)}
   .included-lead{
     font-size:15px;line-height:1.8;color:var(--sumi-soft);
     font-weight:300;margin-bottom:28px;max-width:400px;
   }
+  .included-half-dark .included-lead{color:rgba(255,248,248,0.8)}
   .included-combo{
     font-size:13px;line-height:1.8;color:var(--sumi-mid);
     font-weight:400;font-style:italic;
@@ -590,18 +611,24 @@
     background:var(--kinari-deep);
     margin-bottom:32px;max-width:420px;
   }
-  .included-list{display:flex;flex-direction:column}
+  .included-half-dark .included-combo{background:rgba(250,247,242,0.06);color:rgba(255,248,248,0.75)}
+  .included-half-dark .btn-link{color:var(--kinari);border-bottom-color:var(--kinari)}
+  .included-half-dark .btn-link:hover{color:var(--sakura);border-color:var(--sakura)}
+  .included-list{display:flex;flex-direction:column;max-width:480px;width:100%}
   .included-item{
-    display:grid;grid-template-columns:40px 1fr;gap:20px;
-    padding:28px 0;
+    display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:flex-start;
+    padding:24px 0;
     border-bottom:1px solid var(--line-strong);
   }
   .included-item:first-child{padding-top:0}
   .included-item:last-child{border-bottom:none;padding-bottom:0}
-  .included-num{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:20px;color:var(--shu);line-height:1.4;
+  .included-icon{
+    width:48px;height:48px;border-radius:50%;
+    background:var(--sakura-soft);color:var(--shu);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
   }
+  .included-icon svg{width:21px;height:21px;stroke-width:1.6}
   .included-label{
     display:block;
     font-size:15px;font-weight:600;letter-spacing:0.01em;
@@ -763,14 +790,19 @@
     position:relative;
     overflow:hidden;
   }
-  .ritual::before{
-    content:'';position:absolute;inset:0;
-    background-image:
-      radial-gradient(ellipse 600px 400px at 10% 50%, rgba(245,192,200,0.08), transparent),
-      radial-gradient(ellipse 500px 600px at 90% 20%, rgba(235,160,170,0.06), transparent),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><circle cx='24' cy='24' r='1' fill='%23EBA0AA' fill-opacity='0.12'/></svg>");
-    background-size:auto,auto,48px 48px;
+  .ritual-bg{
+    position:absolute;inset:-20px;
+    background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');
+    background-size:cover;background-position:center 30%;
+    filter:blur(7px) saturate(0.75) brightness(0.7);
+    opacity:0.32;
+    z-index:0;
   }
+  .ritual::before{
+    content:'';position:absolute;inset:0;z-index:0;
+    background:linear-gradient(180deg, var(--sumi) 0%, rgba(61,21,21,0.75) 30%, rgba(61,21,21,0.75) 70%, var(--sumi) 100%);
+  }
+  .ritual .container{position:relative;z-index:1}
   .ritual .section-title{color:var(--kinari)}
   .ritual .eyebrow{color:var(--kincha-soft)}
   .ritual .eyebrow::before,.ritual .eyebrow::after{background:var(--kincha-soft)}
@@ -781,27 +813,36 @@
     margin-top:80px;
     position:relative;
   }
+  .ritual-steps::before{
+    content:'';position:absolute;
+    top:26px;left:8%;right:8%;height:1px;
+    background:linear-gradient(90deg, transparent, rgba(235,160,170,0.4) 12%, rgba(235,160,170,0.4) 88%, transparent);
+    z-index:0;
+  }
   .ritual-step{
-    padding:32px 24px;
-    border-right:1px solid rgba(250,247,242,0.1);
+    padding:0 24px 32px;
     text-align:center;
     position:relative;
   }
-  .ritual-step:last-child{border-right:none}
+  .ritual-icon{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--sumi);
+    border:1px solid rgba(235,160,170,0.4);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 22px;
+    position:relative;z-index:1;
+    color:var(--shu);
+  }
+  .ritual-icon svg{width:22px;height:22px;stroke-width:1.5}
   .ritual-num{
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
-    font-size:16px;
+    font-size:13px;
     letter-spacing:0.15em;
-    color:var(--shu);
-    margin-bottom:22px;
+    color:var(--sakura);
+    margin-bottom:14px;
     line-height:1;
     font-weight:400;
-  }
-  .ritual-num::after{
-    content:'';display:block;width:30px;height:1px;
-    background:var(--kincha-soft);
-    margin:16px auto 0;
   }
   .ritual-step .step-en{
     font-family:'Cormorant Garamond',serif;
@@ -2200,7 +2241,8 @@
 
   /* ============ POLICY CARDS ============ */
   .policy-cards{
-    display:grid;grid-template-columns:repeat(3,1fr);
+    display:grid;grid-template-columns:1fr;
+    max-width:480px;
     border:1px solid var(--line-strong);
     margin-bottom:72px;
   }
@@ -2570,9 +2612,13 @@
     .shop-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
     .services-grid{grid-template-columns:1fr}
     .ritual-steps{grid-template-columns:repeat(2,1fr)}
+    .ritual-steps::before{display:none}
     .footer-grid{grid-template-columns:1fr 1fr;gap:48px 32px}
     .product-layout{grid-template-columns:1fr;gap:48px}
-    .checkout-layout,.contact-layout,.story-grid,.specs-grid,.included-grid{grid-template-columns:1fr;gap:40px}
+    .checkout-layout,.contact-layout,.story-grid,.specs-grid{grid-template-columns:1fr;gap:40px}
+    .included-section{grid-template-columns:1fr;min-height:auto}
+    .included-half{padding:56px 32px;justify-content:flex-start}
+    .included-intro,.included-list{max-width:100%}
     .craft-grid{grid-template-columns:1fr 1fr;gap:24px}
     .shop-layout{grid-template-columns:1fr}
     .filters-side{position:static}
@@ -2586,7 +2632,6 @@
 
     /* Section padding */
     .section{padding:72px 0}
-    .included-section{padding:72px 0}
     .included-title{font-size:38px}
     .section-title{font-size:52px}
     .section-title-jp{font-size:18px}
@@ -3689,7 +3734,6 @@
       <div class="topbar-marquee">
         <span data-i18n="tb.walkin">手ぶらでOK! Walk In OK — No reservation required</span>
         <span data-i18n="tb.services">着物レンタル · Kimono Rental · Hair Set · Photo Service</span>
-        <span data-i18n="tb.rental">Rental from ¥3,000 · 当ビルB1 · This building basement 1</span>
       </div>
       <div class="lang-switch" id="langSwitch">
         <button class="lang-btn active" data-lang="en">EN</button>
@@ -3708,9 +3752,9 @@
     <nav class="main-nav">
       <a href="#" class="nav-link active" data-view="home" data-i18n="nav.home">Home</a>
       <a href="#" class="nav-link" data-view="shop" data-i18n="nav.collection">Collection</a>
-      <a href="#" class="nav-link" data-view="story" data-i18n="nav.story">Story</a>
-      <a href="#" class="nav-link" data-view="contact" data-i18n="nav.atelier">Atelier</a>
+      <a href="#" class="nav-link" data-view="story" data-i18n="nav.story">About ANN</a>
       <a href="./blog/" class="nav-link">Journal</a>
+      <a href="#" class="nav-link" data-view="contact" data-i18n="nav.atelier">Contact</a>
     </nav>
     <a href="#" class="brand" data-view="home" style="flex-direction:row;gap:0;align-items:center">
       <img src="./ANN/Logo/Logo Ngang-05-header-rose.png" alt="KIMONO RENTAL ANN" class="header-logo-img">
@@ -3823,7 +3867,7 @@
       <div class="package-grid">
         <div class="package-tile" data-view="shop">
           <div class="package-num">01</div>
-          <div class="package-en">Furisode Premium</div>
+          <div class="package-en">Premium Furisode</div>
           <div class="package-jp">振袖</div>
           <div class="package-price" data-price-jpy="18000">¥18,000</div>
           <div class="package-price-label">per day · 1日レンタル</div>
@@ -3872,50 +3916,50 @@
 
   <!-- Included With Every Rental -->
   <section class="included-section">
-    <div class="container-narrow">
-      <div class="included-grid">
-        <div class="included-intro">
-          <div class="eyebrow">What's Included · 含まれるサービス</div>
-          <h2 class="included-title">Included with <em>every</em> rental</h2>
-          <p class="included-lead">No hidden fees, no surprises. Every booking arrives fully equipped — walk in ready, walk out effortlessly.</p>
-          <p class="included-combo">Prefer the full experience? We also offer a complete combo — kimono rental, professional makeup, and a photo shoot — bundled into one seamless package.</p>
-          <button class="btn-link" data-view="shop">Browse rental lines</button>
+    <div class="included-half included-half-dark">
+      <div class="included-intro">
+        <div class="eyebrow">What's Included · 含まれるサービス</div>
+        <h2 class="included-title">Included with <em>every</em> rental</h2>
+        <p class="included-lead">No hidden fees, no surprises. Every booking arrives fully equipped — walk in ready, walk out effortlessly.</p>
+        <p class="included-combo">Prefer the full experience? We also offer a complete combo — kimono rental, professional makeup, and a photo shoot — bundled into one seamless package.</p>
+        <button class="btn-link" data-view="shop">Browse rental lines</button>
+      </div>
+    </div>
+    <div class="included-half included-half-light">
+      <div class="included-list">
+        <div class="included-item">
+          <div class="included-icon"><i data-lucide="sparkles"></i></div>
+          <div>
+            <span class="included-label">Complimentary hairstyling</span>
+            <span class="included-desc">Free hair styling and hair accessories included for every woman's rental — no add-on required.</span>
+          </div>
         </div>
-        <div class="included-list">
-          <div class="included-item">
-            <div class="included-num">01</div>
-            <div>
-              <span class="included-label">Complimentary hairstyling</span>
-              <span class="included-desc">Free hair styling and hair accessories included for every woman's rental — no add-on required.</span>
-            </div>
+        <div class="included-item">
+          <div class="included-icon"><i data-lucide="shirt"></i></div>
+          <div>
+            <span class="included-label">Professional dressing</span>
+            <span class="included-desc">Certified kitsuke specialists dress you beautifully in around 20 minutes, start to finish.</span>
           </div>
-          <div class="included-item">
-            <div class="included-num">02</div>
-            <div>
-              <span class="included-label">Professional dressing</span>
-              <span class="included-desc">Certified kitsuke specialists dress you beautifully in around 20 minutes, start to finish.</span>
-            </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon"><i data-lucide="shopping-bag"></i></div>
+          <div>
+            <span class="included-label">Bags, sandals &amp; photo props</span>
+            <span class="included-desc">Matching accessories and photo props are included with every kimono, at no extra cost.</span>
           </div>
-          <div class="included-item">
-            <div class="included-num">03</div>
-            <div>
-              <span class="included-label">Bags, sandals &amp; photo props</span>
-              <span class="included-desc">Matching accessories and photo props are included with every kimono, at no extra cost.</span>
-            </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon"><i data-lucide="sunrise"></i></div>
+          <div>
+            <span class="included-label">Early-morning &amp; evening slots</span>
+            <span class="included-desc">Book early-morning or evening reservations with no additional charge.</span>
           </div>
-          <div class="included-item">
-            <div class="included-num">04</div>
-            <div>
-              <span class="included-label">Early-morning &amp; evening slots</span>
-              <span class="included-desc">Book early-morning or evening reservations with no additional charge.</span>
-            </div>
-          </div>
-          <div class="included-item">
-            <div class="included-num">05</div>
-            <div>
-              <span class="included-label">Free next-day return</span>
-              <span class="included-desc">Keep your kimono overnight and return it free of charge before 10:00 AM the next day.</span>
-            </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon"><i data-lucide="rotate-ccw"></i></div>
+          <div>
+            <span class="included-label">Free next-day return</span>
+            <span class="included-desc">Keep your kimono overnight and return it free of charge before 10:00 AM the next day.</span>
           </div>
         </div>
       </div>
@@ -3936,7 +3980,7 @@
           <i data-lucide="sparkles" class="addon-icon"></i>
           <h3 class="addon-jp">メイク</h3>
           <p class="addon-en" data-i18n="addon.hair.en">Makeup</p>
-          <p class="addon-desc">Professional makeup application by our in-house certified specialists. Available as a bundle with rental or as a standalone service. Complimentary with Furisode Premium package.</p>
+          <p class="addon-desc">Professional makeup application by our in-house certified specialists. Available as a bundle with rental or as a standalone service. Complimentary with Premium Furisode package.</p>
           <a href="#" class="addon-link" data-view="contact"><span data-i18n="addon.hair.link">Book makeup</span> <i data-lucide="arrow-right" style="width:14px;height:14px;display:inline-block"></i></a>
         </div>
         <div class="addon-card">
@@ -3953,6 +3997,7 @@
 
   <!-- Ritual / Process -->
   <section class="ritual">
+    <div class="ritual-bg"></div>
     <div class="container">
       <div class="section-header">
         <div class="eyebrow" data-i18n="ritual.eyebrow">Your Visit · ご来店の流れ</div>
@@ -3960,30 +4005,35 @@
       </div>
       <div class="ritual-steps" style="grid-template-columns:repeat(5,1fr)">
         <div class="ritual-step">
+          <div class="ritual-icon"><i data-lucide="search"></i></div>
           <div class="ritual-num">01</div>
           <div class="step-en">Choose Your Kimono</div>
           <h4>着物選び</h4>
           <p>Browse over 200 styles. Our staff help you find the perfect match for your style, season, and occasion.</p>
         </div>
         <div class="ritual-step">
+          <div class="ritual-icon"><i data-lucide="shirt"></i></div>
           <div class="ritual-num">02</div>
           <div class="step-en">Dressing</div>
           <h4>着付け</h4>
           <p>Our certified kitsuke specialists dress you beautifully in around 20 minutes — obi, accessories, and all finishing touches included.</p>
         </div>
         <div class="ritual-step">
+          <div class="ritual-icon"><i data-lucide="sparkles"></i></div>
           <div class="ritual-num">03</div>
           <div class="step-en">Make Up &amp; Hair Design</div>
           <h4>メイク＆ヘアセット</h4>
           <p>Our makeup artists create a custom look that enhances your features and matches your kimono's palette. <strong>Complimentary hair styling and arrangement included</strong> — your certified stylist ensures every detail complements your overall appearance.</p>
         </div>
         <div class="ritual-step">
+          <div class="ritual-icon"><i data-lucide="camera"></i></div>
           <div class="ritual-num">04</div>
           <div class="step-en">Photo Time</div>
           <h4>撮影</h4>
           <p>Head out to explore the city or step into our photo studio. Our partner photographers are ready to capture your look.</p>
         </div>
         <div class="ritual-step">
+          <div class="ritual-icon"><i data-lucide="rotate-ccw"></i></div>
           <div class="ritual-num">05</div>
           <div class="step-en">Return</div>
           <h4>ご返却</h4>
@@ -4145,7 +4195,7 @@
             A spring furisode dyed in deep vermillion, scattered with hand-painted cranes in
             flight — a motif borrowed from Edo-period court robes. The silk is from Tango,
             woven on wooden looms still operated by a single family in their fourth generation.
-            Each crane is painted by master artisan Tanaka Sumire over the course of nine days.
+            Each crane is hand-painted over the course of nine days.
           </p>
 
           <!-- Variant selector: rendered by JS (free-size badge for adults, age selector for kids) -->
@@ -4290,7 +4340,7 @@
             <tr><td>Material</td><td>100% Tango silk · <small>絹100%</small></td></tr>
             <tr><td>Weight</td><td>1.42 kg <small>(including obi)</small></td></tr>
             <tr><td>Dyeing technique</td><td>Yuzen-zome · <small>友禅染</small></td></tr>
-            <tr><td>Hand-painting</td><td>Tanaka Sumire <small>(9 days)</small></td></tr>
+            <tr><td>Hand-painting</td><td>Yuzen artisan <small>(9 days)</small></td></tr>
             <tr><td>Origin</td><td>Tango, Kyoto Prefecture</td></tr>
             <tr><td>Artisan hours</td><td>74 hours total</td></tr>
             <tr><td>Era</td><td>Reiwa · 2025 collection</td></tr>
@@ -4633,24 +4683,24 @@
     <div class="container">
       <div class="ribbon-grid">
         <div class="ribbon-stat">
-          <div class="ribbon-num"><em>38</em></div>
-          <div class="ribbon-jp">年の歴史</div>
-          <div class="ribbon-en">Years of craft</div>
+          <div class="ribbon-num"><em>1</em></div>
+          <div class="ribbon-jp">着付け技能士1級</div>
+          <div class="ribbon-en">Certified Kitsuke Specialist</div>
         </div>
         <div class="ribbon-stat">
-          <div class="ribbon-num"><em>12</em></div>
-          <div class="ribbon-jp">職人</div>
-          <div class="ribbon-en">Master artisans</div>
+          <div class="ribbon-num"><em>5</em></div>
+          <div class="ribbon-jp">対応言語</div>
+          <div class="ribbon-en">Languages spoken</div>
         </div>
         <div class="ribbon-stat">
-          <div class="ribbon-num"><em>387</em></div>
-          <div class="ribbon-jp">所蔵</div>
-          <div class="ribbon-en">Garments in archive</div>
+          <div class="ribbon-num"><em>1</em></div>
+          <div class="ribbon-jp">徒歩・浅草寺</div>
+          <div class="ribbon-en">Minute walk to Sensoji Temple</div>
         </div>
         <div class="ribbon-stat">
-          <div class="ribbon-num"><em>3</em></div>
-          <div class="ribbon-jp">三世代</div>
-          <div class="ribbon-en">Generations</div>
+          <div class="ribbon-num"><em>OK</em></div>
+          <div class="ribbon-jp">予約不要</div>
+          <div class="ribbon-en">Walk-in, no reservation</div>
         </div>
       </div>
     </div>
@@ -4660,22 +4710,22 @@
     <div class="container-narrow">
       <div class="story-grid">
         <div class="story-content">
-          <div class="eyebrow">1987 — Origins</div>
-          <h2>A small <em>dyehouse</em> on a narrow lane</h2>
+          <div class="eyebrow">Our Expertise</div>
+          <h2>Real <em>kitsuke</em>, not a rented skill</h2>
           <p>
-            The atelier was founded by Tanaka Hideko in the spring of 1987 — a single room above a tea
-            merchant's shop in northern Kyoto. She dyed silk for nine local kimono houses while raising
-            two daughters in the same building. The fire never went out.
+            KIMONO RENTAL ANN is run with genuine dressing expertise. Our team includes a kitsuke
+            specialist certified at Level 1 (着付け技能士１級) — Japan's national qualification for
+            professional kimono dressing.
           </p>
           <p>
-            Her granddaughter, Tanaka Sumire — who paints the cranes you see on our furisode today — joined
-            the atelier in 2009 after returning from a textile residency in Lyon. She is the third generation
-            of women to dye in this room.
+            Every guest is dressed with the same care and technique used for weddings, coming-of-age
+            ceremonies, and tea gatherings — obi, accessories, and every fold done properly, whether
+            you're staying an hour or the whole day.
           </p>
         </div>
         <div class="story-image">
           <div class="story-image-vertical">
-            一<br>九<br>八<br>七<br>年<br>春<br>創<br>業
+            着<br>付<br>け<br>技<br>能<br>士<br>1<br>級
           </div>
           <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/premium-furisode-couple-momiji-885.jpg"
                alt="Atelier hands at work"
@@ -4690,61 +4740,35 @@
   <section class="craft-section">
     <div class="container">
       <div class="section-header">
-        <div class="eyebrow">The Hands</div>
-        <h2 class="section-title">Twelve <em>Artisans</em></h2>
-        <div class="section-title-jp">職人 十二名</div>
+        <div class="eyebrow">What It Means For You</div>
+        <h2 class="section-title">Certified <em>Craft</em></h2>
+        <div class="section-title-jp">確かな技術</div>
       </div>
       <div class="craft-grid">
         <div class="craft-card">
           <div class="craft-image">
-            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg"
-                 alt="Tanaka Sumire — Master Painter" loading="lazy">
-            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,50,63,0.55),rgba(26,22,20,0.85))"></div>
-            <div class="craft-name">田中 すみれ</div>
-          </div>
-          <div class="craft-content">
-            <h3>田中 すみれ</h3>
-            <div class="craft-en">Tanaka Sumire — Master Painter</div>
-            <p>Trained in Kyoto and Lyon. Specializes in yuzen hand-painting; paints cranes and seasonal motifs that take 7–14 days per piece. Third-generation of the founding family.</p>
-          </div>
-        </div>
-        <div class="craft-card">
-          <div class="craft-image">
-            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/hakama-kimono-asakusa-2-683x1024.jpg"
-                 alt="Nakamura Kenichi — Indigo Dyer" loading="lazy">
-            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(30,44,69,0.55),rgba(15,26,43,0.88))"></div>
-            <div class="craft-name">中村 健一</div>
-          </div>
-          <div class="craft-content">
-            <h3>中村 健一</h3>
-            <div class="craft-en">Nakamura Kenichi — Indigo Dyer</div>
-            <p>40 years of natural-indigo experience. Maintains our seven dye vats and tracks fermentation across all four seasons — each vat has a name and a logbook.</p>
-          </div>
-        </div>
-        <div class="craft-card">
-          <div class="craft-image">
-            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/kids-kimono-asakusa-1.jpg"
-                 alt="Yamamoto Aoi — Stitcher" loading="lazy">
-            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,133,75,0.55),rgba(92,58,31,0.88))"></div>
-            <div class="craft-name">山本 葵</div>
-          </div>
-          <div class="craft-content">
-            <h3>山本 葵</h3>
-            <div class="craft-en">Yamamoto Aoi — Stitcher</div>
-            <p>Hand-stitches every garment. Maintains the centuries-old "stitch language" of our atelier — each thread is invisible on the right side, decisive on the wrong.</p>
-          </div>
-        </div>
-        <div class="craft-card">
-          <div class="craft-image">
             <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/lace-kimono-asakusa-10-681x1024.jpg"
-                 alt="Suzuki Misaki — Kitsuke Master" loading="lazy">
+                 alt="Certified kitsuke specialist dressing a guest" loading="lazy">
             <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(92,107,71,0.55),rgba(45,53,34,0.88))"></div>
-            <div class="craft-name">鈴木 美咲</div>
+            <div class="craft-name">着付け技能士１級</div>
           </div>
           <div class="craft-content">
-            <h3>鈴木 美咲</h3>
-            <div class="craft-en">Suzuki Misaki — Kitsuke Master</div>
-            <p>Certified third-rank kitsuke (kimono dressing) instructor. Will dress you for any ceremony — wedding, tea, festival — and tell you the meaning of every fold.</p>
+            <h3>国家資格</h3>
+            <div class="craft-en">Level 1 Kitsuke Certification</div>
+            <p>Japan's national qualification for professional kimono dressing. It means the fit, the obi, and every fold follow proper technique — not a shortcut learned for tourists.</p>
+          </div>
+        </div>
+        <div class="craft-card">
+          <div class="craft-image">
+            <img src="https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg"
+                 alt="Guest dressed for a formal occasion" loading="lazy">
+            <div class="craft-overlay" style="background:linear-gradient(135deg,rgba(168,50,63,0.55),rgba(26,22,20,0.85))"></div>
+            <div class="craft-name">式典対応</div>
+          </div>
+          <div class="craft-content">
+            <h3>どんな場面でも</h3>
+            <div class="craft-en">Ready for Any Occasion</div>
+            <p>Wedding guest, coming-of-age ceremony, tea gathering, or a casual afternoon in Asakusa — the same certified technique applies, adjusted to what the day calls for.</p>
           </div>
         </div>
       </div>
@@ -4868,16 +4892,6 @@
           <div class="policy-card-title">Free Next-Day Return</div>
           <div class="policy-card-body">Return your kimono before <strong>10:00 AM</strong> the following morning at no additional charge. Enjoy your evening — no rush.</div>
         </div>
-        <div class="policy-card">
-          <div class="policy-card-eyebrow">🌅 Flexible Hours</div>
-          <div class="policy-card-title">Early &amp; Evening Slots</div>
-          <div class="policy-card-body">Appointments outside regular hours (before 8 AM or after 7 PM) are available at <strong>no extra charge</strong> — advance reservation required via WhatsApp or LINE.</div>
-        </div>
-        <div class="policy-card highlight">
-          <div class="policy-card-eyebrow">⭐ Grand Opening Offer</div>
-          <div class="policy-card-title">10% OFF for Every Guest</div>
-          <div class="policy-card-body">Leave us a <strong>Google Maps review</strong> and show it to our staff before payment. 10% off your total — no code needed.</div>
-        </div>
       </div>
 
       <!-- Contact Layout -->
@@ -4885,16 +4899,16 @@
         <div class="contact-info">
           <div class="eyebrow" data-i18n="contact.find.eyebrow">Find Us · アクセス</div>
           <h2 data-i18n="contact.find.title">Come visit <em>us</em> in Asakusa.</h2>
-          <p>We're 2 minutes from Sensoji Temple in the heart of historic Asakusa. Walk-ins welcome every day — no booking needed.</p>
+          <p>1 minute to Sensoji Temple, 3-minute walk from Asakusa Station — right in the heart of historic Asakusa. Walk-ins welcome every day, no booking needed.</p>
 
           <div class="contact-blocks">
             <div class="contact-block">
               <i data-lucide="map-pin"></i>
               <div>
                 <h4>Address · 住所</h4>
-                <p>アモール 4F, 浅草 1-36-11<br>台東区, 東京</p>
-                <div class="en">Amor Bldg 4F, 1-36-11 Asakusa, Taito City, Tokyo</div>
-                <a href="https://maps.app.goo.gl/5Y9bQG8HGf8z13gs9" target="_blank" rel="noopener"
+                <p>アモール 4F, 浅草1-36-11<br>台東区, 東京 111-0032</p>
+                <div class="en">Amor Bldg 4th Floor, 1 Chome-36-11 Asakusa, Taito City, Tokyo 111-0032, Japan</div>
+                <a href="https://maps.app.goo.gl/P7cZkGS1y7YsfxBM6" target="_blank" rel="noopener"
                    style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--shu);text-decoration:none;margin-top:10px;letter-spacing:0.08em;font-weight:600">
                   <i data-lucide="external-link" style="width:12px;height:12px"></i>Open in Google Maps
                 </a>
@@ -4920,8 +4934,8 @@
               <i data-lucide="navigation"></i>
               <div>
                 <h4>Access · 最寄り駅</h4>
-                <p>浅草駅 · 徒歩5分</p>
-                <div class="en">Asakusa Station — 5 min walk<br>Sensoji Temple — 2 min walk</div>
+                <p>浅草駅 · 徒歩3分</p>
+                <div class="en">Asakusa Station — 3 min walk<br>Sensoji Temple — 1 min walk</div>
               </div>
             </div>
           </div>
@@ -5294,7 +5308,7 @@
   /* ============= PRODUCT DATA — ANN Kimono Rental v3 (line-based) ============= */
   const productLines = [
     {
-      id:'furisode', jp:'振袖', en:'Furisode Premium', price:'¥18,000', priceNum:18000,
+      id:'furisode', jp:'振袖', en:'Premium Furisode', price:'¥18,000', priceNum:18000,
       num:'一', tag:'Formal · フォーマル',
       desc:'Long-sleeved silk furisode for coming-of-age, wedding guests, and special ceremonies. All-inclusive rental.',
       variants:[
@@ -5376,7 +5390,7 @@
   const products = productLines.flatMap(line =>
     line.variants.map(v => ({
       ...v,
-      cat: line.jp + ' · ' + line.en,
+      cat: line.en + ' · ' + line.jp,
       price: line.price,
       rent: line.price + '/day',
       lineId: line.id,
@@ -5477,7 +5491,7 @@
       <section class="line-section">
         <div class="line-header">
           <div class="line-title-block">
-            <div class="line-num">— ${nums[li]} — ${line.tag}</div>
+            <div class="line-num">— ${nums[li]} —</div>
             <div class="line-jp">${line.jp}</div>
             <div class="line-en">${line.en}</div>
           </div>
@@ -5488,7 +5502,7 @@
         </div>
         <div class="line-section-grid">
           ${line.variants.map((v,i) => {
-            const p = {...v, cat: line.jp + ' · ' + line.en, price: line.price, linePrice: line.priceNum, lineId: line.id, _vidx: i};
+            const p = {...v, cat: line.en + ' · ' + line.jp, price: line.price, linePrice: line.priceNum, lineId: line.id, _vidx: i};
             return productCard(p, line.priceNum);
           }).join('')}
         </div>
@@ -5500,10 +5514,10 @@
 
   // Related (4 items from different lines)
   const relatedProducts = [
-    {...productLines[1].variants[0], cat:'訪問着 · Houmongi', price:'¥12,000', linePrice:12000, lineId:'houmongi', _vidx:0},
-    {...productLines[2].variants[0], cat:'小紋 · Komon',     price:'¥8,000',  linePrice:8000,  lineId:'komon',    _vidx:0},
-    {...productLines[3].variants[0], cat:'浴衣 · Yukata',    price:'¥4,500',  linePrice:4500,  lineId:'yukata',   _vidx:0},
-    {...productLines[4].variants[0], cat:'キッズ · Kids',    price:'¥6,000',  linePrice:6000,  lineId:'kids',     _vidx:0},
+    {...productLines[1].variants[0], cat:'Houmongi · 訪問着', price:'¥12,000', linePrice:12000, lineId:'houmongi', _vidx:0},
+    {...productLines[2].variants[0], cat:'Komon · 小紋',     price:'¥8,000',  linePrice:8000,  lineId:'komon',    _vidx:0},
+    {...productLines[3].variants[0], cat:'Yukata · 浴衣',    price:'¥4,500',  linePrice:4500,  lineId:'yukata',   _vidx:0},
+    {...productLines[4].variants[0], cat:'Kids · キッズ',    price:'¥6,000',  linePrice:6000,  lineId:'kids',     _vidx:0},
   ];
   document.getElementById('relatedGrid').innerHTML = relatedProducts.map(productCard).join('');
 
@@ -5610,7 +5624,7 @@
 
   // Cart drawer items — line-based rental labels
   const cartItems = [
-    {jp:'鶴の舞',en:'Furisode Premium · 1-day rental',cat:'振袖',price:'¥18,000',qty:1,
+    {jp:'鶴の舞',en:'Premium Furisode · 1-day rental',cat:'振袖',price:'¥18,000',qty:1,
      image:'https://kimonorentalann.com/wp-content/uploads/2026/03/furisode-kimono-asakusa-4-683x1024.jpg'},
     {jp:'Hair &amp; Makeup',en:'Add-on service · ヘアセット',cat:'オプション',price:'¥5,000',qty:1,
      image:'https://kimonorentalann.com/wp-content/uploads/2026/02/DSC_9181-681x1024.jpg'}
@@ -5849,8 +5863,8 @@ const TR = {
   en: {
     'nav.home': 'Home',
     'nav.collection': 'Collection',
-    'nav.story': 'Story',
-    'nav.atelier': 'Atelier',
+    'nav.story': 'About ANN',
+    'nav.atelier': 'Contact',
     'nav.reservation': 'Reservation',
 
     'tb.walkin': 'Walk In OK — No reservation required',
@@ -5881,7 +5895,7 @@ const TR = {
     'pkg.subtitle': 'Every package includes kimono, obi, accessories, dressing by our specialists, and all accessories. Walk in — walk out beautiful.',
     'pkg.perday': 'per day · 1 day rental',
     'pkg.viewstyles': 'View styles',
-    'pkg.furisode.en': 'Furisode Premium',
+    'pkg.furisode.en': 'Premium Furisode',
     'pkg.furisode.desc': 'Long-sleeved formal silk furisode for ceremonies, coming-of-age, and wedding guests.',
     'pkg.houmongi.en': 'Houmongi',
     'pkg.houmongi.desc': 'Elegant semi-formal visiting dress with flowing patterns. Perfect for tea ceremony and parties.',
@@ -5902,7 +5916,7 @@ const TR = {
     'addon.title': 'Enhance your <em>experience</em>',
     'addon.subtitle': 'Add makeup or a photo session to any rental. Bundle and save.',
     'addon.hair.en': 'Makeup',
-    'addon.hair.desc': 'Professional makeup application by our in-house certified specialists. Complimentary with Furisode Premium package.',
+    'addon.hair.desc': 'Professional makeup application by our in-house certified specialists. Complimentary with Premium Furisode package.',
     'addon.hair.link': 'Book makeup',
     'addon.photo.en': 'Photo Service',
     'addon.photo.desc': 'Professional photo sessions at our in-house studio or at nearby scenic spots. Includes 20+ hand-edited digital photos delivered within 3 days.',
@@ -5965,8 +5979,8 @@ const TR = {
   ja: {
     'nav.home': 'ホーム',
     'nav.collection': 'コレクション',
-    'nav.story': 'ストーリー',
-    'nav.atelier': 'アトリエ',
+    'nav.story': 'ANNについて',
+    'nav.atelier': 'お問い合わせ',
     'nav.reservation': 'ご予約',
 
     'tb.walkin': '手ぶらでOK！ — 予約不要でご来店できます',
@@ -6081,7 +6095,7 @@ const TR = {
   vi: {
     'nav.home': 'Trang Chủ',
     'nav.collection': 'Bộ Sưu Tập',
-    'nav.story': 'Câu Chuyện',
+    'nav.story': 'Về ANN',
     'nav.atelier': 'Liên Hệ',
     'nav.reservation': 'Đặt Chỗ',
 
@@ -6197,8 +6211,8 @@ const TR = {
   zh: {
     'nav.home': '首页',
     'nav.collection': '系列',
-    'nav.story': '故事',
-    'nav.atelier': '工坊',
+    'nav.story': '关于ANN',
+    'nav.atelier': '联系我们',
     'nav.reservation': '预约',
 
     'tb.walkin': '无需预约 — 随时光临！',
@@ -6313,8 +6327,8 @@ const TR = {
   ko: {
     'nav.home': '홈',
     'nav.collection': '콜렉션',
-    'nav.story': '스토리',
-    'nav.atelier': '아틀리에',
+    'nav.story': 'ANN 소개',
+    'nav.atelier': '문의하기',
     'nav.reservation': '예약',
 
     'tb.walkin': '예약 없이 바로 방문 가능!',
@@ -6472,11 +6486,6 @@ function applyLang(lang) {
     if (isNaN(n)) return;
     const hasPlus = (el.textContent || '').trimStart().startsWith('+');
     el.textContent = (hasPlus ? '+' : '') + formatPrice(n);
-  });
-
-  // tb.rental with live price
-  document.querySelectorAll('[data-i18n="tb.rental"]').forEach(el => {
-    el.innerHTML = t('tb.rental');
   });
 
   // Package tiles (positional — 5 tiles in order)

@@ -2040,6 +2040,55 @@
     padding:140px 0;
   }
 
+  /* ============ SHOP SPACE GALLERY (店内) ============ */
+  .space-section{
+    background:var(--kinari);
+    padding:140px 0;
+  }
+  .space-intro{
+    max-width:640px;
+    margin:0 auto 64px;
+    text-align:center;
+  }
+  .space-mosaic{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:340px 340px;
+    gap:16px;
+  }
+  .space-item{
+    position:relative;overflow:hidden;
+    background:var(--kinari-deep);
+  }
+  .space-item img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;transition:transform .6s ease;
+  }
+  .space-item:hover img{transform:scale(1.04)}
+  .space-item-1{grid-column:1/3;grid-row:1}
+  .space-item-2{grid-column:3/4;grid-row:1/3}
+  .space-item-3{grid-column:1/2;grid-row:2}
+  .space-item-4{grid-column:2/3;grid-row:2}
+  .space-item-caption{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:20px 24px;
+    background:linear-gradient(180deg,transparent,rgba(26,10,10,0.75));
+    color:var(--kinari);
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    font-weight:500;z-index:1;
+  }
+  @media(max-width:900px){
+    .space-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:260px 260px 260px}
+    .space-item-1{grid-column:1/3;grid-row:1}
+    .space-item-2{grid-column:1/3;grid-row:2}
+    .space-item-3{grid-column:1/2;grid-row:3}
+    .space-item-4{grid-column:2/3;grid-row:3}
+  }
+  @media(max-width:560px){
+    .space-mosaic{grid-template-columns:1fr;grid-template-rows:none}
+    .space-item-1,.space-item-2,.space-item-3,.space-item-4{grid-column:1;grid-row:auto;height:280px}
+  }
+
   /* ============ COMPANY INFO (会社概要) ============ */
   .company-section{
     background:var(--sumi);
@@ -4865,6 +4914,36 @@
     </div>
   </section>
 
+  <!-- Shop Space (店内) -->
+  <section class="space-section">
+    <div class="container">
+      <div class="space-intro">
+        <div class="eyebrow">Inside ANN · 店内</div>
+        <h2 class="section-title">A space made for <em>trying on</em></h2>
+        <div class="section-title-jp">試着のための空間</div>
+        <p class="section-subtitle">Racks of yukata and kimono sorted by colour, a full wall of obi and bags to match, and a lit vanity counter for the finishing touches — everything ready to try on the moment you walk in.</p>
+      </div>
+      <div class="space-mosaic">
+        <div class="space-item space-item-1">
+          <img src="./ANN/Space/space-1-racks.jpg" alt="Kimono and yukata racks inside the ANN shop" loading="lazy">
+          <div class="space-item-caption">The Racks · 着物ラック</div>
+        </div>
+        <div class="space-item space-item-2">
+          <img src="./ANN/Space/space-2-storefront.jpg" alt="Guests posing at the ANN storefront sign in Asakusa" loading="lazy">
+          <div class="space-item-caption">Street Level · 店頭</div>
+        </div>
+        <div class="space-item space-item-3">
+          <img src="./ANN/Space/space-3-accessories.jpg" alt="Obi, bags, and accessories on display" loading="lazy">
+          <div class="space-item-caption">Accessories · 小物</div>
+        </div>
+        <div class="space-item space-item-4">
+          <img src="./ANN/Space/space-4-vanity.jpg" alt="Vanity counter and mirror for hair and makeup" loading="lazy">
+          <div class="space-item-caption">The Vanity · メイクコーナー</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Company Information (会社概要) -->
   <section class="company-section">
     <div class="container">
@@ -5612,7 +5691,6 @@
       </div>
       <div class="product-info">
         <div class="product-cat">${p.cat}</div>
-        <div class="product-name-en">${p.en}</div>
         <div class="product-price">${priceStr} <small>RENTAL / DAY</small></div>
       </div>
     </a>`;

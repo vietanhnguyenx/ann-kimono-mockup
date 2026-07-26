@@ -2056,57 +2056,89 @@
   .company-section .section-title{color:var(--kinari)}
   .company-section .eyebrow{color:var(--kincha-soft)}
   .company-section .eyebrow::before,.company-section .eyebrow::after{background:var(--kincha-soft)}
-  .company-table{
-    margin-top:64px;
-    border-top:1px solid rgba(250,247,242,0.15);
-    max-width:920px;
-  }
-  .company-row{
+  /* Quick-facts hairline grid (3 cols, gap:1px trick shows dividers
+     between every cell regardless of the uneven 3+2 layout) */
+  .company-facts{
     display:grid;
-    grid-template-columns:280px 1fr;
-    gap:48px;
-    padding:28px 0;
-    border-bottom:1px solid rgba(250,247,242,0.15);
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(250,247,242,0.15);
+    border:1px solid rgba(250,247,242,0.15);
+    margin-top:64px;
   }
-  .company-label{
+  .company-fact{
+    background:var(--sumi);
+    padding:32px 28px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .company-fact-icon{
+    width:38px;height:38px;border-radius:50%;flex-shrink:0;
+    background:rgba(250,247,242,0.08);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--sakura);
+  }
+  .company-fact-icon svg{width:16px;height:16px;stroke-width:1.6}
+  .company-fact-label{
     font-family:'Shippori Mincho',serif;
-    font-size:15px;
-    color:var(--kinari);
-    line-height:1.6;
-    letter-spacing:0.04em;
+    font-size:14px;color:var(--kinari);letter-spacing:0.04em;
   }
-  .company-label .en{
+  .company-fact-label .en{
     display:block;
     font-family:'Plus Jakarta Sans',sans-serif;
-    font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--kincha-soft);
-    margin-top:6px;
-    font-weight:500;
+    font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--kincha-soft);margin-top:5px;font-weight:500;
   }
-  .company-value{
-    font-size:14px;
-    line-height:1.8;
-    color:rgba(250,247,242,0.85);
-    font-weight:300;
+  .company-fact-value{
+    font-size:13px;line-height:1.6;
+    color:rgba(250,247,242,0.85);font-weight:300;
+    margin-top:12px;
   }
-  .company-value .en{
+  .company-fact-value .en{
     display:block;
-    color:rgba(250,247,242,0.55);
-    font-size:12px;
-    margin-top:6px;
-    font-style:italic;
+    color:rgba(250,247,242,0.5);
+    font-size:11px;font-style:italic;
+    margin-top:5px;
+  }
+
+  /* Business description — separate block, 2-column flow */
+  .company-business{
+    margin-top:56px;
+    padding-top:40px;
+    border-top:1px solid rgba(250,247,242,0.15);
+  }
+  .company-business-label{
+    font-family:'Shippori Mincho',serif;
+    font-size:14px;color:var(--kinari);letter-spacing:0.04em;
+    margin-bottom:24px;
+  }
+  .company-business-label .en{
+    display:inline-block;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--kincha-soft);margin-left:12px;font-weight:500;
   }
   .company-business-list{
-    margin:0;padding-left:20px;
-    display:flex;flex-direction:column;gap:10px;
+    margin:0;padding:0;list-style:none;counter-reset:biz;
+    columns:2;column-gap:48px;
   }
   .company-business-list li{
+    counter-increment:biz;
+    display:flex;gap:14px;
     font-size:13px;line-height:1.7;
-    color:rgba(250,247,242,0.8);
-    font-weight:300;
+    color:rgba(250,247,242,0.8);font-weight:300;
+    margin-bottom:16px;break-inside:avoid;
+  }
+  .company-business-list li::before{
+    content:counter(biz,decimal-leading-zero);
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    color:var(--sakura);font-size:14px;flex-shrink:0;width:22px;
+  }
+  @media(max-width:900px){
+    .company-facts{grid-template-columns:repeat(2,1fr)}
   }
   @media(max-width:720px){
-    .company-row{grid-template-columns:1fr;gap:8px}
+    .company-facts{grid-template-columns:1fr}
+    .company-business-list{columns:1}
   }
   .craft-grid{
     display:grid;
@@ -4840,45 +4872,59 @@
         <div class="eyebrow">Company Information · 会社概要</div>
         <h2 class="section-title">Behind <em>ANN</em></h2>
       </div>
-      <div class="company-table">
-        <div class="company-row">
-          <div class="company-label">会社名<span class="en">Company Name</span></div>
-          <div class="company-value">JVMEDIA合同会社<span class="en">JVMEDIA GK</span></div>
-        </div>
-        <div class="company-row">
-          <div class="company-label">設立<span class="en">Established</span></div>
-          <div class="company-value">令和3年12月10日<span class="en">December 10, 2021</span></div>
-        </div>
-        <div class="company-row">
-          <div class="company-label">本社<span class="en">Head Office</span></div>
-          <div class="company-value">〒111-0032 東京都台東区浅草１丁目３４−７ 井上ビル B1F<span class="en">Inoue Bldg B1F, 1-34-7 Asakusa, Taito City, Tokyo 111-0032, Japan</span></div>
-        </div>
-        <div class="company-row">
-          <div class="company-label">連絡先<span class="en">Contact</span></div>
-          <div class="company-value">TEL (+81) 80-2382-9516</div>
-        </div>
-        <div class="company-row">
-          <div class="company-label">適格請求書発行事業者番号<span class="en">Qualified Invoice Issuer No.</span></div>
-          <div class="company-value">T7010603009307</div>
-        </div>
-        <div class="company-row">
-          <div class="company-label">事業内容<span class="en">Business Description</span></div>
-          <div class="company-value">
-            <ol class="company-business-list">
-              <li>広告業及び広告代理店業</li>
-              <li>インターネットを利用した各種マーケティング、プロモーション、広告宣伝等の企画、立案、制作、実施及び販売並びにそれらに関するコンサルティング</li>
-              <li>ソフトウェア、ウェブコンテンツ等の企画、開発、制作、デザイン、構築、販売、運用、配信及び保守管理</li>
-              <li>観光に関するコンサルティング及びマネジメント</li>
-              <li>飲食店、カラオケ店の経営</li>
-              <li>留学生の幹事・サポート事業</li>
-              <li>古物営業法に基づく古物営業</li>
-              <li>有料職業紹介事業</li>
-              <li>食品、食料の販売</li>
-              <li>輸出入貿易業</li>
-              <li>上記各号に附帯する一切の事業</li>
-            </ol>
+      <div class="company-facts">
+        <div class="company-fact">
+          <div class="company-fact-icon"><i data-lucide="building-2"></i></div>
+          <div>
+            <div class="company-fact-label">会社名<span class="en">Company Name</span></div>
+            <div class="company-fact-value">JVMEDIA合同会社<span class="en">JVMEDIA GK</span></div>
           </div>
         </div>
+        <div class="company-fact">
+          <div class="company-fact-icon"><i data-lucide="calendar"></i></div>
+          <div>
+            <div class="company-fact-label">設立<span class="en">Established</span></div>
+            <div class="company-fact-value">令和3年12月10日<span class="en">December 10, 2021</span></div>
+          </div>
+        </div>
+        <div class="company-fact">
+          <div class="company-fact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <div class="company-fact-label">連絡先<span class="en">Contact</span></div>
+            <div class="company-fact-value">TEL (+81) 80-2382-9516</div>
+          </div>
+        </div>
+        <div class="company-fact" style="grid-column:span 2">
+          <div class="company-fact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <div class="company-fact-label">本社<span class="en">Head Office</span></div>
+            <div class="company-fact-value">〒111-0032 東京都台東区浅草１丁目３４−７ 井上ビル B1F<span class="en">Inoue Bldg B1F, 1-34-7 Asakusa, Taito City, Tokyo 111-0032, Japan</span></div>
+          </div>
+        </div>
+        <div class="company-fact">
+          <div class="company-fact-icon"><i data-lucide="file-text"></i></div>
+          <div>
+            <div class="company-fact-label">適格請求書発行事業者番号<span class="en">Qualified Invoice Issuer No.</span></div>
+            <div class="company-fact-value">T7010603009307</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="company-business">
+        <div class="company-business-label">事業内容<span class="en">Business Description</span></div>
+        <ol class="company-business-list">
+          <li>広告業及び広告代理店業</li>
+          <li>インターネットを利用した各種マーケティング、プロモーション、広告宣伝等の企画、立案、制作、実施及び販売並びにそれらに関するコンサルティング</li>
+          <li>ソフトウェア、ウェブコンテンツ等の企画、開発、制作、デザイン、構築、販売、運用、配信及び保守管理</li>
+          <li>観光に関するコンサルティング及びマネジメント</li>
+          <li>飲食店、カラオケ店の経営</li>
+          <li>留学生の幹事・サポート事業</li>
+          <li>古物営業法に基づく古物営業</li>
+          <li>有料職業紹介事業</li>
+          <li>食品、食料の販売</li>
+          <li>輸出入貿易業</li>
+          <li>上記各号に附帯する一切の事業</li>
+        </ol>
       </div>
     </div>
   </section>

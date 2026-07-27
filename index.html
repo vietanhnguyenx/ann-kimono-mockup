@@ -558,36 +558,15 @@
 
   /* ============ INCLUDED WITH RENTAL ============ */
   .included-section{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    min-height:640px;
-  }
-  .included-half{
-    display:flex;
-    padding:100px 56px;
-  }
-  .included-half-dark{
-    background:var(--sumi);
-    color:var(--kinari);
-    justify-content:flex-end;
-    position:relative;
-    overflow:hidden;
-  }
-  .included-half-dark::before{
-    content:'';position:absolute;inset:0;
-    background:radial-gradient(ellipse 500px 400px at 20% 30%, rgba(245,192,200,0.08), transparent);
-    pointer-events:none;
-  }
-  .included-half-light{
     background:var(--kinari);
-    justify-content:flex-start;
+    padding:140px 0;
   }
   .included-intro{
-    display:flex;flex-direction:column;align-items:flex-start;
-    max-width:440px;position:relative;z-index:1;
+    max-width:640px;
+    margin:0 auto 64px;
+    text-align:center;
+    display:flex;flex-direction:column;align-items:center;
   }
-  .included-half-dark .eyebrow{color:var(--kincha-soft)}
-  .included-half-dark .eyebrow::before,.included-half-dark .eyebrow::after{background:var(--kincha-soft)}
   .included-intro .eyebrow{margin-bottom:24px}
   .included-title{
     font-family:'Cormorant Garamond',serif;
@@ -595,50 +574,57 @@
     letter-spacing:-0.01em;color:var(--sumi);
     margin-bottom:24px;
   }
-  .included-half-dark .included-title{color:var(--kinari)}
   .included-title em{font-style:italic;color:var(--shu)}
-  .included-half-dark .included-title em{color:var(--sakura)}
   .included-lead{
     font-size:15px;line-height:1.8;color:var(--sumi-soft);
-    font-weight:300;margin-bottom:28px;max-width:400px;
+    font-weight:300;margin-bottom:28px;max-width:480px;
   }
-  .included-half-dark .included-lead{color:rgba(255,248,248,0.8)}
   .included-combo{
     font-size:13px;line-height:1.8;color:var(--sumi-mid);
     font-weight:400;font-style:italic;
     padding:20px 24px;
     border-left:2px solid var(--shu);
     background:var(--kinari-deep);
-    margin-bottom:32px;max-width:420px;
+    margin-bottom:32px;max-width:520px;
   }
-  .included-half-dark .included-combo{background:rgba(250,247,242,0.06);color:rgba(255,248,248,0.75)}
-  .included-half-dark .btn-link{color:var(--kinari);border-bottom-color:var(--kinari)}
-  .included-half-dark .btn-link:hover{color:var(--sakura);border-color:var(--sakura)}
-  .included-list{display:flex;flex-direction:column;max-width:480px;width:100%}
+  .included-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+  }
   .included-item{
-    display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:flex-start;
-    padding:24px 0;
-    border-bottom:1px solid var(--line-strong);
+    display:flex;flex-direction:column;align-items:flex-start;
+    gap:16px;
+    padding:40px 32px;
+    background:var(--kinari);
+    transition:background .3s;
   }
-  .included-item:first-child{padding-top:0}
-  .included-item:last-child{border-bottom:none;padding-bottom:0}
+  .included-item:hover{background:var(--kinari-deep)}
   .included-icon{
-    width:48px;height:48px;border-radius:50%;
+    width:52px;height:52px;border-radius:50%;
     background:var(--sakura-soft);color:var(--shu);
     display:flex;align-items:center;justify-content:center;
     flex-shrink:0;
   }
-  .included-icon svg{width:21px;height:21px;stroke-width:1.6}
+  .included-icon svg{width:22px;height:22px;stroke-width:1.6}
   .included-label{
     display:block;
-    font-size:15px;font-weight:600;letter-spacing:0.01em;
-    color:var(--sumi);margin-bottom:6px;
+    font-size:16px;font-weight:600;letter-spacing:0.01em;
+    color:var(--sumi);margin-bottom:8px;
     font-family:'Plus Jakarta Sans',sans-serif;
   }
   .included-desc{
     display:block;
     font-size:13px;line-height:1.7;color:var(--sumi-soft);
     font-weight:300;
+  }
+  @media(max-width:900px){
+    .included-list{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:560px){
+    .included-list{grid-template-columns:1fr}
   }
 
   /* Kimono illustrated cards */
@@ -791,10 +777,16 @@
     overflow:hidden;
   }
   .ritual-bg{
-    display:none;
+    position:absolute;inset:-20px;
+    background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');
+    background-size:cover;background-position:center 30%;
+    filter:blur(7px) saturate(0.75) brightness(0.7);
+    opacity:0.32;
+    z-index:0;
   }
   .ritual::before{
-    display:none;
+    content:'';position:absolute;inset:0;z-index:0;
+    background:linear-gradient(180deg, var(--sumi) 0%, rgba(61,21,21,0.75) 30%, rgba(61,21,21,0.75) 70%, var(--sumi) 100%);
   }
   .ritual .container{position:relative;z-index:1}
   .ritual .section-title{color:var(--kinari)}
@@ -3382,27 +3374,31 @@
 
   /* ============ ADD-ON STRIP ============ */
   .addon-strip{
-    background:var(--kinari);
+    background:var(--sumi);
     padding:80px 0;
     position:relative;
     overflow:hidden;
   }
+  .addon-strip .eyebrow{color:var(--kincha-soft)}
+  .addon-strip .eyebrow::before,.addon-strip .eyebrow::after{background:var(--kincha-soft)}
+  .addon-strip .section-title{color:var(--kinari)}
+  .addon-strip .section-subtitle{color:rgba(250,247,242,0.75)}
   .addon-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:0;
     position:relative;z-index:2;
-    border:1px solid var(--line-strong);
+    border:1px solid rgba(250,247,242,0.12);
   }
   .addon-card{
     padding:56px 64px;
     background:var(--sumi);
-    border-right:1px solid rgba(250,247,242,0.1);
+    border-right:1px solid rgba(250,247,242,0.12);
     position:relative;
     transition:background .3s;
   }
   .addon-card:last-child{border-right:none}
-  .addon-card:hover{background:rgba(250,247,242,0.03)}
+  .addon-card:hover{background:var(--sumi-soft)}
   .addon-service-num{
     font-family:'Cormorant Garamond',serif;
     font-style:italic;font-size:13px;
@@ -4049,7 +4045,7 @@
 
   <!-- Included With Every Rental -->
   <section class="included-section">
-    <div class="included-half included-half-dark">
+    <div class="container">
       <div class="included-intro">
         <div class="eyebrow">What's Included · 含まれるサービス</div>
         <h2 class="included-title">Included with <em>every</em> rental</h2>
@@ -4057,8 +4053,6 @@
         <p class="included-combo">Prefer the full experience? We also offer a complete combo — kimono rental, professional makeup, and a photo shoot — bundled into one seamless package.</p>
         <button class="btn-link" data-view="shop">Browse rental lines</button>
       </div>
-    </div>
-    <div class="included-half included-half-light">
       <div class="included-list">
         <div class="included-item">
           <div class="included-icon"><i data-lucide="sparkles"></i></div>

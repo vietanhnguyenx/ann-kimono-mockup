@@ -791,16 +791,10 @@
     overflow:hidden;
   }
   .ritual-bg{
-    position:absolute;inset:-20px;
-    background-image:url('https://kimonorentalann.com/wp-content/uploads/2026/04/premium-furisode-couple-sakura-sumida-park-itkk.webp');
-    background-size:cover;background-position:center 30%;
-    filter:blur(7px) saturate(0.75) brightness(0.7);
-    opacity:0.32;
-    z-index:0;
+    display:none;
   }
   .ritual::before{
-    content:'';position:absolute;inset:0;z-index:0;
-    background:linear-gradient(180deg, var(--sumi) 0%, rgba(61,21,21,0.75) 30%, rgba(61,21,21,0.75) 70%, var(--sumi) 100%);
+    display:none;
   }
   .ritual .container{position:relative;z-index:1}
   .ritual .section-title{color:var(--kinari)}
